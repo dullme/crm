@@ -1,5 +1,5 @@
 <template>
-	<view class="index-body">
+	<view class="body index-body">
 		<view class="box" style="background-color: #F0F8FF;">
 			<view class="icon">
 				<image src="../../static/icons/tianjia@3x.png" mode="aspectFit"></image>
@@ -45,9 +45,9 @@
 
 <style>
 	.index-body{
+		margin-top: 60upx;
 		display: flex;
 		flex-wrap: wrap;
-		padding: 100upx 40upx 0 40upx;
 		justify-content: space-between;
 	}
 	

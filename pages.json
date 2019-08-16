@@ -14,14 +14,37 @@
         }
         ,{
             "path" : "pages/content/content",
-            "style" : {}
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "联系人",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColor": "#FFFFFF"
+			}
+        }
+        ,{
+            "path" : "pages/customer/customer",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "客户详情",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColor": "#FFFFFF"
+			}
+        }
+        ,{
+            "path" : "pages/follow/follow",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "跟进记录",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColor": "#FFFFFF"
+			}
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "客户管理系统",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
 	},
 	
 	"tabBar": {

@@ -3,14 +3,16 @@
     "pages/index/index",
     "pages/registLogin/registLogin",
     "pages/search/search",
-    "pages/content/content"
+    "pages/content/content",
+    "pages/customer/customer",
+    "pages/follow/follow"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "客户管理系统",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
     "color": "#dbdbdb",

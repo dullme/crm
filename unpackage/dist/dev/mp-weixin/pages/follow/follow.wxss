@@ -1,0 +1,63 @@
+
+page{
+	background-color: #F4F4F4;
+}
+.body{
+	background-color: #F4F4F4;
+	padding-top: 0;
+}
+.user-card{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-left: -40rpx;
+	margin-right: -40rpx;
+	padding: 66rpx 40rpx 26rpx 40rpx;
+	background-color: #FFFFFF;
+}
+.user-card .avatar image{
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	background-color: #F4F4F4;
+	padding: 30rpx;
+	margin-right: 20rpx;
+}
+.avatar-right{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	width: 100%;
+	padding: 15rpx 0;
+}
+.top-title{
+	font-size: 36rpx;
+	color: #222222;
+	margin-bottom: 25rpx;
+	font-weight: 700;
+}
+.bottom-title{
+	font-size: 28rpx;
+	color: #666666;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.bottom-title ._span:first-child{
+	margin-right: 30rpx;
+}
+.visit-form{
+	min-height: 500rpx;
+	border-radius: 16rpx;
+	background-color: #FFFFFF;
+	margin-top: 40rpx;
+}
+

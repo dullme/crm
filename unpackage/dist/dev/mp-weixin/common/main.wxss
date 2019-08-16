@@ -14,7 +14,7 @@
 
 
 /*每个页面公共css */
-.pages{
-	background-color: #999999;
+.body{
+	padding: 40rpx;
 }
 
