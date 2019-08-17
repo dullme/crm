@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -143,15 +143,48 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 var _default =
 {
-  data: function data() {
-    return {
-      title: 'Hello' };
-
-  },
   onLoad: function onLoad() {
+    uni.showModal({
+      title: '未登录',
+      content: '您未登录，需要登录后才能继续',
+      showCancel: false,
+      success: function success(res) {
+        if (res.confirm) {
+          uni.reLaunch({
+            url: '../registLogin/registLogin' });
+
+        }
+      } });
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    contacts: function contacts(e) {
+      uni.showModal({
+        title: "联系人",
+        content: "联系人请从客户管理进入",
+        showCancel: false,
+        confirmText: "确定" });
+
+    },
+
+    contractManagement: function contractManagement(e) {
+      uni.showModal({
+        title: "合同管理",
+        content: "测试版，需根据具体情况录入模板",
+        showCancel: false,
+        confirmText: "确定" });
+
+    },
+
+    paymentManagement: function paymentManagement(e) {
+      uni.showModal({
+        title: "回款管理",
+        content: "测试版，需根据具体情况录入模板",
+        showCancel: false,
+        confirmText: "确定" });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 17 */

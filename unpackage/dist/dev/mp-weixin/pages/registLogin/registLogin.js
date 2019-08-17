@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -133,11 +133,61 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      mobile: '',
+      code: '' };
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    getCode: function getCode() {
+      if (!this.mobile) {
+        uni.showToast({
+          title: "请输入手机号",
+          image: "../../static/icons/warning.png" });
+
+      } else {
+        // 发起注册/登录的请求
+        var serverUrl = this.serverUrl;
+        console.log(serverUrl);
+        uni.request({
+          url: serverUrl + 'send-sms',
+          data: {
+            "mobile": this.mobile,
+            "code": this.code },
+
+          method: "POST",
+          success: function success(res) {
+
+            // 获取真实数据之前，务必判断状态是否为200
+            if (res.data.status == 200) {
+              console.log(res.data);
+
+
+              // var userInfo = res.data.data;
+              // // console.log(userInfo);
+              // // 保存用户信息到全局的缓存中
+              // uni.setStorageSync("globalUser", userInfo);
+              // // 切换页面跳转，使用tab切换的api
+              // uni.switchTab({
+              // 	url: "../me/me"
+              // });
+            } else if (res.data.status == 500) {
+              uni.showToast({
+                title: res.data.msg,
+                duration: 2000,
+                image: "../../static/icos/error.png" });
+
+            }
+          } });
+
+      }
+    },
+
+    formSubmit: function formSubmit() {
+      console.log(this.mobile);
+      console.log(this.password);
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

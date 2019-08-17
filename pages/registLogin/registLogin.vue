@@ -7,13 +7,16 @@
 		
 		<form @submit="formSubmit">
 			<view class="input">
-				<input name="username" type="text" value="" placeholder="请输入手机号" placeholder-class="graywords"/>
+				<input name="mobile" type="number" value="" placeholder="请输入手机号" v-model="mobile" placeholder-class="graywords"/>
 			</view>
 			
 			
 			<view class="input input-last">
-				<input name="password" type="text" value="" placeholder="请输入验证码" placeholder-class="graywords"/>
-				<label class="code">获取验证码</label>
+				<input name="code" type="number" value="" placeholder="请输入验证码" v-model="code" placeholder-class="graywords"/>
+				<label class="code" @click="send">
+					<span v-if="sendMsgDisabled">{{time+'秒后获取'}}</span>
+					<span v-if="!sendMsgDisabled">发送验证码</span>
+				</label>
 			</view>
 			
 			<button class="form-button form-button-active" form-type="submit">登录</button>
@@ -27,11 +30,76 @@
 	export default {
 		data() {
 			return {
+				mobile : '',
+				code : '',
+				time: 60,
+				sendMsgDisabled:false
 				
 			}
 		},
 		methods: {
+			send(){
+				let me = this;
+				if(!me.mobile){
+					uni.showToast({
+						title: "请输入手机号",
+						image: "../../static/icons/warning.png"
+					})
+				}else{
+					if(!me.sendMsgDisabled){
+						// 发起注册/登录的请求
+						var serverUrl = me.serverUrl;
+						uni.request({
+							url: serverUrl + 'send-sms',
+							data: {
+								"mobile": me.mobile,
+							},
+							method: "POST",
+							success: (res) => {
+								console.log(res);
+								
+								// 获取真实数据之前，务必判断状态是否为200
+								if (res.data.code == 200) {
+									me.sendMsgDisabled = true;
+									me.countDown();//倒计时
+									
+									// var userInfo = res.data.data;
+									// // console.log(userInfo);
+									// // 保存用户信息到全局的缓存中
+									// uni.setStorageSync("globalUser", userInfo);
+									// // 切换页面跳转，使用tab切换的api
+									// uni.switchTab({
+									// 	url: "../me/me"
+									// });
+								} else if (res.data.code == 422) {
+									me.sendMsgDisabled = false;
+									uni.showToast({
+										title: res.data.message,
+										duration: 2000,
+										image: "../../static/icons/warning.png"
+									})
+								}
+							}
+						});
+					}
+				}
+			},
 			
+			countDown(){
+				let me = this;
+				let interval = window.setInterval(function() {
+					if ((me.time--) <= 0) {
+						me.time = 60;
+						me.sendMsgDisabled = false;
+						window.clearInterval(interval);
+					}
+				}, 1000);
+			},
+			
+			formSubmit(){
+				console.log(this.mobile);
+				console.log(this.password);
+			}
 		}
 	}
 </script>

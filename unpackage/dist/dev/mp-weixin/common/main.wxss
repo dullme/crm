@@ -15,6 +15,6 @@
 
 /*每个页面公共css */
 .body{
-	padding: 40rpx;
+	padding: 35rpx;
 }
 

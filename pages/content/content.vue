@@ -1,9 +1,15 @@
 <template>
 	<view class="body">
-		<view class="search">
-			<image src="../../static/icons/faxian@2x.png"></image>
-			<input type="text" />
+		<view class="search-all">
+			<view class="search">
+				<image src="../../static/icons/faxian@2x.png"></image>
+				<input type="text" />
+			</view>
+			<navigator url="../info/info">
+				<image src="../../static/icons/tianjiakehu@3x.png"></image>
+			</navigator>
 		</view>
+		
 		<view class="user-card-list">
 			
 			<navigator url="../customer/customer" open-type="navigate">
@@ -43,8 +49,24 @@
 </script>
 
 <style>
+	.search-all{
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+	}
+	
+	.search-all navigator > image{
+		width: 50upx;
+		height: 50upx;
+		right: 14upx;
+		top: 50%;
+		transform: translateY(-50%);
+		position: absolute;
+	}
+	
 	.search{
 		display: flex;
+		width: 80%;
 		background-color: #F4F4F4;
 		border-radius: 100upx;
 		padding: 12upx 30upx;

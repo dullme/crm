@@ -6,17 +6,18 @@
 		},
 		{
 			"path": "pages/registLogin/registLogin",
-			"style": {}
+			"style": {
+				"app-plus" : {
+				    "titleNView" : false //禁用原生导航栏
+				},
+				"navigationBarTitleText": "登陆"
+			}
 		}
-	    ,{
-            "path" : "pages/search/search",
-            "style" : {}
-        }
         ,{
             "path" : "pages/content/content",
             "style" : {
 				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "联系人",
+				"navigationBarTitleText": "客户管理",
 				"navigationBarBackgroundColor": "#FFFFFF",
 				"backgroundColor": "#FFFFFF"
 			}
@@ -35,6 +36,24 @@
             "style" : {
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "跟进记录",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColor": "#FFFFFF"
+			}
+        }
+        ,{
+            "path" : "pages/info/info",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "基本信息",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColor": "#FFFFFF"
+			}
+        }
+        ,{
+            "path" : "pages/find/find",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "发现",
 				"navigationBarBackgroundColor": "#FFFFFF",
 				"backgroundColor": "#FFFFFF"
 			}
@@ -63,10 +82,10 @@
 				"pagePath": "pages/content/content",
 				"iconPath": "static/icons/lianxiren@3x.png",
 				"selectedIconPath": "static/icons/wodepro@3x.png",
-				"text": "联系人"
+				"text": "客户管理"
 			},
 			{
-				"pagePath": "pages/search/search",
+				"pagePath": "pages/find/find",
 				"iconPath": "static/icons/faxian@3x.png",
 				"selectedIconPath": "static/icons/faxianpro@3x.png",
 				"text": "发现"

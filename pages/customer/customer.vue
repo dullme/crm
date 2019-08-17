@@ -10,17 +10,20 @@
 				</view>
 				<view class="bottom-title">
 					<span>负责人：李四</span>
-					<span>手机：13888888888</span>
+					<view class="content-by-mobile">
+						<image src="../../static/icons/mobile.png"></image>
+						<span>：13888888888</span>
+					</view>
 				</view>
 			</view>
 		</view>
 		<view class="box-list">
-			<view class="box">
+			<navigator url="../info/info" class="box">
 				<view class="icon">
 					<image src="../../static/icons/shenfenxuanze@3x.png"></image>
 				</view>
 				<span>基本信息</span>
-			</view>
+			</navigator>
 			
 			<navigator url="../follow/follow" open-type="navigate">
 				<view class="box">
@@ -32,14 +35,14 @@
 			</navigator>
 			
 			
-			<view class="box">
+			<view class="box" @tap="contractInformation">
 				<view class="icon">
 					<image src="../../static/icons/hetong1@3x.png"></image>
 				</view>
 				<span>合同信息</span>
 			</view>
 			
-			<view class="box">
+			<view class="box" @tap="paymentInformation">
 				<view class="icon">
 					<image src="../../static/icons/huikuanjilu@3x.png"></image>
 				</view>
@@ -48,25 +51,25 @@
 		</view>
 		<view class="line"></view>
 		<view class="list-button">
-			<view class="button-box">
+			<view class="button-box" @tap="operationalRecords">
 				<view class="box-left">
 					<span>操作记录</span>
 				</view>
 				<image src="../../static/icons/xiangqing@3x.png"></image>
 			</view>
-			<view class="button-box">
+			<view class="button-box" @tap="enclosure">
 				<view class="box-left">
 					<span>附件</span>
 				</view>
 				<image src="../../static/icons/xiangqing@3x.png"></image>
 			</view>
-			<view class="button-box">
+			<view class="button-box" @tap="relevantTeams">
 				<view class="box-left">
 					<span>相关团队</span>
 				</view>
 				<image src="../../static/icons/xiangqing@3x.png"></image>
 			</view>
-			<view class="button-box">
+			<view class="button-box" @tap="businessOpportunity">
 				<view class="box-left">
 					<span>商机</span>
 					<span class="tag">new</span>
@@ -82,7 +85,59 @@
 	export default {
 		data() {
 			return {
+				operationalRecords: function (e) {
+					uni.showModal({
+						title: "操作记录",
+						content: "测试版，需根据具体情况录入模板",
+						showCancel: false,
+						confirmText: "确定"
+					})
+				},
 				
+				enclosure: function (e) {
+					uni.showModal({
+						title: "附件",
+						content: "测试版，需根据具体情况录入模板",
+						showCancel: false,
+						confirmText: "确定"
+					})
+				},
+				
+				relevantTeams: function (e) {
+					uni.showModal({
+						title: "相关团队",
+						content: "测试版，需根据具体情况录入模板",
+						showCancel: false,
+						confirmText: "确定"
+					})
+				},
+				
+				businessOpportunity: function (e) {
+					uni.showModal({
+						title: "商机",
+						content: "测试版，需根据具体情况录入模板",
+						showCancel: false,
+						confirmText: "确定"
+					})
+				},
+				
+				contractInformation: function (e) {
+					uni.showModal({
+						title: "合同信息",
+						content: "测试版，需根据具体情况录入模板",
+						showCancel: false,
+						confirmText: "确定"
+					})
+				},
+				
+				paymentInformation: function (e) {
+					uni.showModal({
+						title: "回款信息",
+						content: "测试版，需根据具体情况录入模板",
+						showCancel: false,
+						confirmText: "确定"
+					})
+				},
 			}
 		},
 		methods: {
@@ -120,6 +175,10 @@
 		font-weight: 700;
 	}
 	
+	.content-by-mobile{
+		display: flex;
+	}
+	
 	.bottom-title{
 		font-size: 28upx;
 		color: #666666;
@@ -128,6 +187,11 @@
 	
 	.bottom-title span:first-child{
 		margin-right: 30upx;
+	}
+	
+	.bottom-title image{
+		width: 40upx;
+		height: 40upx;
 	}
 	
 	.box-list {

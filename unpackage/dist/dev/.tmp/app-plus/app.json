@@ -2,14 +2,17 @@
   "pages": [
     "pages/index/index",
     "pages/registLogin/registLogin",
-    "pages/search/search",
-    "pages/content/content"
+    "pages/content/content",
+    "pages/customer/customer",
+    "pages/follow/follow",
+    "pages/info/info",
+    "pages/find/find"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "客户管理系统",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
     "color": "#dbdbdb",
@@ -27,10 +30,10 @@
         "pagePath": "pages/content/content",
         "iconPath": "static/icons/lianxiren@3x.png",
         "selectedIconPath": "static/icons/wodepro@3x.png",
-        "text": "联系人"
+        "text": "客户管理"
       },
       {
-        "pagePath": "pages/search/search",
+        "pagePath": "pages/find/find",
         "iconPath": "static/icons/faxian@3x.png",
         "selectedIconPath": "static/icons/faxianpro@3x.png",
         "text": "发现"

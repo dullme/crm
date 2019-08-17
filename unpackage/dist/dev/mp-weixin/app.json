@@ -2,10 +2,11 @@
   "pages": [
     "pages/index/index",
     "pages/registLogin/registLogin",
-    "pages/search/search",
     "pages/content/content",
     "pages/customer/customer",
-    "pages/follow/follow"
+    "pages/follow/follow",
+    "pages/info/info",
+    "pages/find/find"
   ],
   "subPackages": [],
   "window": {
@@ -30,10 +31,10 @@
         "pagePath": "pages/content/content",
         "iconPath": "static/icons/lianxiren@3x.png",
         "selectedIconPath": "static/icons/wodepro@3x.png",
-        "text": "联系人"
+        "text": "客户管理"
       },
       {
-        "pagePath": "pages/search/search",
+        "pagePath": "pages/find/find",
         "iconPath": "static/icons/faxian@3x.png",
         "selectedIconPath": "static/icons/faxianpro@3x.png",
         "text": "发现"
