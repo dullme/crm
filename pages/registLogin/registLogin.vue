@@ -19,7 +19,7 @@
 				</label>
 			</view>
 			
-			<button class="form-button form-button-active" form-type="submit">登录</button>
+			<button class="form-button" :class="[!!mobile && !!code ? ' form-button-active':'']" form-type="submit">登录</button>
 		</form>
 	</view>
 	
@@ -58,19 +58,9 @@
 							success: (res) => {
 								console.log(res);
 								
-								// 获取真实数据之前，务必判断状态是否为200
 								if (res.data.code == 200) {
 									me.sendMsgDisabled = true;
 									me.countDown();//倒计时
-									
-									// var userInfo = res.data.data;
-									// // console.log(userInfo);
-									// // 保存用户信息到全局的缓存中
-									// uni.setStorageSync("globalUser", userInfo);
-									// // 切换页面跳转，使用tab切换的api
-									// uni.switchTab({
-									// 	url: "../me/me"
-									// });
 								} else if (res.data.code == 422) {
 									me.sendMsgDisabled = false;
 									uni.showToast({
@@ -97,8 +87,35 @@
 			},
 			
 			formSubmit(){
-				console.log(this.mobile);
-				console.log(this.password);
+				let me = this;
+				var serverUrl = me.serverUrl;
+				uni.request({
+					url: serverUrl + 'login-sms',
+					data: {
+						"mobile": me.mobile,
+						"code":me.code
+					},
+					method: "POST",
+					success: (res) => {
+						console.log(res);
+						
+						// 获取真实数据之前，务必判断状态是否为200
+						if (res.data.code == 200) {
+							uni.setStorageSync("globalUser", res.data.data);
+							// 切换页面跳转，使用tab切换的api
+							// 切换页面跳转，使用tab切换的api
+							uni.switchTab({
+								url: "../index/index"
+							});
+								
+						} else if (res.data.code == 422) {
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
+						}
+					}
+				});
 			}
 		}
 	}
