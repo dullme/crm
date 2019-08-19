@@ -3,7 +3,7 @@
 		<view class="search-all">
 			<view class="search">
 				<image src="../../static/icons/faxian@2x.png"></image>
-				<input type="text" confirm-type="search" @input="search"/>
+				<input type="text" confirm-type="search" @confirm="search"/>
 			</view>
 			<navigator url="../info/info">
 				<image src="../../static/icons/tianjiakehu@3x.png"></image>
@@ -32,7 +32,7 @@
 			</navigator>
 
 		</view>
-		<view class="empty" v-else>
+		<view class="empty" v-if="empty">
 			无结果
 		</view>
 	</view>
@@ -43,12 +43,16 @@
 		data() {
 			return {
 				token : '',
-				customerList:{}
+				customerList:{},
+				empty: false
 			}
 		},
 		onLoad() {
 			this.token = this.getGlobalAccessToken()
 			if(this.token != null){
+				uni.showLoading({
+				    title: '加载中'
+				});
 				uni.request({
 					url: this.serverUrl + 'customer-list',
 					header: {
@@ -57,8 +61,15 @@
 					},
 					method: "GET",
 					success: (res) => {
+						uni.hideLoading();
 						if(res.data.code == 200){
 							this.customerList = res.data.data;
+							this.empty = res.data.data.length ? false : true;
+						}else if(res.data.code == 429){
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
 						}else{
 							uni.showModal({
 							    title: '未登录',
@@ -80,7 +91,10 @@
 		
 		methods: {
 			search(e){
-				let text = e.detail.value
+				let text = e.detail.value ? e.detail.value :' ';
+				uni.showLoading({
+				    title: '加载中'
+				});
 				uni.request({
 					url: this.serverUrl + 'customer-list?search=' + text,
 					header: {
@@ -89,8 +103,15 @@
 					},
 					method: "GET",
 					success: (res) => {
+						uni.hideLoading();
 						if(res.data.code == 200){
 							this.customerList = res.data.data;
+							this.empty = res.data.data.length ? false : true;
+						}else if(res.data.code == 429){
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
 						}else{
 							uni.showModal({
 							    title: '未登录',

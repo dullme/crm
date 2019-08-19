@@ -48,6 +48,11 @@
 					success: (res) => {
 						if(res.data.code == 200){
 							this.userInfo = res.data.data;
+						}else if(res.data.code == 429){
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
 						}else{
 							uni.showModal({
 							    title: '未登录',
