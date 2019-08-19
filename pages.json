@@ -14,7 +14,7 @@
 			}
 		}
         ,{
-            "path" : "pages/content/content",
+            "path" : "pages/customerList/customerList",
             "style" : {
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "客户管理",
@@ -79,7 +79,7 @@
 				"text": "我的"
 			},
 			{
-				"pagePath": "pages/content/content",
+				"pagePath": "pages/customerList/customerList",
 				"iconPath": "static/icons/lianxiren@3x.png",
 				"selectedIconPath": "static/icons/wodepro@3x.png",
 				"text": "客户管理"

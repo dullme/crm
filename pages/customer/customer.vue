@@ -6,26 +6,26 @@
 			</view>
 			<view class="avatar-right">
 				<view class="top-title">
-					<span>上海久话网络通信科技有限公司</span>
+					<span>{{ name }}</span>
 				</view>
 				<view class="bottom-title">
-					<span>负责人：李四</span>
+					<span>负责人：{{ user_name }}</span>
 					<view class="content-by-mobile">
 						<image src="../../static/icons/mobile.png"></image>
-						<span>：13888888888</span>
+						<span>：{{ mobile }}</span>
 					</view>
 				</view>
 			</view>
 		</view>
 		<view class="box-list">
-			<navigator url="../info/info" class="box">
+			<navigator :url="'../info/info?id='+id" class="box">
 				<view class="icon">
 					<image src="../../static/icons/shenfenxuanze@3x.png"></image>
 				</view>
 				<span>基本信息</span>
 			</navigator>
 			
-			<navigator url="../follow/follow" open-type="navigate">
+			<navigator :url="'../follow/follow?id='+id+'&name='+name+'&mobile='+mobile+'&user_name='+user_name" open-type="navigate">
 				<view class="box">
 					<view class="icon">
 						<image src="../../static/icons/genjinjilu@3x.png"></image>
@@ -85,63 +85,72 @@
 	export default {
 		data() {
 			return {
-				operationalRecords: function (e) {
-					uni.showModal({
-						title: "操作记录",
-						content: "测试版，需根据具体情况录入模板",
-						showCancel: false,
-						confirmText: "确定"
-					})
-				},
-				
-				enclosure: function (e) {
-					uni.showModal({
-						title: "附件",
-						content: "测试版，需根据具体情况录入模板",
-						showCancel: false,
-						confirmText: "确定"
-					})
-				},
-				
-				relevantTeams: function (e) {
-					uni.showModal({
-						title: "相关团队",
-						content: "测试版，需根据具体情况录入模板",
-						showCancel: false,
-						confirmText: "确定"
-					})
-				},
-				
-				businessOpportunity: function (e) {
-					uni.showModal({
-						title: "商机",
-						content: "测试版，需根据具体情况录入模板",
-						showCancel: false,
-						confirmText: "确定"
-					})
-				},
-				
-				contractInformation: function (e) {
-					uni.showModal({
-						title: "合同信息",
-						content: "测试版，需根据具体情况录入模板",
-						showCancel: false,
-						confirmText: "确定"
-					})
-				},
-				
-				paymentInformation: function (e) {
-					uni.showModal({
-						title: "回款信息",
-						content: "测试版，需根据具体情况录入模板",
-						showCancel: false,
-						confirmText: "确定"
-					})
-				},
+				id : '',
+				name : '',
+				mobile : '',
+				user_name : '',
 			}
 		},
+		onLoad(options){
+			this.id = options.id;
+			this.name = options.name;
+			this.mobile = options.mobile;
+			this.user_name = options.user_name;
+		 },
 		methods: {
+			operationalRecords: function (e) {
+				uni.showModal({
+					title: "操作记录",
+					content: "测试版，需根据具体情况录入模板",
+					showCancel: false,
+					confirmText: "确定"
+				})
+			},
 			
+			enclosure: function (e) {
+				uni.showModal({
+					title: "附件",
+					content: "测试版，需根据具体情况录入模板",
+					showCancel: false,
+					confirmText: "确定"
+				})
+			},
+			
+			relevantTeams: function (e) {
+				uni.showModal({
+					title: "相关团队",
+					content: "测试版，需根据具体情况录入模板",
+					showCancel: false,
+					confirmText: "确定"
+				})
+			},
+			
+			businessOpportunity: function (e) {
+				uni.showModal({
+					title: "商机",
+					content: "测试版，需根据具体情况录入模板",
+					showCancel: false,
+					confirmText: "确定"
+				})
+			},
+			
+			contractInformation: function (e) {
+				uni.showModal({
+					title: "合同信息",
+					content: "测试版，需根据具体情况录入模板",
+					showCancel: false,
+					confirmText: "确定"
+				})
+			},
+			
+			paymentInformation: function (e) {
+				uni.showModal({
+					title: "回款信息",
+					content: "测试版，需根据具体情况录入模板",
+					showCancel: false,
+					confirmText: "确定"
+				})
+			},
 		}
 	}
 </script>

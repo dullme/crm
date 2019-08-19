@@ -2,7 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/registLogin/registLogin",
-    "pages/content/content",
+    "pages/customerList/customerList",
     "pages/customer/customer",
     "pages/follow/follow",
     "pages/info/info",
@@ -27,7 +27,7 @@
         "text": "我的"
       },
       {
-        "pagePath": "pages/content/content",
+        "pagePath": "pages/customerList/customerList",
         "iconPath": "static/icons/lianxiren@3x.png",
         "selectedIconPath": "static/icons/wodepro@3x.png",
         "text": "客户管理"

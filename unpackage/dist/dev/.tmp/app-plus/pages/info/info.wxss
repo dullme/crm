@@ -33,4 +33,30 @@
 .form-button-active{
 	background-color: #008EFF !important;
 }
+.box-picker{
+	width: 80%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+}
+.box-picker picker{
+	width: 100%;
+	margin-right: 40rpx;
+}
+.box-picker image{
+	width: 30rpx;
+	height: 30rpx;
+	top: 50%;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	        transform: translateY(-50%);
+	position: absolute;
+}
 

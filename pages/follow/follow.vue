@@ -6,13 +6,13 @@
 			</view>
 			<view class="avatar-right">
 				<view class="top-title">
-					<span>上海久话网络通信科技有限公司</span>
+					<span>{{ name }}</span>
 				</view>
 				<view class="bottom-title">
-					<span>负责人：李四</span>
+					<span>负责人：{{ user_name }}</span>
 					<view class="content-by-mobile">
 						<image src="../../static/icons/mobile.png"></image>
-						<span>：13888888888</span>
+						<span>：{{ mobile }}</span>
 					</view>
 				</view>
 			</view>
@@ -93,17 +93,28 @@
 
 <script>
 	export default {
+		
 		data() {
 			const currentDate = this.getDate({
 				format: true
 			})
 			return {
+				id : '',
+				name : '',
+				mobile : '',
+				user_name : '',
 				array: ['微信', '电话', '邮件'],
 				index: 0,
 				date: currentDate,
 				time: '12:01'
 			}
 		},
+		onLoad(options){
+			this.id = options.id;
+			this.name = options.name;
+			this.mobile = options.mobile;
+			this.user_name = options.user_name;
+		 },
 		methods: {
 			getDate(type) {
 				const date = new Date();

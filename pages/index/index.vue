@@ -31,50 +31,81 @@
 	export default {
 		data() {
 			return {
-				userIsLogin: false,
-				userInfo: {}
+				userInfo: {},
 			};
 		},
 		onLoad() {
-			let me = this;
-			var userInfo = me.getGlobalUser("globalUser");
-			if (userInfo != null) {
-				me.userIsLogin = true;
-				me.userInfo = userInfo;
-				console.log(userInfo);
-				
-				var serverUrl = me.serverUrl;
+			let accessToken = this.getGlobalAccessToken();
+			if(accessToken != null){
 				//获取用户信息
 				uni.request({
-					url: serverUrl + 'user-info',
+					url: this.serverUrl + 'user-info',
 					header: {
-						"Authorization": me.userInfo.token,
+						"Authorization": accessToken,
 						"Accept":'application/json'
 					},
 					method: "GET",
 					success: (res) => {
-						console.log(res);
+						if(res.data.code == 200){
+							this.userInfo = res.data.data;
+						}else{
+							uni.showModal({
+							    title: '未登录',
+							    content: '您未登录，需要登录后才能继续',
+								showCancel: false,
+							    success: (res) => {
+							        if (res.confirm) {
+										uni.reLaunch({
+										    url: '../registLogin/registLogin'
+										});
+							        }
+							    }
+							});
+						}
 					}
 				});
-				
-				
-				
-			} else {
-				me.userIsLogin = false;
-				me.userInfo = {};
-				uni.showModal({
-				    title: '未登录',
-				    content: '您未登录，需要登录后才能继续',
-					showCancel: false,
-				    success: (res) => {
-				        if (res.confirm) {
-							uni.reLaunch({
-							    url: '../registLogin/registLogin'
-							});
-				        }
-				    }
-				});
 			}
+			
+			
+			
+						
+			// if (accessToken != null) {
+			// 	me.userIsLogin = true;
+			// 	me.userInfo = userInfo;
+			// 	console.log(userInfo);
+			// 	
+			// 	var serverUrl = me.serverUrl;
+			// 	//获取用户信息
+			// 	uni.request({
+			// 		url: serverUrl + 'user-info',
+			// 		header: {
+			// 			"Authorization": me.userInfo.token,
+			// 			"Accept":'application/json'
+			// 		},
+			// 		method: "GET",
+			// 		success: (res) => {
+			// 			console.log(res);
+			// 		}
+			// 	});
+			// 	
+			// 	
+			// 	
+			// } else {
+			// 	me.userIsLogin = false;
+			// 	me.userInfo = {};
+			// 	uni.showModal({
+			// 	    title: '未登录',
+			// 	    content: '您未登录，需要登录后才能继续',
+			// 		showCancel: false,
+			// 	    success: (res) => {
+			// 	        if (res.confirm) {
+			// 				uni.reLaunch({
+			// 				    url: '../registLogin/registLogin'
+			// 				});
+			// 	        }
+			// 	    }
+			// 	});
+			// }
 		},
 		methods: {
 			contacts: function (e) {

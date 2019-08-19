@@ -101,7 +101,12 @@
 						
 						// 获取真实数据之前，务必判断状态是否为200
 						if (res.data.code == 200) {
-							uni.setStorageSync("globalUser", res.data.data);
+							uni.setStorageSync("globalAccessToken", {
+								"auth_id" : res.data.data.auth_id,
+								"expires_in" : res.data.data.expires_in,
+								"token" : res.data.data.token,
+								"expires_at" : Math.round(new Date() / 1000) + res.data.data.expires_in
+							});
 							// 切换页面跳转，使用tab切换的api
 							// 切换页面跳转，使用tab切换的api
 							uni.switchTab({
