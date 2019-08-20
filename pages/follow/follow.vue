@@ -15,78 +15,90 @@
 						<span>：{{ mobile }}</span>
 					</view>
 				</view>
-			</view>
-		</view>
-		<view class="body-follow">
-			<form >
-				<view class="visit-form visit-form-first">
-					<view class="form-group">
-						<label>记录类型</label>
-						<view class="box-picker">
-							<picker :value="index" :range="array">
-								<view class="uni-input">{{array[index]}}</view>
-							</picker>
-							<image src="../../static/icons/xiangqing@3x.png"></image>
-						</view>
-					</view>
-					
-					<view class="form-group">
-						<label>重访日期</label>
-						<view class="box-picker">
-							<picker mode="date" :value="date" @change="bindDateChange">
-								<view class="uni-input">{{date}}</view>
-							</picker>
-							<image src="../../static/icons/xiangqing@3x.png"></image>
-						</view>
-					</view>
-					
-					<view class="form-group">
-						<label>重访时间</label>
-						<view class="box-picker">
-							<picker mode="time" :value="time" @change="bindTimeChange">
-								<view class="uni-input">{{time}}</view>
-							</picker>
-							<image src="../../static/icons/xiangqing@3x.png"></image>
-						</view>
-					</view>
-					
-					
-					<view class="form-group" style="border-bottom: 0;">
-						<label>备注</label>
-						<view class="box-picker">
-							<view class="uni-textarea">
-								<textarea />
-							</view>
-						</view>
-					</view>
-					
-					<button class="form-button form-button-active" form-type="submit">盯一下</button>
-					
+				<view class="bottom-title" style="margin-top: 30upx;margin-bottom: 20upx;display: flex;justify-content: space-between;">
+					<span>状态：{{ status_name[customer.status] }}</span>
+					<span class="end-button" v-if="customer.status != 1" @click="customerEnd">结束拜访</span>
 				</view>
-			</form>
+			</view>
+		</view>	
+		
+		<view class="body-follow">
+			<view class="visit-form visit-form-first" v-if="customer.status != 1">
+				<view class="form-group">
+					<label>记录类型</label>
+					<view class="box-picker">
+						<picker mode="selector" :range="type" @change="typeSelect">
+							<view class="uni-input">{{type[type_index]}}</view>
+						</picker>
+						<image src="../../static/icons/xiangqing@3x.png"></image>
+					</view>
+				</view>
+				
+				<view class="form-group">
+					<label>重访日期</label>
+					<view class="box-picker">
+						<picker mode="date" :value="date" @change="bindDateChange">
+							<view class="uni-input">{{date}}</view>
+						</picker>
+						<image src="../../static/icons/xiangqing@3x.png"></image>
+					</view>
+				</view>
+				
+				<view class="form-group">
+					<label>重访时间</label>
+					<view class="box-picker">
+						<picker mode="time" :value="time" @change="bindTimeChange">
+							<view class="uni-input">{{time}}</view>
+						</picker>
+						<image src="../../static/icons/xiangqing@3x.png"></image>
+					</view>
+				</view>
+				
+				
+				<view class="form-group" style="border-bottom: 0;">
+					<label></label>
+					<view class="box-picker">
+						<view class="uni-textarea">
+							<textarea placeholder="备注" v-model="remark"/>
+						</view>
+					</view>
+				</view>
+				
+				<button class="form-button form-button-active" @click="formSubmit">盯一下</button>
+				
+			</view>
 			
 			<view class="visit-form">
 				<view class="user-card user-card-title" style="border: 0;">
 					<span class="title">跟进记录</span>
-				</view>
-				
-				<view class="user-card" v-for="i in 4">
-					<view class="avatar">
-						<image src="../../static/icons/lianxiren@3x.png"></image>
-					</view>
-					<view class="avatar-right">
-						<view class="top-title">
-							<span>李四</span>
-							<span style="color: #FF4657;font-size: 28upx;">未成交</span>
-						</view>
-						<view class="bottom-title">
-							<span>邮件联系</span>
-							<span>2019-09-01</span>
-						</view>
+					<view v-if="follow_list.length > 1" @click="orderBy">
+						<image src="../../static/icons/down.png" v-if="order==1"></image>
+						<image src="../../static/icons/up.png" v-if="order==0"></image>
 					</view>
 				</view>
 				
+				<view v-if="follow_list.length">
+					<view class="user-card" v-for="item in follow_list">
+						<view class="avatar">
+							<image src="../../static/icons/lianxiren@3x.png"></image>
+						</view>
+						<view class="avatar-right">
+							<view class="top-title">
+								<span>{{ user_name }}</span>
+								<!-- <span style="color: #FF4657;font-size: 28upx;">未成交</span> -->
+							</view>
+							<view class="bottom-title">
+								<span>{{ type[item.type] }}</span>
+								<span>{{ item.visited_at }}</span>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view v-else style="padding-bottom: 40upx;min-height: 200upx;display: flex;align-items: center;justify-content: center;color: #D9D9D9;font-size: 35upx;">
+					暂无记录
+				</view>
 			</view>
+			
 		</view>
 	</view>
 </template>
@@ -99,23 +111,224 @@
 				format: true
 			})
 			return {
+				token : '',
 				id : '',
 				name : '',
 				mobile : '',
 				user_name : '',
-				array: ['微信', '电话', '邮件'],
-				index: 0,
+				status : '',
+				type: ['请选择','微信', '电话', '邮件'],
+				status_name: ['待拜访', '已结束'],
+				type_index: 0,
 				date: currentDate,
-				time: '12:01'
+				time: '12:00',
+				remark: '',
+				follow_list : {},
+				customer : {},
+				order:1
 			}
 		},
 		onLoad(options){
+			this.token = this.getGlobalAccessToken();
 			this.id = options.id;
 			this.name = options.name;
 			this.mobile = options.mobile;
 			this.user_name = options.user_name;
+			this.status = options.status;
+			
+			if(this.token != null){
+				this.searchFollow()
+			}
+			
 		 },
 		methods: {
+			typeSelect(e){
+				this.type_index = e.detail.value;
+			},
+			
+			bindDateChange(e){
+				this.date = e.detail.value;
+			},
+			
+			bindTimeChange(e){
+				this.time = e.detail.value;
+			},
+			
+			customerEnd(){
+				if(this.customer != 1){
+					uni.showModal({
+						title: "结束拜访",
+						content: "结束拜访后无法再次开启",
+						showCancel: true,
+						confirmText: "确定",
+						success:res => {
+							 if (res.confirm) {
+								console.log('用户点击确定');
+								uni.showLoading({
+								    title: '加载中'
+								});
+								uni.request({
+									url: this.serverUrl + 'customer-end/' + this.id,
+									header: {
+										"Authorization": this.token,
+										"Accept":'application/json'
+									},
+									method: "GET",
+									success: (res) => {
+										uni.hideLoading();
+										if(res.data.code == 200){
+											this.customer.status = 1;
+											uni.showToast({
+												title: "已结束",
+												image: "../../static/icons/success.png"
+											})
+										}else if(res.data.code == 422){
+											uni.showToast({
+												title: res.data.message,
+												image: "../../static/icons/warning.png"
+											})
+										}else if(res.data.code == 429){
+											uni.showToast({
+												title: res.data.message,
+												image: "../../static/icons/warning.png"
+											})
+										}else{
+											uni.showModal({
+											    title: '未登录',
+											    content: '您未登录，需要登录后才能继续',
+												showCancel: false,
+											    success: (res) => {
+											        if (res.confirm) {
+														uni.reLaunch({
+														    url: '../registLogin/registLogin'
+														});
+											        }
+											    }
+											});
+										}
+										
+										
+									}
+								});
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+							
+						}
+					})
+				}		
+			},
+			
+			orderBy(){
+				this.order = this.order ? 0 : 1;
+				this.searchFollow()
+			},
+			
+			searchFollow(){
+				uni.request({
+					url: this.serverUrl + 'follow-list/' + this.id + '/' + this.order,
+					header: {
+						"Authorization": this.token,
+						"Accept":'application/json'
+					},
+					method: "GET",
+					success: (res) => {
+						if(res.data.code == 200){
+							this.follow_list = res.data.data.follows
+							this.customer = res.data.data.customer
+						}else if(res.data.code == 422){
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
+						}else if(res.data.code == 429){
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
+						}else{
+							uni.showModal({
+							    title: '未登录',
+							    content: '您未登录，需要登录后才能继续',
+								showCancel: false,
+							    success: (res) => {
+							        if (res.confirm) {
+										uni.reLaunch({
+										    url: '../registLogin/registLogin'
+										});
+							        }
+							    }
+							});
+						}
+					}
+				});
+			},
+			
+			formSubmit() {
+				if(this.type_index == 0){
+					uni.showToast({
+						title: "请选择类型",
+						image: "../../static/icons/warning.png"
+					})
+				}else{
+					uni.showLoading({
+					    title: '加载中'
+					});
+					uni.request({
+						url: this.serverUrl + 'follow',
+						header: {
+							"Authorization": this.token,
+							"Accept":'application/json'
+						},
+						data: {
+							"customer_id" : this.id,
+							"type" : this.type_index,
+							"date" : this.date,
+							"time" : this.time,
+							"remark" : this.remark,
+							"order" : this.order,
+						},
+						method: "POST",
+						success: (res) => {
+							uni.hideLoading();
+							if(res.data.code == 200){
+								this.follow_list.unshift(res.data.data);
+								this.type_index = 0;
+								uni.showToast({
+									title: "保存成功",
+									image: "../../static/icons/success.png"
+								})
+							}else if(res.data.code == 422){
+								uni.showToast({
+									title: res.data.message,
+									image: "../../static/icons/warning.png"
+								})
+							}else if(res.data.code == 429){
+								uni.showToast({
+									title: res.data.message,
+									image: "../../static/icons/warning.png"
+								})
+							}else{
+								uni.showModal({
+								    title: '未登录',
+								    content: '您未登录，需要登录后才能继续',
+									showCancel: false,
+								    success: (res) => {
+								        if (res.confirm) {
+											uni.reLaunch({
+											    url: '../registLogin/registLogin'
+											});
+								        }
+								    }
+								});
+							}
+							
+							
+						}
+					});
+				}
+			},
+			
 			getDate(type) {
 				const date = new Date();
 				let year = date.getFullYear();
@@ -149,7 +362,7 @@
 		display: flex;
 		margin-left: -35upx;
 		margin-right: -35upx;
-		padding: 66upx 35upx 26upx 35upx;
+		padding: 66upx 35upx 0 35upx;
 		background-color: #FFFFFF;
 	}
 	
@@ -304,6 +517,26 @@
 	}
 	
 	.bottom-title image{
+		width: 40upx;
+		height: 40upx;
+	}
+	
+	.end-button{
+		border: 1px solid #22AC38;
+		border-radius: 100upx;
+		background-color: #FFFFFF;
+		color: #22AC38;
+		font-size: 24upx;
+		line-height: unset;
+		padding: 0 10upx;
+	}
+	
+	.user-card-title{
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.user-card-title image{
 		width: 40upx;
 		height: 40upx;
 	}

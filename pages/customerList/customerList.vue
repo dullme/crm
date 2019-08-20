@@ -20,8 +20,8 @@
 					<view class="avatar-right">
 						<view class="top-title">
 							<span>{{ item.name }}</span>
-							<span style="color: #22AC38;font-size: 28upx;" v-if="item.status == 1">已成交</span>
-							<span style="color: #FF4657;font-size: 28upx;" v-if="item.status == 0">未成交</span>
+							<span style="color: #22AC38;font-size: 28upx;" v-if="item.status == 1">{{ status_name[item.status] }}</span>
+							<span style="color: #FF4657;font-size: 28upx;" v-if="item.status == 0">{{ status_name[item.status] }}</span>
 						</view>
 						<view class="bottom-title">
 							<span>电话：{{ item.mobile }}</span>
@@ -44,6 +44,7 @@
 			return {
 				token : '',
 				customerList:{},
+				status_name: ['待拜访', '已结束'],
 				empty: false
 			}
 		},
@@ -90,8 +91,14 @@
 		},
 		
 		methods: {
-			search(e){
-				let text = e.detail.value ? e.detail.value :' ';
+			onPullDownRefresh() {
+				this.searchCustomerList(' ');
+				setTimeout(function () {
+					uni.stopPullDownRefresh();
+				}, 500);
+			},
+			
+			searchCustomerList(text){
 				uni.showLoading({
 				    title: '加载中'
 				});
@@ -128,6 +135,11 @@
 						}
 					}
 				});
+			},
+			
+			search(e){
+				let text = e.detail.value ? e.detail.value :' ';
+				this.searchCustomerList(text);
 			}
 		}
 	}
