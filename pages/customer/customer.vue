@@ -10,7 +10,7 @@
 				</view>
 				<view class="bottom-title">
 					<span>负责人：{{ user_name }}</span>
-					<view class="content-by-mobile">
+					<view class="content-by-mobile" @click="call">
 						<image src="../../static/icons/mobile.png"></image>
 						<span>：{{ mobile }}</span>
 					</view>
@@ -98,6 +98,23 @@
 			this.user_name = options.user_name;
 		 },
 		methods: {
+			call(){
+				uni.showModal({
+					title: "拨打电话",
+					content: "拨打电话给 " + this.mobile,
+					showCancel: true,
+					confirmText: "确定",
+					success:res => {
+						 if (res.confirm) {
+							console.log('用户点击确定');	
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+						
+					}
+				})
+			},
+			
 			operationalRecords: function (e) {
 				uni.showModal({
 					title: "操作记录",

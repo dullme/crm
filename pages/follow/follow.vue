@@ -10,7 +10,7 @@
 				</view>
 				<view class="bottom-title">
 					<span>负责人：{{ user_name }}</span>
-					<view class="content-by-mobile">
+					<view class="content-by-mobile" @click="call">
 						<image src="../../static/icons/mobile.png"></image>
 						<span>：{{ mobile }}</span>
 					</view>
@@ -56,7 +56,6 @@
 				
 				
 				<view class="form-group" style="border-bottom: 0;">
-					<label></label>
 					<view class="box-picker">
 						<view class="uni-textarea">
 							<textarea placeholder="备注" v-model="remark"/>
@@ -117,7 +116,7 @@
 				mobile : '',
 				user_name : '',
 				status : '',
-				type: ['请选择','微信', '电话', '邮件'],
+				type: [],
 				status_name: ['待拜访', '已结束'],
 				type_index: 0,
 				date: currentDate,
@@ -140,6 +139,31 @@
 				this.searchFollow()
 			}
 			
+			uni.request({
+				url: this.serverUrl + 'customer-industry-and-source',
+				header: {
+					"Authorization": this.token,
+					"Accept":'application/json'
+				},
+				method: "GET",
+				success: (res) => {
+					if(res.data.code == 200){
+						for (let i in res.data.data.source) {
+						    this.type.push(res.data.data.source[i]);
+						}
+						
+						for (let i in res.data.data.industry) {
+						    this.industry.push(res.data.data.industry[i]);
+						}
+					}else{
+						uni.showToast({
+							title: res.data.message,
+							image: "../../static/icons/warning.png"
+						})
+					}
+				}
+			});	
+			
 		 },
 		methods: {
 			typeSelect(e){
@@ -152,6 +176,23 @@
 			
 			bindTimeChange(e){
 				this.time = e.detail.value;
+			},
+			
+			call(){
+				uni.showModal({
+					title: "拨打电话",
+					content: "拨打电话给 " + this.mobile,
+					showCancel: true,
+					confirmText: "确定",
+					success:res => {
+						 if (res.confirm) {
+							console.log('用户点击确定');	
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+						
+					}
+				})
 			},
 			
 			customerEnd(){
@@ -294,6 +335,7 @@
 							if(res.data.code == 200){
 								this.follow_list.unshift(res.data.data);
 								this.type_index = 0;
+								this.remark = '';
 								uni.showToast({
 									title: "保存成功",
 									image: "../../static/icons/success.png"
@@ -462,7 +504,6 @@
 	}
 	
 	.box-picker{
-		width: 80%;
 		display: flex;
 		position: relative;
 		justify-content: flex-end;

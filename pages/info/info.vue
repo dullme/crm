@@ -8,7 +8,7 @@
 		<view class="form-group">
 			<label>客户级别<span style="color: red;margin-left: 10upx;">*</span></label>
 			<view class="box-picker">
-				<picker :value="customerInfo.level" :range="level" @change="levelSelect">
+				<picker :range="level" @change="levelSelect">
 					<view class="uni-input">{{level[customerInfo.level]}}</view>
 				</picker>
 				<image src="../../static/icons/xiangqing@3x.png"></image>
@@ -16,14 +16,20 @@
 		</view>
 		
 		<view class="form-group">
-			<label>客户行业</label>
-			<input type="text" placeholder="请输入客户行业" v-model="customerInfo.industry"/>
+			<label>客户行业<span style="color: red;margin-left: 10upx;">*</span></label>
+			<view class="box-picker">
+				<picker :range="industry" @change="industrySelect">
+					<view class="uni-input">{{industry[customerInfo.industry]}}</view>
+				</picker>
+				<image src="../../static/icons/xiangqing@3x.png"></image>
+			</view>
 		</view>
+		
 		
 		<view class="form-group">
 			<label>客户来源<span style="color: red;margin-left: 10upx;">*</span></label>
 			<view class="box-picker">
-				<picker :value="customerInfo.source" :range="source" @change="sourceSelect">
+				<picker :range="source" @change="sourceSelect">
 					<view class="uni-input">{{source[customerInfo.source]}}</view>
 				</picker>
 				<image src="../../static/icons/xiangqing@3x.png"></image>
@@ -103,15 +109,45 @@
 					address:'',
 					level: 0,
 					source: 0,
+					industry: 0,
 				},
 				level: ['请选择','A级', 'B级', 'C级'],
-				source: ['请选择','微信', '电话', '邮件'],
+				source: [],
+				industry: [],
 				status_name: ['待拜访', '已结束'],
 			}
 		},
 		onLoad(options){
 			this.token = this.getGlobalAccessToken();
 			this.id = options.id;
+			
+			
+			uni.request({
+				url: this.serverUrl + 'customer-industry-and-source',
+				header: {
+					"Authorization": this.token,
+					"Accept":'application/json'
+				},
+				method: "GET",
+				success: (res) => {
+					if(res.data.code == 200){
+						for (let i in res.data.data.source) {
+						    this.source.push(res.data.data.source[i]);
+						}
+						
+						for (let i in res.data.data.industry) {
+						    this.industry.push(res.data.data.industry[i]);
+						}
+					}else{
+						uni.showToast({
+							title: res.data.message,
+							image: "../../static/icons/warning.png"
+						})
+					}
+				}
+			});	
+			
+			
 			if(this.id){
 				uni.request({
 					url: this.serverUrl + 'customer-info/' + this.id,
@@ -138,6 +174,10 @@
 				this.customerInfo.level = e.detail.value;
 			},
 			
+			industrySelect(e){
+				this.customerInfo.industry = e.detail.value;
+			},
+			
 			sourceSelect(e){
 				this.customerInfo.source = e.detail.value;
 			},
@@ -154,6 +194,11 @@
 				if(this.customerInfo.level == 0){
 					uni.showToast({
 						title: "请选择客户级别",
+						image: "../../static/icons/warning.png"
+					})
+				}else if(this.customerInfo.industry == 0){
+					uni.showToast({
+						title: "请选择客户行业",
 						image: "../../static/icons/warning.png"
 					})
 				}else if(this.customerInfo.source == 0){
@@ -201,6 +246,7 @@
 										address:'',
 										level: 0,
 										source: 0,
+										industry: 0,
 									}
 								}								
 								
