@@ -77,15 +77,18 @@
 				</view>
 				
 				<view v-if="follow_list.length">
-					<navigator :url="'../followEdit/followEdit?id='+item.id" v-for="item in follow_list">
-						<view class="user-card">
+					
+						<view class="user-card" v-for="item in follow_list">
 							<view class="avatar">
 								<image src="../../static/icons/lianxiren@3x.png"></image>
 							</view>
 							<view class="avatar-right">
 								<view class="top-title">
-									<span>{{ user_name }}</span>
-									<!-- <span style="color: #FF4657;font-size: 28upx;">未成交</span> -->
+									<navigator :url="'../followEdit/followEdit?id='+item.id" >
+										<span>{{ user_name }}</span>
+									</navigator>
+									<!-- <audio v-if="item.record_url" style="text-align: left" :src="item.record_url"></audio> -->
+									<!-- <span style="color: #FF4657;font-size: 28upx;">{{ item.record_url }}</span> -->
 								</view>
 								<view class="bottom-title">
 									<span>{{ type[item.type] }}</span>
@@ -93,7 +96,6 @@
 								</view>
 							</view>
 						</view>
-					</navigator>
 				</view>
 				<view v-else style="padding-bottom: 40upx;min-height: 200upx;display: flex;align-items: center;justify-content: center;color: #D9D9D9;font-size: 35upx;">
 					暂无记录
