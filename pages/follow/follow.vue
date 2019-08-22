@@ -77,21 +77,23 @@
 				</view>
 				
 				<view v-if="follow_list.length">
-					<view class="user-card" v-for="item in follow_list">
-						<view class="avatar">
-							<image src="../../static/icons/lianxiren@3x.png"></image>
-						</view>
-						<view class="avatar-right">
-							<view class="top-title">
-								<span>{{ user_name }}</span>
-								<!-- <span style="color: #FF4657;font-size: 28upx;">未成交</span> -->
+					<navigator :url="'../followEdit/followEdit?id='+item.id" v-for="item in follow_list">
+						<view class="user-card">
+							<view class="avatar">
+								<image src="../../static/icons/lianxiren@3x.png"></image>
 							</view>
-							<view class="bottom-title">
-								<span>{{ type[item.type] }}</span>
-								<span>{{ item.visited_at }}</span>
+							<view class="avatar-right">
+								<view class="top-title">
+									<span>{{ user_name }}</span>
+									<!-- <span style="color: #FF4657;font-size: 28upx;">未成交</span> -->
+								</view>
+								<view class="bottom-title">
+									<span>{{ type[item.type] }}</span>
+									<span>{{ item.visited_at }}</span>
+								</view>
 							</view>
 						</view>
-					</view>
+					</navigator>
 				</view>
 				<view v-else style="padding-bottom: 40upx;min-height: 200upx;display: flex;align-items: center;justify-content: center;color: #D9D9D9;font-size: 35upx;">
 					暂无记录
@@ -151,10 +153,6 @@
 						for (let i in res.data.data.source) {
 						    this.type.push(res.data.data.source[i]);
 						}
-						
-						for (let i in res.data.data.industry) {
-						    this.industry.push(res.data.data.industry[i]);
-						}
 					}else{
 						uni.showToast({
 							title: res.data.message,
@@ -186,7 +184,53 @@
 					confirmText: "确定",
 					success:res => {
 						 if (res.confirm) {
-							console.log('用户点击确定');	
+							console.log('用户点击确定');
+							uni.request({
+								url: this.serverUrl + 'call-mobile/' + this.id,
+								header: {
+									"Authorization": this.token,
+									"Accept":'application/json'
+								},
+								method: "GET",
+								success: (res) => {
+									uni.hideLoading();
+									if(res.data.code == 200){
+										uni.showToast({
+											title: res.data.data,
+											image: "../../static/icons/success.png"
+										})
+									}else if(res.data.code == 422){
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/warning.png"
+										})
+									}else if(res.data.code == 429){
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/warning.png"
+										})
+									}else{
+										uni.showModal({
+										    title: '未登录',
+										    content: '您未登录，需要登录后才能继续',
+											showCancel: false,
+										    success: (res) => {
+										        if (res.confirm) {
+													uni.reLaunch({
+													    url: '../registLogin/registLogin'
+													});
+										        }
+										    }
+										});
+									}
+									
+									
+								}
+							});
+							
+							
+							
+							
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}
@@ -393,6 +437,7 @@
 <style>
 	page{
 		background-color: #F4F4F4;
+		height: 100%;
 	}
 	
 	.body{

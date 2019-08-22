@@ -59,6 +59,15 @@
 				"backgroundColor": "#FFFFFF"
 			}
         }
+        ,{
+            "path" : "pages/followEdit/followEdit",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "修改跟进记录",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColor": "#FFFFFF"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

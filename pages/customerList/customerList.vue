@@ -147,6 +147,7 @@
 
 <style>
 	page{
+		background: #FFFFFF;
 		height: 100%;
 	}
 	
@@ -195,6 +196,7 @@
 	
 	.user-card-list{
 		margin-top: 40upx;
+		padding-bottom: 100upx;
 	}
 	
 	.user-card{

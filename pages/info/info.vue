@@ -305,6 +305,11 @@
 </script>
 
 <style>
+	page{
+		background: #FFFFFF;
+		height: 100%;
+	}
+	
 	.form-group{
 		color: #666666;
 		font-size: 28upx;

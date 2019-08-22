@@ -15,6 +15,7 @@
 <style>
 	/*每个页面公共css */
 	.body{
+		background: #FFFFFF;
 		padding: 35upx;
 	}
 </style>

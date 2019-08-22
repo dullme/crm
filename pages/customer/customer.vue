@@ -106,7 +106,51 @@
 					confirmText: "确定",
 					success:res => {
 						 if (res.confirm) {
-							console.log('用户点击确定');	
+							console.log('用户点击确定');
+							
+							uni.request({
+								url: this.serverUrl + 'call-mobile/' + this.id,
+								header: {
+									"Authorization": this.token,
+									"Accept":'application/json'
+								},
+								method: "GET",
+								success: (res) => {
+									uni.hideLoading();
+									if(res.data.code == 200){
+										uni.showToast({
+											title: res.data.data,
+											image: "../../static/icons/success.png"
+										})
+									}else if(res.data.code == 422){
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/warning.png"
+										})
+									}else if(res.data.code == 429){
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/warning.png"
+										})
+									}else{
+										uni.showModal({
+										    title: '未登录',
+										    content: '您未登录，需要登录后才能继续',
+											showCancel: false,
+										    success: (res) => {
+										        if (res.confirm) {
+													uni.reLaunch({
+													    url: '../registLogin/registLogin'
+													});
+										        }
+										    }
+										});
+									}
+									
+									
+								}
+							});
+							
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}
@@ -173,6 +217,11 @@
 </script>
 
 <style>
+	page{
+		background: #FFFFFF;
+		height: 100%;
+	}
+	
 	.user-card{
 		display: flex;
 		padding-top: 26upx;

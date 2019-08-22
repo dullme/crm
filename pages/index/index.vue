@@ -144,11 +144,17 @@
 </script>
 
 <style>
+	page{
+		background: #FFFFFF;
+		height: 100%;
+	}
+	
 	.index-body{
 		margin-top: 60upx;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		background: #FFFFFF;
 	}
 	
 	.box{

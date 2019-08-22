@@ -127,70 +127,75 @@
 </script>
 
 <style>
-.body {
-	padding: 160upx 50upx;
-}
+	page{
+		background: #FFFFFF;
+		height: 100%;
+	}
+	
+	.body {
+		padding: 160upx 50upx;
+	}
 
-.header .title{
-	font-size: 1.5em;
-	font-weight: 500;
-}
+	.header .title{
+		font-size: 1.5em;
+		font-weight: 500;
+	}
 
 
-.header .t-content{
-	margin-top: 10upx;
-	font-size: .8em;
-	color: #666666;
-}
+	.header .t-content{
+		margin-top: 10upx;
+		font-size: .8em;
+		color: #666666;
+	}
 
-.input {
-	background-color: #F6F6F6;
-	border-radius: 100upx;
-	padding: 29upx 40upx;
-	font-size: 28upx;
-	margin-top: 100upx;
-}
+	.input {
+		background-color: #F6F6F6;
+		border-radius: 100upx;
+		padding: 29upx 40upx;
+		font-size: 28upx;
+		margin-top: 100upx;
+	}
 
-.input-last{
-	display: flex;
-	justify-content: space-between;
-	margin-top: 50upx;
-	position: relative;
-}
+	.input-last{
+		display: flex;
+		justify-content: space-between;
+		margin-top: 50upx;
+		position: relative;
+	}
 
-.graywords {
-	color: #AAAAAA;
-}
+	.graywords {
+		color: #AAAAAA;
+	}
 
-.form-button {
-	border:#2C405A;
-	margin-top: 30upx;
-	border-radius: 100upx;
-	padding: 12upx 0;
-	font-size: 30upx;
-	background-color: #DDDDDD;
-	color: #FFFFFF;
-	margin-top: 80upx;
-}
+	.form-button {
+		border:#2C405A;
+		margin-top: 30upx;
+		border-radius: 100upx;
+		padding: 12upx 0;
+		font-size: 30upx;
+		background-color: #DDDDDD;
+		color: #FFFFFF;
+		margin-top: 80upx;
+	}
 
-.form-button:after{
-	width: 0;
-	height: 0;
-}
+	.form-button:after{
+		width: 0;
+		height: 0;
+	}
 
-.code{
-	color: #008EFF;
-	line-height: 40upx;
-	vertical-align:middle; 
-	text-align:center;
-	right: 50upx;
-	top: 50%;
-	transform: translateY(-50%);
-	position: absolute;
-}
+	.code{
+		color: #008EFF;
+		line-height: 40upx;
+		vertical-align:middle; 
+		text-align:center;
+		right: 50upx;
+		top: 50%;
+		transform: translateY(-50%);
+		position: absolute;
+	}
 
-.form-button-active{
-	background-color: #008EFF !important;
-}
+	.form-button-active{
+		background-color: #008EFF !important;
+	}
 
 </style>

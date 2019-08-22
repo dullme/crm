@@ -18,5 +18,8 @@
 </script>
 
 <style>
-
+	page{
+		background: #FFFFFF;
+		height: 100%;
+	}
 </style>
