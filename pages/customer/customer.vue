@@ -85,6 +85,7 @@
 	export default {
 		data() {
 			return {
+				token : '',
 				id : '',
 				name : '',
 				mobile : '',
@@ -92,6 +93,7 @@
 			}
 		},
 		onLoad(options){
+			this.token = this.getGlobalAccessToken();
 			this.id = options.id;
 			this.name = options.name;
 			this.mobile = options.mobile;
@@ -121,6 +123,11 @@
 										uni.showToast({
 											title: res.data.data,
 											image: "../../static/icons/success.png"
+										})
+									}else if(res.data.code == 401){
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/warning.png"
 										})
 									}else if(res.data.code == 422){
 										uni.showToast({

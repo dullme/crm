@@ -201,6 +201,11 @@
 											title: res.data.data,
 											image: "../../static/icons/success.png"
 										})
+									}else if(res.data.code == 401){
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/warning.png"
+										})
 									}else if(res.data.code == 422){
 										uni.showToast({
 											title: res.data.message,
