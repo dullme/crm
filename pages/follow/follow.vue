@@ -93,7 +93,7 @@
 
 								</view>
 								<view class="bottom-title">
-									<span>{{ type[item.type] }}</span>
+									<span>{{ type[item.type] ? type[item.type] : '电话'}}</span>
 									<span>{{ item.visited_at }}</span>
 								</view>
 							</view>
