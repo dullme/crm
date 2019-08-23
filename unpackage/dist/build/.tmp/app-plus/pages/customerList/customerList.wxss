@@ -1,5 +1,6 @@
 
 page{
+	background: #FFFFFF;
 	height: 100%;
 }
 .body{
@@ -54,6 +55,7 @@ page{
 }
 .user-card-list{
 	margin-top: 40rpx;
+	padding-bottom: 100rpx;
 }
 .user-card{
 	display: -webkit-box;

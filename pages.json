@@ -38,7 +38,8 @@
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "跟进记录",
 				"navigationBarBackgroundColor": "#FFFFFF",
-				"backgroundColor": "#FFFFFF"
+				"backgroundColor": "#FFFFFF",
+				"enablePullDownRefresh": true
 			}
         }
         ,{

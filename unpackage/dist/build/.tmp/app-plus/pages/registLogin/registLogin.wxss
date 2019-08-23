@@ -1,4 +1,8 @@
 
+page{
+	background: #FFFFFF;
+	height: 100%;
+}
 .body {
 	padding: 160rpx 50rpx;
 }

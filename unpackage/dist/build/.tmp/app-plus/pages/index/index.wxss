@@ -1,4 +1,8 @@
 
+page{
+	background: #FFFFFF;
+	height: 100%;
+}
 .index-body{
 	margin-top: 60rpx;
 	display: -webkit-box;
@@ -12,6 +16,7 @@
 	-webkit-justify-content: space-between;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
+	background: #FFFFFF;
 }
 .box{
 	width: 47%;

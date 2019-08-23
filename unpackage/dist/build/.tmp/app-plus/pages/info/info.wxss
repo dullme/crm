@@ -1,4 +1,8 @@
 
+page{
+	background: #FFFFFF;
+	height: 100%;
+}
 .form-group{
 	color: #666666;
 	font-size: 28rpx;
@@ -12,7 +16,7 @@
 .form-group label{
 	width: 30%;
 }
-.form-group input{
+.form-group input, .form-group .box-picker, .form-group ._span{
 	width: 70%;
 	color: #222222;
 	font-size: 28rpx;

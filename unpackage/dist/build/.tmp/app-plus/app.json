@@ -6,7 +6,8 @@
     "pages/customer/customer",
     "pages/follow/follow",
     "pages/info/info",
-    "pages/find/find"
+    "pages/find/find",
+    "pages/followEdit/followEdit"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -47,6 +48,6 @@
     "autoclose": false
   },
   "appname": "crm",
-  "compilerVersion": "2.2.1",
+  "compilerVersion": "2.2.2",
   "usingComponents": {}
 }

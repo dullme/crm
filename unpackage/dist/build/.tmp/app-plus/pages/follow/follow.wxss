@@ -1,6 +1,7 @@
 
 page{
 	background-color: #F4F4F4;
+	height: 100%;
 }
 .body{
 	background-color: #F4F4F4;
@@ -139,7 +140,6 @@ page{
 	        justify-content: space-between;
 }
 .box-picker{
-	width: 80%;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -221,4 +221,9 @@ page{
 	width: 40rpx;
 	height: 40rpx;
 }
+.radio-img image{
+	width: 40rpx;
+	height: 40rpx;
+}
+
 

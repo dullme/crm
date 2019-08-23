@@ -87,14 +87,22 @@
 									<navigator :url="'../followEdit/followEdit?id='+item.id" >
 										<span>{{ user_name }}</span>
 									</navigator>
-									<view class="radio-img" v-if="item.record_url">
-										<image :src="radio_status==0 ? '../../static/icons/play.png':'../../static/icons/stop.png'" @click="playVoice(item.id, item.record_url)"></image>
+									<view class="radio-img" v-if="item.record_url" style="position: relative;" @click="playVoice(item.id, item.record_url)">
+										<span style="position: absolute;top:0;right: 60upx;" v-if="radio_id == item.id">{{ showTime }}</span>
+										<image v-if="radio_status == 0" style="position: absolute;top: 0;right: 0;" src="../../static/icons/play.png"></image>
+										<image v-else style="position: absolute;top: 0;right: 0;" :src="radio_status == 1 && radio_id==item.id ? '../../static/icons/stop.png':'../../static/icons/play.png'"></image>
 									</view>
 
 								</view>
 								<view class="bottom-title">
 									<span>{{ type[item.type] ? type[item.type] : '电话'}}</span>
 									<span>{{ item.visited_at }}</span>
+								</view>
+								<view class="bottom-title" style="margin-top: 30upx;display: flex;justify-content: space-between;">
+									<span>备注：
+										{{ item.remark ? item.remark.substr(0,20) : '无' }}
+										<span v-if="item.remark && item.remark.length > 20">...</span>
+									</span>
 								</view>
 							</view>
 						</view>
@@ -138,6 +146,8 @@
 				startTime: 0,
 				duration: 0,
 				radio_status:0,
+				currentTime:0,
+				showTime:'',
 			}
 		},
 		onLoad(options){
@@ -175,6 +185,13 @@
 			
 		 },
 		methods: {
+			onPullDownRefresh() {
+				window.location.reload();
+				setTimeout(function () {
+					uni.stopPullDownRefresh();
+				}, 500);
+			},
+			
 			typeSelect(e){
 				this.type_index = e.detail.value;
 			},
@@ -435,6 +452,11 @@
 				if(radio_id != this.radio_id){
 					this.radio_id = radio_id;
 					this.voicePath = record_url;
+					this.startTime = 0;
+					this.duration = 0;
+					this.radio_status = 0;
+					this.currentTime = 0;					
+					this.showTime = '';
 				}
 				
 				
@@ -446,16 +468,37 @@
 							innerAudioContext.seek(this.startTime);
 						}
 						
-						innerAudioContext.play();
+						innerAudioContext.play();						
 						this.radio_status = 1;
+						
 					}  
 				}else{
 					console.log('播放暂停');
 					this.startTime = innerAudioContext.currentTime;
-					this.duration = innerAudioContext.duration
 					innerAudioContext.pause();
 					this.radio_status = 0;
 				}
+				
+				innerAudioContext.onEnded(()=>{
+					this.radio_status = 0;
+					this.showTime = '';
+				});
+				
+				innerAudioContext.onCanplay(()=>{
+					this.duration = innerAudioContext.duration
+				});
+				
+				
+				innerAudioContext.onTimeUpdate(()=>{
+					this.currentTime = innerAudioContext.currentTime;
+					
+					let time = parseInt(this.currentTime);
+					
+					if(time > 0){
+						this.showTime = time.toString() + 's';
+					}
+					
+				});
 				
 			},
 			
@@ -463,7 +506,7 @@
 				const date = new Date();
 				let year = date.getFullYear();
 				let month = date.getMonth() + 1;
-				let day = date.getDate();
+				let day = date.getDate() + 1;
 
 				if (type === 'start') {
 					year = year - 60;
