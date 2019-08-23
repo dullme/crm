@@ -5,13 +5,15 @@
 			<p>需根据具体情况录入模板</p>
 		</view>
 	</view>
+
 </template>
 
 <script>
+	var innerAudioContext = uni.createInnerAudioContext();  
+	
 	export default {
 		data() {
 			return {
-				
 			}
 		},
 		methods: {

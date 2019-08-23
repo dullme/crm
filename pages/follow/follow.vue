@@ -87,8 +87,10 @@
 									<navigator :url="'../followEdit/followEdit?id='+item.id" >
 										<span>{{ user_name }}</span>
 									</navigator>
-									<!-- <audio v-if="item.record_url" style="text-align: left" :src="item.record_url"></audio> -->
-									<!-- <span style="color: #FF4657;font-size: 28upx;">{{ item.record_url }}</span> -->
+									<view class="radio-img" v-if="item.record_url">
+										<image :src="radio_status==0 ? '../../static/icons/play.png':'../../static/icons/stop.png'" @click="playVoice(item.id, item.record_url)"></image>
+									</view>
+
 								</view>
 								<view class="bottom-title">
 									<span>{{ type[item.type] }}</span>
@@ -107,6 +109,8 @@
 </template>
 
 <script>
+	var innerAudioContext = uni.createInnerAudioContext();
+	
 	export default {
 		
 		data() {
@@ -128,7 +132,12 @@
 				remark: '',
 				follow_list : {},
 				customer : {},
-				order:1
+				order:1,
+				radio_id: 0,
+				voicePath: '',
+				startTime: 0,
+				duration: 0,
+				radio_status:0,
 			}
 		},
 		onLoad(options){
@@ -422,6 +431,34 @@
 				}
 			},
 			
+			playVoice(radio_id, record_url) {
+				if(radio_id != this.radio_id){
+					this.radio_id = radio_id;
+					this.voicePath = record_url;
+				}
+				
+				
+				if(this.radio_status == 0){
+					console.log('播放录音');
+					if (this.voicePath) {  
+						innerAudioContext.src = this.voicePath; 
+						if(this.startTime + 1 <= this.duration){
+							innerAudioContext.seek(this.startTime);
+						}
+						
+						innerAudioContext.play();
+						this.radio_status = 1;
+					}  
+				}else{
+					console.log('播放暂停');
+					this.startTime = innerAudioContext.currentTime;
+					this.duration = innerAudioContext.duration
+					innerAudioContext.pause();
+					this.radio_status = 0;
+				}
+				
+			},
+			
 			getDate(type) {
 				const date = new Date();
 				let year = date.getFullYear();
@@ -633,4 +670,10 @@
 		width: 40upx;
 		height: 40upx;
 	}
+	
+	.radio-img image{
+		width: 40upx;
+		height: 40upx;
+	}
+
 </style>
