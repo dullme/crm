@@ -1,33 +1,52 @@
 <template>
 	<view class="body">
 		<div class="real-body">
-			<div class="header">登录</div>
+			<div class="header">注册</div>
 			<form @submit="formSubmit">
 				
 				<div class="input">
 					<image src="../../static/icons/home.png"></image>
 					
-					<input name="username" type="text" value="" placeholder="请输入用户名" v-model="username" placeholder-class="graywords"/>
+					<input name="username" type="number" value="" placeholder="请设置用户名" v-model="username" placeholder-class="graywords"/>
 				</div>
 				
 				<div class="input">
 					<image src="../../static/icons/home.png"></image>
 					
-					<input name="password" type="password" value="" placeholder="请输入登录密码" v-model="password" placeholder-class="graywords"/>
+					<input name="password" type="number" value="" placeholder="请输入登录密码" v-model="password" placeholder-class="graywords"/>
 				</div>
 				
 				<div class="input">
 					<image src="../../static/icons/home.png"></image>
 					
-					<input name="mobile" type="text" value="" placeholder="请输入验证码" v-model="code" placeholder-class="graywords"/>
+					<input name="mobile" type="number" value="" placeholder="请输入邀请码" v-model="mobile" placeholder-class="graywords"/>
 				</div>
 				
+				<div class="input">
+					<image src="../../static/icons/home.png"></image>
+					
+					<input name="mobile" type="number" value="" placeholder="请输入验证码" v-model="mobile" placeholder-class="graywords"/>
+				</div>
 				
-				<button class="form-button" form-type="submit">登录</button>
+				<!-- <view class="input">
+					<input name="mobile" type="number" value="" placeholder="请输入手机号" v-model="mobile" placeholder-class="graywords"/>
+				</view>
+				
+				
+				<view class="input input-last">
+					<input name="code" type="number" value="" placeholder="请输入验证码" v-model="code" placeholder-class="graywords"/>
+					<label class="code" @click="send">
+						<span v-if="sendMsgDisabled">{{time+'秒后获取'}}</span>
+						<span v-if="!sendMsgDisabled">发送验证码</span>
+					</label>
+				</view> -->
+				
+				<button class="form-button" :class="[!!mobile && !!code ? ' form-button-active':'']" form-type="submit">马上注册</button>
 			</form>
 			
-			<navigator url="../registLogin/regist" class="register">
-				<span>新用户注册</span>
+			<navigator url="../registLogin/registLogin" class="register">
+				<span>已有账号？马上</span>
+				<span>登录</span>
 			</navigator>
 		</div>
 		
@@ -38,21 +57,69 @@
 	export default {
 		data() {
 			return {
-				username : '',
-				password : '',
-				code: '',
+				mobile : '',
+				code : '',
+				time: 60,
+				sendMsgDisabled:false
+				
 			}
 		},
 		methods: {
+			send(){
+				let me = this;
+				if(!me.mobile){
+					uni.showToast({
+						title: "请输入手机号",
+						image: "../../static/icons/warning.png"
+					})
+				}else{
+					if(!me.sendMsgDisabled){
+						// 发起注册/登录的请求
+						var serverUrl = me.serverUrl;
+						uni.request({
+							url: serverUrl + 'send-sms',
+							data: {
+								"mobile": me.mobile,
+							},
+							method: "POST",
+							success: (res) => {
+								console.log(res);
+								
+								if (res.data.code == 200) {
+									me.sendMsgDisabled = true;
+									me.countDown();//倒计时
+								} else if (res.data.code == 422) {
+									me.sendMsgDisabled = false;
+									uni.showToast({
+										title: res.data.message,
+										duration: 2000,
+										image: "../../static/icons/warning.png"
+									})
+								}
+							}
+						});
+					}
+				}
+			},
+			
+			countDown(){
+				let me = this;
+				let interval = window.setInterval(function() {
+					if ((me.time--) <= 0) {
+						me.time = 60;
+						me.sendMsgDisabled = false;
+						window.clearInterval(interval);
+					}
+				}, 1000);
+			},
 			
 			formSubmit(){
 				let me = this;
 				var serverUrl = me.serverUrl;
 				uni.request({
-					url: serverUrl + 'login',
+					url: serverUrl + 'login-sms',
 					data: {
-						"username": me.username,
-						"password": me.password,
+						"mobile": me.mobile,
 						"code":me.code
 					},
 					method: "POST",

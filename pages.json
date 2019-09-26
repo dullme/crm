@@ -2,7 +2,14 @@
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 		    "path" : "pages/index/index",
-		    "style" : {}
+		    "style": {
+		    	"app-plus" : {
+		    	    "titleNView" : false //禁用原生导航栏
+		    	},
+		    	"navigationBarTitleText": "首页",
+		    	"navigationBarBackgroundColor": "#000000",
+		    	"backgroundColor": "#000000"
+		    }
 		},
 		{
 			"path": "pages/registLogin/registLogin",
@@ -10,7 +17,20 @@
 				"app-plus" : {
 				    "titleNView" : false //禁用原生导航栏
 				},
-				"navigationBarTitleText": "登陆"
+				"navigationBarTitleText": "登录",
+				"navigationBarBackgroundColor": "#000000",
+				"backgroundColor": "#000000"
+			}
+		},
+		{
+			"path": "pages/registLogin/regist",
+			"style": {
+				"app-plus" : {
+				    "titleNView" : false //禁用原生导航栏
+				},
+				"navigationBarTitleText": "注册",
+				"navigationBarBackgroundColor": "#000000",
+				"backgroundColor": "#000000"
 			}
 		}
         ,{
@@ -71,35 +91,41 @@
         }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "客户管理系统",
-		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF"
+		"navigationBarBackgroundColor": "black",
+		"backgroundColor": "black"
 	},
 	
 	"tabBar": {
-	    "color": "#dbdbdb",
-	    "selectedColor": "#333333",
+	    "color": "#01ACD9",
+	    "selectedColor": "#01ACD9",
 	    "borderStyle": "black",
-	    "backgroundColor": "#ffffff",
+	    "backgroundColor": "#0F1628",
 	    "list": [
 			{
 				"pagePath": "pages/index/index",
 				"iconPath": "static/icons/shouye@3x.png",
 				"selectedIconPath": "static/icons/shouyepro@3x.png",
-				"text": "我的"
+				"text": "首页"
 			},
 			{
 				"pagePath": "pages/customerList/customerList",
 				"iconPath": "static/icons/lianxiren@3x.png",
 				"selectedIconPath": "static/icons/wodepro@3x.png",
-				"text": "客户管理"
+				"text": "抢单"
 			},
 			{
 				"pagePath": "pages/find/find",
 				"iconPath": "static/icons/faxian@3x.png",
 				"selectedIconPath": "static/icons/faxianpro@3x.png",
-				"text": "发现"
+				"text": "帮助"
+			},
+			{
+				"pagePath": "pages/find/find",
+				"iconPath": "static/icons/faxian@3x.png",
+				"selectedIconPath": "static/icons/faxianpro@3x.png",
+				"text": "我的"
 			}
 		]
 	}

@@ -1,29 +1,43 @@
 <template>
 	<view class="body index-body">
-		<navigator url="../info/info" class="box" style="background-color: #F0F8FF;">
-			<view class="icon">
-				<image src="../../static/icons/tianjia@3x.png" mode="aspectFit"></image>
-			</view>
-			<span style="color: #008EFF;">新客户</span>
-		</navigator>
-		<view class="box" style="background-color: #F7F7FF;" @tap="contacts">
-			<view class="icon">
-				<image src="../../static/icons/kehugenjin@3x.png"></image>
-			</view>
-			<span style="color: #6C6CDF;">联系人</span>
-		</view>
-		<view class="box" style="background-color: #FFFAF5;" @tap="contractManagement">
-			<view class="icon">
-				<image src="../../static/icons/hetongdengji@3x.png"></image>
-			</view>
-			<span style="color: #FFA604;">合同管理</span>
-		</view>
-		<view class="box" style="background-color: #FFF5F4;" @tap="paymentManagement">
-			<view class="icon">
-				<image src="../../static/icons/benqihuikuan@3x.png"></image>
-			</view>
-			<span style="color: #FF6758;">回款管理</span>
-		</view>
+		<div class="real-body">
+			<div class="title">APP Name</div>
+			<div class="amount">
+				<image src="../../static/index-bg.png"></image>
+				<div class="amount-text">
+					<p>当日可抢额度</p>
+					<p>16054.50</p>
+				</div>
+			</div>
+			
+			<div class="buttom-list">
+				<button type="default">保证金(2000.00)</button>
+				<button type="default">立即抢单</button>
+			</div>
+			
+			<div class="my-info">
+				<div class="my-info-title">
+					<span>我的信息</span>
+				</div>
+				
+				<div class="info-content">
+					<div class="info-content-top">
+						<div class="div-image">
+							<image src="../../static/icons/lianxiren@3x.png"></image>
+							<span>交通银行</span>
+						</div>
+						<span>持卡人：张满月</span>
+					</div>
+					<div>6222 0188 4511 4785 454</div>
+					<div>
+						<image src="../../static/icons/lianxiren@3x.png"></image>
+						<span>可提现额度：5000.00</span>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
 	</view>
 </template>
 
@@ -145,40 +159,115 @@
 
 <style>
 	page{
-		background: #FFFFFF;
+		background: #19233C;
 		height: 100%;
 	}
 	
-	.index-body{
-		margin-top: 60upx;
+	.body{
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		color: white;
+		background: #19233C url('../../static/bg.png') no-repeat fixed bottom center;
+		background-size:100%;
+	}
+	
+	.real-body{
+		padding: 50upx 50upx 0 50upx;
+		background: url('../../static/bg-top.png') no-repeat fixed top center;
+		background-size:100%;
+		height: 100%;
+	}
+	
+	.title{
+		font-size: 40upx;
+		text-align: center;
+	}
+	
+	.amount{
+		padding: 70upx 0;
 		display: flex;
-		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+	
+	.amount image{
+		width: 360upx;
+		height: 360upx;
+		z-index: 1;
+	}
+	
+	.amount .amount-text{
+		z-index: 2;
+		position: absolute;
+		text-align: center;
+	}
+	
+	.amount .amount-text p:first-child{
+		color: #475474;
+		font-size: 25upx;
+		margin-bottom: 10upx;
+	}
+	
+	.amount .amount-text p:last-child{
+		font-size: 40upx;
+		font-weight: 800;
+	}
+	
+	.buttom-list{
+		display: flex;
 		justify-content: space-between;
-		background: #FFFFFF;
 	}
 	
-	.box{
-		width: 47%;
-		margin-bottom: 6%;
-		box-sizing: border-box;
-		border-radius: 15upx;
-		text-align: center;
-		padding-top: 100upx;
-		padding-bottom: 100upx;
+	.buttom-list button{
+		flex: 1;
+		font-size: 30upx;
+		border-radius: 100upx;
+		padding: 12upx;
+		color: white;
+		
 	}
 	
-	.box .icon{
-		text-align: center;
-		margin: 0 auto;
-		width: 80upx;
-		height: 80upx;
+	.buttom-list button:first-child{
+		margin-right: 20upx;
+		background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	}
 	
-	.box .icon image{
-		text-align: center;
-		width: 80%;
-		height: 80%;
+	.buttom-list button:last-child{
+		margin-left: 20upx;
+		background-image: linear-gradient(141deg, #FFC253 30%, #FFB249 61%, #FFAB45 100%);
 	}
-
 	
+	.my-info{
+		padding-top: 40upx;
+	}
+	
+	.my-info-title:before{
+		content: " ";
+		width: 200upx;
+		height: 100%;
+		background-color: #007AFF;
+		border-radius: 0 12upx 12upx 0;
+		margin-right: 30upx;
+		background-image: linear-gradient(180deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	}
+	
+	.info-content{
+		background-color: #283451;
+		border-radius: 20upx;
+		display: flex;
+		flex-flow: column;
+	}
+	
+	.info-content .nfo-content-top{
+		font-size: 10upx;
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.div-image image{
+		width: 100upx;
+		height: 100upx;
+	}
 </style>
