@@ -1,0 +1,46 @@
+
+page{
+	background: #19233C;
+}
+.body{
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	color: white;
+	background: #19233C;
+	color:#E9EAEB;
+}
+.real-body{
+	margin-top: 60rpx;
+	padding: 0rpx 50rpx 0 50rpx;
+}
+.box-list{
+	border-radius: 10rpx;
+	padding: 0 50rpx;
+	background-color: #2A3452;
+	font-size: 30rpx;
+}
+.water{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	padding: 30rpx 0;
+	border-bottom: 1px solid #323D5E;
+}
+.water:first-child{
+	background-color: #334475;
+	margin-left: -50rpx;
+	margin-right: -50rpx;
+	padding-left: 50rpx;
+	padding-right: 50rpx;
+	border-radius: 10rpx 10rpx 0 0;
+}
+.water:last-child{
+	border-bottom:unset;
+}
+

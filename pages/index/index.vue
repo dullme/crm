@@ -23,15 +23,24 @@
 				<div class="info-content">
 					<div class="info-content-top">
 						<div class="div-image">
-							<image src="../../static/icons/lianxiren@3x.png"></image>
+							<div class="div-image-o"><image src="../../static/bank_icon.png"></image></div>
 							<span>交通银行</span>
 						</div>
-						<span>持卡人：张满月</span>
+						<div>
+							<span class="has-card">持卡人：</span><span class="my-name">张满月</span>
+						</div>
+						
 					</div>
-					<div>6222 0188 4511 4785 454</div>
+					<div class="card-number">6222 0188 4511 4785 454</div>
 					<div>
-						<image src="../../static/icons/lianxiren@3x.png"></image>
-						<span>可提现额度：5000.00</span>
+						<div class="div-image div-image-samll">
+							<div class="div-image-o"><image src="../../static/ketixian_icon.png"></image></div>
+							<div>
+								<span>可提现额度：</span>
+								<span class="has-amount">5000.00</span>
+							</div>
+							
+						</div>
 					</div>
 				</div>
 				
@@ -176,7 +185,6 @@
 		padding: 50upx 50upx 0 50upx;
 		background: url('../../static/bg-top.png') no-repeat fixed top center;
 		background-size:100%;
-		height: 100%;
 	}
 	
 	.title{
@@ -245,12 +253,21 @@
 	
 	.my-info-title:before{
 		content: " ";
-		width: 200upx;
-		height: 100%;
+		padding: 0 4upx;
+		height: 32upx;
 		background-color: #007AFF;
-		border-radius: 0 12upx 12upx 0;
-		margin-right: 30upx;
+		border-radius: 0 10upx 10upx 0;
+		margin-right: 20upx;
 		background-image: linear-gradient(180deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	}
+	
+	.my-info-title{
+		display: inline-flex;
+		align-items: center;
+		margin-top: 55upx;
+		margin-bottom: 35upx;
+		font-size: 32upx;
+		color:#E9EAEB !important;
 	}
 	
 	.info-content{
@@ -258,16 +275,59 @@
 		border-radius: 20upx;
 		display: flex;
 		flex-flow: column;
+		padding: 30upx 40upx;
 	}
 	
-	.info-content .nfo-content-top{
-		font-size: 10upx;
+	.info-content .info-content-top{
+		font-size: 30upx;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.div-image{
+		display: flex;
+		align-items: center;
+	}
+	
+	.has-card, .div-image span{
+		color:#475474;
+	}
+		
+	.div-image-o{
+		display: flex;
+		border-radius: 100upx;
+		width: 50upx;
+		height: 50upx;
+		background-color: #FFFFFF;
+		padding: 15upx;
+		margin-right: 15upx;
 	}
 	
 	.div-image image{
-		width: 100upx;
-		height: 100upx;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.card-number{
+		text-align: center;
+		padding: 20upx 0;
+		color:#E9EAEB !important;
+	}
+	
+	.div-image-samll .div-image-o{
+		width: 40upx;
+		height: 40upx;
+		padding: 15upx;
+		margin-right: 22upx;
+		background-color: #161F37;
+	}
+	
+	.div-image-samll{
+		font-size: 30upx;
+	}
+	
+	.has-amount, .my-name{
+		color:#E9EAEB !important;
 	}
 </style>

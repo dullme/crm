@@ -34,13 +34,11 @@
       "delay": 0
     },
     "popGesture": "close",
-    "launchwebview": {
-      "render": "always"
-    },
+    "launchwebview": {},
     "statusbar": {
       "immersed": "supportedDevice",
-      "style": "dark",
-      "background": "#FFFFFF"
+      "style": "light",
+      "background": "black"
     },
     "usingComponents": true,
     "distribute": {
@@ -113,13 +111,13 @@
     },
     "allowsInlineMediaPlayback": true,
     "safearea": {
-      "background": "#ffffff",
+      "background": "#0F1628",
       "bottom": {
         "offset": "auto"
       }
     },
     "uni-app": {
-      "compilerVersion": "2.2.2",
+      "compilerVersion": "2.3.3",
       "control": "v8",
       "nvueCompiler": "weex",
       "renderer": "auto"

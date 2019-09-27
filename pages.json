@@ -32,6 +32,38 @@
 				"navigationBarBackgroundColor": "#000000",
 				"backgroundColor": "#000000"
 			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#19233C",
+				"backgroundColor": "#19233C"
+			}
+		},
+		{
+			"path": "pages/my/myTeam",
+			"style": {
+				"navigationBarTitleText": "我的团队",
+				"navigationBarBackgroundColor": "#19233C",
+				"backgroundColor": "#19233C"
+			}
+		},
+		{
+			"path": "pages/my/myTransaction",
+			"style": {
+				"navigationBarTitleText": "我的交易",
+				"navigationBarBackgroundColor": "#19233C",
+				"backgroundColor": "#19233C"
+			}
+		},
+		{
+			"path": "pages/my/myWithdraw",
+			"style": {
+				"navigationBarTitleText": "提现记录",
+				"navigationBarBackgroundColor": "#19233C",
+				"backgroundColor": "#19233C"
+			}
 		}
         ,{
             "path" : "pages/customerList/customerList",
@@ -98,33 +130,33 @@
 	},
 	
 	"tabBar": {
-	    "color": "#01ACD9",
+	    "color": "#475474",
 	    "selectedColor": "#01ACD9",
 	    "borderStyle": "black",
 	    "backgroundColor": "#0F1628",
 	    "list": [
 			{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/icons/shouye@3x.png",
-				"selectedIconPath": "static/icons/shouyepro@3x.png",
+				"iconPath": "static/index_moren.png",
+				"selectedIconPath": "static/index_jihuo.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/customerList/customerList",
-				"iconPath": "static/icons/lianxiren@3x.png",
-				"selectedIconPath": "static/icons/wodepro@3x.png",
+				"iconPath": "static/qiangdan_moren.png",
+				"selectedIconPath": "static/qiangdan_jihuo.png",
 				"text": "抢单"
 			},
 			{
 				"pagePath": "pages/find/find",
-				"iconPath": "static/icons/faxian@3x.png",
-				"selectedIconPath": "static/icons/faxianpro@3x.png",
+				"iconPath": "static/help_moren.png",
+				"selectedIconPath": "static/help_jihuo.png",
 				"text": "帮助"
 			},
 			{
-				"pagePath": "pages/find/find",
-				"iconPath": "static/icons/faxian@3x.png",
-				"selectedIconPath": "static/icons/faxianpro@3x.png",
+				"pagePath": "pages/my/my",
+				"iconPath": "static/mine_moren.png",
+				"selectedIconPath": "static/mine_jihuo.png",
 				"text": "我的"
 			}
 		]
