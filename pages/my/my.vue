@@ -17,53 +17,65 @@
 			</div>
 			
 			<div class="memu-list">
-				<navigator url="myTeam" open-type="navigate" class="memu-pic">
-					<div class="left-pic">
-						<image src="../../static/mine_team.png"></image>
-						<span>我的团队</span>
+				<navigator url="myTeam" open-type="navigate">
+					<div class="memu-pic">
+						<div class="left-pic">
+							<image src="../../static/mine_team.png"></image>
+							<span>我的团队</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
 					</div>
-					<image src="../../static/pointer.png"></image>
 				</navigator>
 				
-				<navigator url="myTransaction" open-type="navigate" class="memu-pic">
-					<div class="left-pic">
-						<image src="../../static/mine_jiaoyi.png"></image>
-						<span>我的交易</span>
+				<navigator url="myTransaction" open-type="navigate">
+					<div class="memu-pic">
+						<div class="left-pic">
+							<image src="../../static/mine_jiaoyi.png"></image>
+							<span>我的交易</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
 					</div>
-					<image src="../../static/pointer.png"></image>
 				</navigator>
 				
-				<div class="memu-pic">
-					<div class="left-pic">
-						<image src="../../static/mine_tixian.png"></image>
-						<span>申请提现</span>
+				<navigator url="myTransaction" open-type="navigate">
+					<div class="memu-pic">
+						<div class="left-pic">
+							<image src="../../static/mine_tixian.png"></image>
+							<span>申请提现</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
 					</div>
-					<image src="../../static/pointer.png"></image>
-				</div>
-				
-				<navigator url="myWithdraw" open-type="navigate" class="memu-pic">
-					<div class="left-pic">
-						<image src="../../static/mine_jilu.png"></image>
-						<span>提现记录</span>
-					</div>
-					<image src="../../static/pointer.png"></image>
 				</navigator>
 				
-				<div class="memu-pic">
-					<div class="left-pic">
-						<image src="../../static/mine_xinxi.png"></image>
-						<span>我的信息</span>
+				<navigator url="myWithdraw" open-type="navigate">
+					<div class="memu-pic">
+						<div class="left-pic">
+							<image src="../../static/mine_jilu.png"></image>
+							<span>提现记录</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
 					</div>
-					<image src="../../static/pointer.png"></image>
-				</div>
+				</navigator>
 				
-				<div class="memu-pic">
-					<div class="left-pic">
-						<image src="../../static/mine_tousu.png"></image>
-						<span>我的投诉</span>
+				<navigator url="myTransaction" open-type="navigate">
+					<div class="memu-pic">
+						<div class="left-pic">
+							<image src="../../static/mine_xinxi.png"></image>
+							<span>我的信息</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
 					</div>
-					<image src="../../static/pointer.png"></image>
-				</div>
+				</navigator>
+				
+				<navigator url="myTransaction" open-type="navigate">
+					<div class="memu-pic">
+						<div class="left-pic">
+							<image src="../../static/mine_tousu.png"></image>
+							<span>我的投诉</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
+					</div>
+				</navigator>
 				
 			</div>
 			
@@ -128,7 +140,6 @@
 	.memu-list{
 		border-radius: 10upx;
 		background-color: #2A3452;
-		padding: 0 40upx;
 		margin-top: 25upx;
 	}
 	
@@ -140,8 +151,8 @@
 		border-bottom: 1px solid #323D5E;
 	}
 	
-	.memu-pic:last-child{
-		border-bottom: unset;
+	.memu-list navigator{
+		padding: 0 40upx;
 	}
 	
 	.left-pic{

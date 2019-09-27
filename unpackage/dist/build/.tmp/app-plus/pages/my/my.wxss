@@ -51,7 +51,6 @@ page{
 .memu-list{
 	border-radius: 10rpx;
 	background-color: #2A3452;
-	padding: 0 40rpx;
 	margin-top: 25rpx;
 }
 .memu-pic{
@@ -70,8 +69,8 @@ page{
 	padding: 35rpx 0;
 	border-bottom: 1px solid #323D5E;
 }
-.memu-pic:last-child{
-	border-bottom: unset;
+.memu-list navigator{
+	padding: 0 40rpx;
 }
 .left-pic{
 	display: -webkit-box;

@@ -56,31 +56,6 @@
 					</div>
 				</div>
 				
-				<div class="tr-pic">
-					<div class="tr-pic-title">订单号：201910005262</div>
-					<div class="tr-pic-body">
-						<div>
-							<span class="tr-pic-body-left">订单状态：</span>
-							<span class="color-white">成功</span>
-						</div>
-						
-						<div>
-							<span class="tr-pic-body-left">交易金额：</span>
-							<span class="color-white">8000.00</span>
-						</div>
-				
-						<div>
-							<span class="tr-pic-body-left">银行卡号：</span>
-							<span class="color-white">6211555200005320875</span>
-						</div>
-						
-						<div>
-							<span class="tr-pic-body-left">收益：</span>
-							<span class="color-white">48.00</span>
-						</div>
-					</div>
-				</div>
-				
 				
 			</div>
 			
