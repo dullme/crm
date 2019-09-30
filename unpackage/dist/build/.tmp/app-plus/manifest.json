@@ -34,7 +34,9 @@
       "delay": 0
     },
     "popGesture": "close",
-    "launchwebview": {},
+    "launchwebview": {
+      "render": "always"
+    },
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "light",
@@ -117,7 +119,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.3.3",
+      "compilerVersion": "2.2.1",
       "control": "v8",
       "nvueCompiler": "weex",
       "renderer": "auto"

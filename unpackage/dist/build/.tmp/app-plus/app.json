@@ -4,6 +4,7 @@
     "pages/registLogin/registLogin",
     "pages/registLogin/regist",
     "pages/my/my",
+    "pages/help/help",
     "pages/my/myTeam",
     "pages/my/myTransaction",
     "pages/my/myWithdraw",
@@ -39,7 +40,7 @@
         "text": "抢单"
       },
       {
-        "pagePath": "pages/find/find",
+        "pagePath": "pages/help/help",
         "iconPath": "static/help_moren.png",
         "selectedIconPath": "static/help_jihuo.png",
         "text": "帮助"
@@ -59,6 +60,6 @@
     "autoclose": false
   },
   "appname": "crm",
-  "compilerVersion": "2.3.3",
+  "compilerVersion": "2.2.1",
   "usingComponents": {}
 }
