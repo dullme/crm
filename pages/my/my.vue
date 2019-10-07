@@ -5,14 +5,14 @@
 				<image src="../../static/avatar.png"></image>
 				<div style="flex: 1;">
 					<div style="display: flex;align-items: center; justify-content: space-between;">
-						<span>张大千</span>
+						<span>{{ userInfo.name ? userInfo.name : userInfo.username }}</span>
 						<div>
 							<image style="width: 40upx;height: 40upx;" src="../../static/message.png"></image>
 							<span class="has-message" ></span>
 						</div>
 						
 					</div>
-					<p class="my-code">推荐码：20191005258</p>
+					<p class="my-code">推荐码：{{ userInfo.invitation_code }}</p>
 				</div>
 			</div>
 			
@@ -37,7 +37,7 @@
 					</div>
 				</navigator>
 				
-				<navigator url="myTransaction" open-type="navigate">
+				<navigator url="withdraw" open-type="navigate">
 					<div class="memu-pic">
 						<div class="left-pic">
 							<image src="../../static/mine_tixian.png"></image>
@@ -57,7 +57,7 @@
 					</div>
 				</navigator>
 				
-				<navigator url="myTransaction" open-type="navigate">
+				<navigator url="myInfo" open-type="navigate">
 					<div class="memu-pic">
 						<div class="left-pic">
 							<image src="../../static/mine_xinxi.png"></image>
@@ -67,7 +67,7 @@
 					</div>
 				</navigator>
 				
-				<navigator url="myTransaction" open-type="navigate">
+				<navigator url="myComplaint" open-type="navigate">
 					<div class="memu-pic">
 						<div class="left-pic">
 							<image src="../../static/mine_tousu.png"></image>
@@ -77,6 +77,8 @@
 					</div>
 				</navigator>
 				
+				
+				
 			</div>
 			
 		</div>
@@ -84,7 +86,53 @@
 </template>
 
 <script>
-	
+	export default {
+		data() {
+			return {
+				userInfo: {},
+			};
+		},
+		onLoad() {
+			let accessToken = this.getGlobalAccessToken();
+			if(accessToken != null){
+				//获取用户信息
+				uni.request({
+					url: this.serverUrl + 'user-info',
+					header: {
+						"Authorization": accessToken,
+						"Accept":'application/json'
+					},
+					method: "GET",
+					success: (res) => {
+						if(res.data.code == 200){
+							this.userInfo = res.data.data;
+						}else if(res.data.code == 429){
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
+						}else{
+							uni.showModal({
+							    title: '未登录',
+							    content: '您未登录，需要登录后才能继续',
+								showCancel: false,
+							    success: (res) => {
+							        if (res.confirm) {
+										uni.reLaunch({
+										    url: '../registLogin/registLogin'
+										});
+							        }
+							    }
+							});
+						}
+					}
+				});
+			}
+		},
+		methods: {
+			
+		}
+	}
 </script>
 
 <style>
@@ -133,8 +181,8 @@
 		color: #F65D6B;
 		font-size: 18upx;
 		position: absolute;
-		margin-left: -22upx;
-		margin-top: -10upx;
+		margin-left: -21upx;
+		margin-top: -5upx;
 	}
 	
 	.memu-list{

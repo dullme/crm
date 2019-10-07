@@ -1,2 +1,2 @@
-setCssToHead(["body{ height: 100%; }\n",],undefined,{path:"./pages/find/find.wxss"})();
+setCssToHead(["body{ background: #FFFFFF; height: 100%; }\n",],undefined,{path:"./pages/find/find.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/find/find.wxml') } }));

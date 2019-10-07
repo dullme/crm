@@ -11,8 +11,8 @@
 			</div>
 			
 			<div class="buttom-list">
-				<button type="default">保证金(2000.00)</button>
-				<button type="default">立即抢单</button>
+				<navigator url="../my/deposit" open-type="navigate">保证金(2000.00)</navigator>
+				<navigator url="myTeam" open-type="navigate">立即抢单</navigator>
 			</div>
 			
 			<div class="my-info">
@@ -228,21 +228,24 @@
 		justify-content: space-between;
 	}
 	
-	.buttom-list button{
+	.buttom-list navigator{
 		flex: 1;
 		font-size: 30upx;
 		border-radius: 100upx;
-		padding: 12upx;
 		color: white;
+		padding: 22upx;
+		text-align: center;
 		
 	}
 	
-	.buttom-list button:first-child{
+	.buttom-list navigator:first-child{
+		padding: 22upx;
 		margin-right: 20upx;
 		background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	}
 	
-	.buttom-list button:last-child{
+	.buttom-list navigator:last-child{
+		padding: 22upx;
 		margin-left: 20upx;
 		background-image: linear-gradient(141deg, #FFC253 30%, #FFB249 61%, #FFAB45 100%);
 	}

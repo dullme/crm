@@ -1,6 +1,7 @@
 
 page{
 	background-color: #F4F4F4;
+	height: 100%;
 }
 .body{
 	background-color: #F4F4F4;
@@ -13,7 +14,7 @@ page{
 	display: flex;
 	margin-left: -35rpx;
 	margin-right: -35rpx;
-	padding: 66rpx 35rpx 26rpx 35rpx;
+	padding: 66rpx 35rpx 0 35rpx;
 	background-color: #FFFFFF;
 }
 .top-user-card .avatar image{
@@ -139,7 +140,6 @@ page{
 	        justify-content: space-between;
 }
 .box-picker{
-	width: 80%;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -198,4 +198,32 @@ page{
 	width: 40rpx;
 	height: 40rpx;
 }
+.end-button{
+	border: 1px solid #22AC38;
+	border-radius: 100rpx;
+	background-color: #FFFFFF;
+	color: #22AC38;
+	font-size: 24rpx;
+	line-height: unset;
+	padding: 0 10rpx;
+}
+.user-card-title{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.user-card-title image{
+	width: 40rpx;
+	height: 40rpx;
+}
+.radio-img image{
+	width: 40rpx;
+	height: 40rpx;
+}
+
 

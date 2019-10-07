@@ -3,5 +3,6 @@
   "navigationBarTitleText": "客户管理",
   "navigationBarBackgroundColor": "#FFFFFF",
   "backgroundColor": "#FFFFFF",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

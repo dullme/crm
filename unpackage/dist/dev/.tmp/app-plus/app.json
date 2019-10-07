@@ -2,41 +2,54 @@
   "pages": [
     "pages/index/index",
     "pages/registLogin/registLogin",
+    "pages/registLogin/regist",
+    "pages/my/my",
+    "pages/help/help",
+    "pages/my/myTeam",
+    "pages/my/myTransaction",
+    "pages/my/myWithdraw",
     "pages/customerList/customerList",
     "pages/customer/customer",
     "pages/follow/follow",
     "pages/info/info",
-    "pages/find/find"
+    "pages/find/find",
+    "pages/followEdit/followEdit"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "客户管理系统",
-    "navigationBarBackgroundColor": "#FFFFFF",
-    "backgroundColor": "#FFFFFF"
+    "navigationBarBackgroundColor": "black",
+    "backgroundColor": "black"
   },
   "tabBar": {
-    "color": "#dbdbdb",
-    "selectedColor": "#333333",
+    "color": "#475474",
+    "selectedColor": "#01ACD9",
     "borderStyle": "black",
-    "backgroundColor": "#ffffff",
+    "backgroundColor": "#0F1628",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/icons/shouye@3x.png",
-        "selectedIconPath": "static/icons/shouyepro@3x.png",
-        "text": "我的"
+        "iconPath": "static/index_moren.png",
+        "selectedIconPath": "static/index_jihuo.png",
+        "text": "首页"
       },
       {
         "pagePath": "pages/customerList/customerList",
-        "iconPath": "static/icons/lianxiren@3x.png",
-        "selectedIconPath": "static/icons/wodepro@3x.png",
-        "text": "客户管理"
+        "iconPath": "static/qiangdan_moren.png",
+        "selectedIconPath": "static/qiangdan_jihuo.png",
+        "text": "抢单"
       },
       {
-        "pagePath": "pages/find/find",
-        "iconPath": "static/icons/faxian@3x.png",
-        "selectedIconPath": "static/icons/faxianpro@3x.png",
-        "text": "发现"
+        "pagePath": "pages/help/help",
+        "iconPath": "static/help_moren.png",
+        "selectedIconPath": "static/help_jihuo.png",
+        "text": "帮助"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "static/mine_moren.png",
+        "selectedIconPath": "static/mine_jihuo.png",
+        "text": "我的"
       }
     ]
   },
@@ -47,6 +60,6 @@
     "autoclose": false
   },
   "appname": "crm",
-  "compilerVersion": "2.2.1",
+  "compilerVersion": "2.3.3",
   "usingComponents": {}
 }

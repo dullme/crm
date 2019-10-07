@@ -1,0 +1,2 @@
+setCssToHead(["body{ background: #19233C; }\n.",[1],"body{ padding: 0; width: 100%; height: 100%; color: white; background: #19233C; color:#E9EAEB; }\n.",[1],"real-body{ margin-top: ",[0,60],"; padding: ",[0,0]," ",[0,50]," 0 ",[0,50],"; }\n",],undefined,{path:"./pages/help/help.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/help/help.wxml') } }));

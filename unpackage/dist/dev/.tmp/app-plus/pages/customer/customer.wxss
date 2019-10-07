@@ -1,4 +1,8 @@
 
+page{
+	background: #FFFFFF;
+	height: 100%;
+}
 .user-card{
 	display: -webkit-box;
 	display: -webkit-flex;

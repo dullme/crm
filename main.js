@@ -3,8 +3,12 @@ import App from './App'
 
 Vue.config.productionTip = false
 
-Vue.prototype.serverUrl = "http://crm-api.dullme.com/api/";			// 生产环境
-// Vue.prototype.serverUrl = "http://crm-api.test/api/";		// 开发环境
+// Vue.prototype.serverUrl = "http://crm-api.dullme.com/api/";			// 生产环境
+Vue.prototype.serverUrl = "http://crm-api.test/api/";		// 开发环境
+
+Vue.prototype.removeGlobalAccessToken = function() {
+	uni.removeStorageSync("globalAccessToken");
+}
 
 Vue.prototype.getGlobalAccessToken = function(key) {
 	var accessToken = uni.getStorageSync("globalAccessToken");

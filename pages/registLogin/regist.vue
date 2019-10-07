@@ -5,43 +5,34 @@
 			<form @submit="formSubmit">
 				
 				<div class="input">
-					<image src="../../static/icons/home.png"></image>
+					<image src="../../static/icons/user_name.png"></image>
 					
-					<input name="username" type="number" value="" placeholder="请设置用户名" v-model="username" placeholder-class="graywords"/>
+					<input name="username" type="text" value="" placeholder="请设置用户名" v-model="username" placeholder-class="graywords"/>
 				</div>
 				
 				<div class="input">
-					<image src="../../static/icons/home.png"></image>
+					<image src="../../static/icons/password.png"></image>
 					
-					<input name="password" type="number" value="" placeholder="请输入登录密码" v-model="password" placeholder-class="graywords"/>
+					<input name="password" type="text" value="" placeholder="请输入登录密码" v-model="password" placeholder-class="graywords"/>
 				</div>
 				
 				<div class="input">
-					<image src="../../static/icons/home.png"></image>
+					<image src="../../static/icons/yaoqingma_icon.png"></image>
 					
-					<input name="mobile" type="number" value="" placeholder="请输入邀请码" v-model="mobile" placeholder-class="graywords"/>
+					<input name="mobile" type="text" value="" placeholder="请输入邀请码" v-model="invitation_code" placeholder-class="graywords"/>
 				</div>
 				
-				<div class="input">
-					<image src="../../static/icons/home.png"></image>
+				<div class="input" style="display: flex;justify-content: space-between;">
+					<image src="../../static/icons/yzm_icon.png"></image>
 					
-					<input name="mobile" type="number" value="" placeholder="请输入验证码" v-model="mobile" placeholder-class="graywords"/>
+					<input style="flex: 1;" name="code" type="text" value="" placeholder="请输入验证码" v-model="code" placeholder-class="graywords"/>
+					<div style="width: 200upx;display: flex;" v-on:click="captcha()">
+						<image style="width: 100%;margin-right: 0;" :src="captcha_img"></image>
+					</div>
+					
 				</div>
 				
-				<!-- <view class="input">
-					<input name="mobile" type="number" value="" placeholder="请输入手机号" v-model="mobile" placeholder-class="graywords"/>
-				</view>
-				
-				
-				<view class="input input-last">
-					<input name="code" type="number" value="" placeholder="请输入验证码" v-model="code" placeholder-class="graywords"/>
-					<label class="code" @click="send">
-						<span v-if="sendMsgDisabled">{{time+'秒后获取'}}</span>
-						<span v-if="!sendMsgDisabled">发送验证码</span>
-					</label>
-				</view> -->
-				
-				<button class="form-button" :class="[!!mobile && !!code ? ' form-button-active':'']" form-type="submit">马上注册</button>
+				<button class="form-button form-button-active" form-type="submit">马上注册</button>
 			</form>
 			
 			<navigator url="../registLogin/registLogin" class="register">
@@ -57,70 +48,45 @@
 	export default {
 		data() {
 			return {
-				mobile : '',
-				code : '',
-				time: 60,
-				sendMsgDisabled:false
+				captcha_img:"",
+				code:"",
+				key:"",
+				username:"",
+				password:"",
+				invitation_code:""
 				
 			}
 		},
+		
+		onLoad() {
+			this.captcha();
+		},
+		
 		methods: {
-			send(){
-				let me = this;
-				if(!me.mobile){
-					uni.showToast({
-						title: "请输入手机号",
-						image: "../../static/icons/warning.png"
-					})
-				}else{
-					if(!me.sendMsgDisabled){
-						// 发起注册/登录的请求
-						var serverUrl = me.serverUrl;
-						uni.request({
-							url: serverUrl + 'send-sms',
-							data: {
-								"mobile": me.mobile,
-							},
-							method: "POST",
-							success: (res) => {
-								console.log(res);
-								
-								if (res.data.code == 200) {
-									me.sendMsgDisabled = true;
-									me.countDown();//倒计时
-								} else if (res.data.code == 422) {
-									me.sendMsgDisabled = false;
-									uni.showToast({
-										title: res.data.message,
-										duration: 2000,
-										image: "../../static/icons/warning.png"
-									})
-								}
-							}
-						});
+			captcha(){
+				var serverUrl = this.serverUrl;
+				uni.request({
+					url: serverUrl + 'captcha',
+					method: "GET",
+					success: (res) => {
+						this.captcha_img = res.data.data.img
+						this.key = res.data.data.key
 					}
-				}
+				});
 			},
 			
-			countDown(){
-				let me = this;
-				let interval = window.setInterval(function() {
-					if ((me.time--) <= 0) {
-						me.time = 60;
-						me.sendMsgDisabled = false;
-						window.clearInterval(interval);
-					}
-				}, 1000);
-			},
-			
+		
 			formSubmit(){
 				let me = this;
 				var serverUrl = me.serverUrl;
 				uni.request({
-					url: serverUrl + 'login-sms',
+					url: serverUrl + 'register',
 					data: {
-						"mobile": me.mobile,
-						"code":me.code
+						"username": me.username,
+						"code":me.code,
+						"invitation_code":me.invitation_code,
+						"password":me.password,
+						"key":me.key
 					},
 					method: "POST",
 					success: (res) => {
@@ -128,19 +94,19 @@
 						
 						// 获取真实数据之前，务必判断状态是否为200
 						if (res.data.code == 200) {
-							uni.setStorageSync("globalAccessToken", {
-								"auth_id" : res.data.data.auth_id,
-								"expires_in" : res.data.data.expires_in,
-								"token" : res.data.data.token,
-								"expires_at" : Math.round(new Date() / 1000) + res.data.data.expires_in
-							});
-							// 切换页面跳转，使用tab切换的api
-							// 切换页面跳转，使用tab切换的api
-							uni.switchTab({
-								url: "../index/index"
-							});
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/success.png"
+							})
+							
+							setTimeout(()=>{
+								uni.navigateTo({
+									url: "../registLogin/registLogin"
+								})
+							}, 1000)
 								
 						} else if (res.data.code == 422) {
+							this.captcha();
 							uni.showToast({
 								title: res.data.message,
 								image: "../../static/icons/warning.png"

@@ -5,21 +5,25 @@
 			<form @submit="formSubmit">
 				
 				<div class="input">
-					<image src="../../static/icons/home.png"></image>
+					<image src="../../static/icons/user_name.png"></image>
 					
 					<input name="username" type="text" value="" placeholder="请输入用户名" v-model="username" placeholder-class="graywords"/>
 				</div>
 				
 				<div class="input">
-					<image src="../../static/icons/home.png"></image>
+					<image src="../../static/icons/password.png"></image>
 					
 					<input name="password" type="password" value="" placeholder="请输入登录密码" v-model="password" placeholder-class="graywords"/>
 				</div>
 				
-				<div class="input">
-					<image src="../../static/icons/home.png"></image>
+				<div class="input" style="display: flex;justify-content: space-between;">
+					<image src="../../static/icons/yzm_icon.png"></image>
 					
-					<input name="mobile" type="text" value="" placeholder="请输入验证码" v-model="code" placeholder-class="graywords"/>
+					<input style="flex: 1;" name="code" type="text" value="" placeholder="请输入验证码" v-model="code" placeholder-class="graywords"/>
+					<div style="width: 200upx;display: flex;" v-on:click="captcha()">
+						<image style="width: 100%;margin-right: 0;" :src="captcha_img"></image>
+					</div>
+					
 				</div>
 				
 				
@@ -38,12 +42,29 @@
 	export default {
 		data() {
 			return {
-				username : '',
-				password : '',
-				code: '',
+				captcha_img:"",
+				code:"",
+				key:"",
+				username:"",
+				password:"",
 			}
 		},
+		onLoad() {
+			this.captcha();
+		},
+		
 		methods: {
+			captcha(){
+				var serverUrl = this.serverUrl;
+				uni.request({
+					url: serverUrl + 'captcha',
+					method: "GET",
+					success: (res) => {
+						this.captcha_img = res.data.data.img
+						this.key = res.data.data.key
+					}
+				});
+			},
 			
 			formSubmit(){
 				let me = this;
@@ -52,8 +73,9 @@
 					url: serverUrl + 'login',
 					data: {
 						"username": me.username,
-						"password": me.password,
-						"code":me.code
+						"code":me.code,
+						"password":me.password,
+						"key":me.key
 					},
 					method: "POST",
 					success: (res) => {
@@ -74,6 +96,7 @@
 							});
 								
 						} else if (res.data.code == 422) {
+							this.captcha();
 							uni.showToast({
 								title: res.data.message,
 								image: "../../static/icons/warning.png"
