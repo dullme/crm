@@ -23,8 +23,13 @@
 						</div>
 						
 						<div>
-							<span class="tr-pic-body-left">平台手续费：</span>
+							<span class="tr-pic-body-left">{{  type==1 ? '收益' : '平台手续费' }}：</span>
 							<span class="color-white">{{ handing_fee }}</span>
+						</div>
+						
+						<div>
+							<span class="tr-pic-body-left">类型：</span>
+							<span class="color-white">{{ type==1?'交易':'提现' }}</span>
 						</div>
 					</div>
 				</div>	
@@ -61,10 +66,12 @@
 				bankcard:'',
 				handing_fee:'',
 				content:'',
+				type:'',
 			};
 		},
 		
 		onLoad(options) {
+			this.type = options.type;
 			this.id = options.id;
 			this.order_no = options.order_no;
 			this.status = options.status;
@@ -75,20 +82,34 @@
 
 		methods: {
 			getStatus(status){
-				if(status == 0){
-					return "等待接单"
-				}
-				
-				if(status == 1){
-					return "等待对方出款"
-				}
-				
-				if(status == 2){
-					return "对方已出款"
-				}
-				
-				if(status == 3){
-					return "完成"
+				if(this.type==1){
+					if(status == 1){
+						return "等待您出款"
+					}
+					
+					if(status == 2){
+						return "等待对方确认"
+					}
+					
+					if(status == 3){
+						return "成功"
+					}
+				}else{
+					if(status == 0){
+						return "等待接单"
+					}
+					
+					if(status == 1){
+						return "等待对方出款"
+					}
+					
+					if(status == 2){
+						return "对方已出款"
+					}
+					
+					if(status == 3){
+						return "完成"
+					}
 				}
 			},
 			

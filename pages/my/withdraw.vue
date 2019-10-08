@@ -11,7 +11,7 @@
 				
 				<div style="flex-flow: column;align-items: flex-start;">
 					<span>提现金额：</span>
-					<input @change="gethandlingFee()" style="margin-top: 40upx;font-size: 100upx;" type="number" v-model="withdraw_amount" placeholder="0.00" placeholder-style="color:#4E5A7D">
+					<input @change="gethandlingFee()" style="margin-top: 40upx;height: 100upx; font-size: 100upx;" type="number" v-model="withdraw_amount" placeholder="0.00" placeholder-style="color:#4E5A7D">
 				</div>
 				
 				<div>
@@ -40,7 +40,7 @@
 				amount:'',
 				bankcard:'',
 				bankname:'',
-				handlingFee:'',
+				operationFee:'',
 				fee:0
 			};
 		},
@@ -60,8 +60,8 @@
 							this.amount = res.data.data.amount;
 							this.bankcard = res.data.data.admin_bankcard;
 							this.bankname = res.data.data.admin_bankname;
-							this.handlingFee = res.data.data.admin_handling_fee;
-							this.gethandlingFee();
+							this.operationFee = res.data.data.admin_operation_fee;
+							this.getOperationFee();
 						}else if(res.data.code == 429){
 							uni.showToast({
 								title: res.data.message,
@@ -89,14 +89,14 @@
 		watch: {
 			withdraw_amount:{
 				handler() {
-					this.gethandlingFee();
+					this.getOperationFee();
 				}
 			}
 		},
 		
 		methods: {
-			gethandlingFee(){
-				this.fee = (this.handlingFee / 100 * this.withdraw_amount).toFixed(2);
+			getOperationFee(){
+				this.fee = (this.operationFee / 100 * this.withdraw_amount).toFixed(2);
 			},
 			
 			submit(){

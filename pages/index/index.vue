@@ -61,27 +61,68 @@
 			};
 		},
 		onShow() {
-			let accessToken = this.getGlobalAccessToken();
-			uni.request({
-				url: this.serverUrl + 'deposit-count',
-				header: {
-					"Authorization": accessToken,
-					"Accept":'application/json'
-				},
-				method: "GET",
-				success: (res) => {
-					this.deposit_amount = res.data.data.deposit_amount;
-					this.withdraw_amount = res.data.data.withdraw_amount;
-					this.index_amount = res.data.data.index_amount;
-				}
-			});
+			
+			this.getUserInfo();
+						
 		},
-		onLoad() {
-			let accessToken = this.getGlobalAccessToken();
-			if(accessToken != null){
-				//获取用户信息
+		methods: {
+			
+			getUserInfo(){
+				let accessToken = this.getGlobalAccessToken();
+				if(accessToken != null){
+					//获取用户信息
+					uni.request({
+						url: this.serverUrl + 'user-info',
+						header: {
+							"Authorization": accessToken,
+							"Accept":'application/json'
+						},
+						method: "GET",
+						success: (res) => {
+							if(res.data.code == 200){
+								this.userInfo = res.data.data;
+								
+								if(!this.userInfo.bank_card || !this.userInfo.bank_name || !this.userInfo.name){
+									uni.showModal({
+									    title: '完善个人信息',
+									    content: '请完善银行信息',
+										showCancel: false,
+									    success: (res) => {
+									        if (res.confirm) {
+												uni.navigateTo({
+													url: '../my/myInfo'
+												});
+									        }
+									    }
+									});
+								}
+								
+							}else if(res.data.code == 429){
+								uni.showToast({
+									title: res.data.message,
+									image: "../../static/icons/warning.png"
+								})
+							}else{
+								uni.showModal({
+								    title: '未登录',
+								    content: '您未登录，需要登录后才能继续',
+									showCancel: false,
+								    success: (res) => {
+								        if (res.confirm) {
+											uni.reLaunch({
+											    url: '../registLogin/registLogin'
+											});
+								        }
+								    }
+								});
+							}
+						}
+					});
+				}
+				
+				
 				uni.request({
-					url: this.serverUrl + 'user-info',
+					url: this.serverUrl + 'deposit-count',
 					header: {
 						"Authorization": accessToken,
 						"Accept":'application/json'
@@ -89,72 +130,15 @@
 					method: "GET",
 					success: (res) => {
 						if(res.data.code == 200){
-							this.userInfo = res.data.data;
-						}else if(res.data.code == 429){
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/warning.png"
-							})
-						}else{
-							uni.showModal({
-							    title: '未登录',
-							    content: '您未登录，需要登录后才能继续',
-								showCancel: false,
-							    success: (res) => {
-							        if (res.confirm) {
-										uni.reLaunch({
-										    url: '../registLogin/registLogin'
-										});
-							        }
-							    }
-							});
+							this.deposit_amount = res.data.data.deposit_amount;
+							this.withdraw_amount = res.data.data.withdraw_amount;
+							this.index_amount = res.data.data.index_amount;
 						}
+						
 					}
 				});
-			}
-			
-			
-			
-						
-			// if (accessToken != null) {
-			// 	me.userIsLogin = true;
-			// 	me.userInfo = userInfo;
-			// 	console.log(userInfo);
-			// 	
-			// 	var serverUrl = me.serverUrl;
-			// 	//获取用户信息
-			// 	uni.request({
-			// 		url: serverUrl + 'user-info',
-			// 		header: {
-			// 			"Authorization": me.userInfo.token,
-			// 			"Accept":'application/json'
-			// 		},
-			// 		method: "GET",
-			// 		success: (res) => {
-			// 			console.log(res);
-			// 		}
-			// 	});
-			// 	
-			// 	
-			// 	
-			// } else {
-			// 	me.userIsLogin = false;
-			// 	me.userInfo = {};
-			// 	uni.showModal({
-			// 	    title: '未登录',
-			// 	    content: '您未登录，需要登录后才能继续',
-			// 		showCancel: false,
-			// 	    success: (res) => {
-			// 	        if (res.confirm) {
-			// 				uni.reLaunch({
-			// 				    url: '../registLogin/registLogin'
-			// 				});
-			// 	        }
-			// 	    }
-			// 	});
-			// }
-		},
-		methods: {
+				
+			},
 			
 			grabOrder(){
 				let accessToken = this.getGlobalAccessToken();

@@ -1,0 +1,131 @@
+
+page{
+	background: #19233C;
+}
+.body{
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	color: white;
+	background: #19233C;
+	color:#E9EAEB;
+}
+.real-body{
+	margin-top: 60rpx;
+	padding: 0rpx 50rpx 0 50rpx;
+	background-size:100%;
+}
+.my-box-card{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	background-image: -o-linear-gradient(301deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	background-image: linear-gradient(149deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	border-radius: 10rpx;
+	padding: 50rpx 40rpx;
+}
+.my-box-card > image{
+	width: 130rpx;
+	height: 130rpx;
+	border-radius: 130rpx;
+	margin-right: 25rpx;
+}
+.my-code{
+	margin-top: 10rpx;
+	font-size: 30rpx;
+	color: #B1EAFF;
+}
+.has-message:before{
+	content: "\25CF";
+	color: #F65D6B;
+	font-size: 18rpx;
+	position: absolute;
+	margin-left: -21rpx;
+	margin-top: -5rpx;
+}
+.memu-list{
+	border-radius: 10rpx;
+	background-color: #2A3452;
+	margin-top: 25rpx;
+	padding: 0 40rpx;
+	font-size: 30rpx;
+	color: #FFFFFF;
+}
+.memu-list > ._div{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 35rpx 0;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	border-bottom: 1px solid #323D5E;
+}
+.memu-list > ._div > ._span:first-child{
+	color: #6A77A0;
+}
+.memu-list > ._div > button{
+	border: 1px solid #40BCFF;
+	background-color: unset;
+	color: #40BCFF;
+	font-size: 20rpx;
+	padding: 5rpx 15rpx;
+	line-height: 40rpx;
+}
+.memu-pic{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	padding: 35rpx 0;
+	border-bottom: 1px solid #323D5E;
+}
+.left-pic{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	font-size: 30rpx;
+}
+.left-pic > image{
+	width: 40rpx;
+	height: 40rpx;
+	margin-right: 20rpx;
+}
+.memu-pic > image{
+	width: 25rpx;
+	height: 25rpx;
+}
+.message{
+	margin-top: 50rpx;
+	color: #404B70;
+	font-size: 20rpx;
+}
+.form-button{
+	margin-top: 100rpx;
+	border-radius: 100rpx;
+	padding: 12rpx;
+	color: white;
+	background-image: -o-linear-gradient(309deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+}
+

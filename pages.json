@@ -42,6 +42,14 @@
 			}
 		},
 		{
+			"path": "pages/my/grab",
+			"style": {
+				"navigationBarTitleText": "抢单",
+				"navigationBarBackgroundColor": "#19233C",
+				"backgroundColor": "#19233C"
+			}
+		},
+		{
 			"path": "pages/my/myInfo",
 			"style": {
 				"navigationBarTitleText": "我的信息",
@@ -142,12 +150,12 @@
 				"selectedIconPath": "static/index_jihuo.png",
 				"text": "首页"
 			},
-			// {
-			// 	"pagePath": "pages/index/index",
-			// 	"iconPath": "static/qiangdan_moren.png",
-			// 	"selectedIconPath": "static/qiangdan_jihuo.png",
-			// 	"text": "抢单"
-			// },
+			{
+				"pagePath": "pages/my/grab",
+				"iconPath": "static/qiangdan_moren.png",
+				"selectedIconPath": "static/qiangdan_jihuo.png",
+				"text": "抢单"
+			},
 			{
 				"pagePath": "pages/help/help",
 				"iconPath": "static/help_moren.png",

@@ -7,13 +7,13 @@
 				<div>
 					<span>银行卡号：</span>
 					<span style="flex: 1;">{{ bankcard }}</span>
-					<button v-on:click="updateBankcard()()">复制</button>
+					<button>复制</button>
 				</div>
 				
 				<div>
 					<span>开户银行：</span>
 					<span style="flex: 1;">{{ bankname }}</span>
-					<button v-on:click="updateBankname()()">复制</button>
+					<button>复制</button>
 				</div>
 				
 				<div>
@@ -106,7 +106,7 @@
 					confirmText: "确定",
 					success:res => {
 						if (res.confirm) {
-							this.images.pop(index)
+							this.images.splice(index, 1)
 							
 						} else if (res.cancel) {
 							console.log('用户点击取消');
@@ -160,6 +160,7 @@
 					success: (res) => {						
 						// 获取真实数据之前，务必判断状态是否为200
 						if (res.data.code == 200) {
+							this.images = [];
 							uni.showToast({
 								title: res.data.message,
 								image: "../../static/icons/success.png"

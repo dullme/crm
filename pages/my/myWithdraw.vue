@@ -10,7 +10,7 @@
 						<div>
 							<span class="tr-pic-body-left">订单状态：</span>
 							<span :class="item.status==3 ? 'color-white':'color-blue'">{{ getStatus(item.status) }}</span>
-							<navigator :url="'../my/complaint?id='+item.id+'&order_no='+item.order_no+'&status='+item.status+'&withdraw_amount='+item.withdraw_amount+'&bankcard='+item.bankcard+'&handing_fee='+item.handing_fee" v-if="item.status==1 || item.status==2" class="complaint">
+							<navigator :url="'../my/complaint?type=2&id='+item.id+'&order_no='+item.order_no+'&status='+item.status+'&withdraw_amount='+item.withdraw_amount+'&bankcard='+item.bankcard+'&handing_fee='+item.handing_fee" v-if="item.status==1 || item.status==2" class="complaint">
 								投诉
 							</navigator>
 							<span v-if="item.status==2" class="confirm" @click="conform(item.id, index)">确认</span>
@@ -28,7 +28,7 @@
 						
 						<div>
 							<span class="tr-pic-body-left">平台手续费：</span>
-							<span class="color-white">{{ item.handing_fee }}</span>
+							<span class="color-white">{{ item.operation_fee }}</span>
 						</div>
 					</div>
 				</div>	

@@ -4,58 +4,33 @@
 		
 			<div class="box-list">
 				
-				<div class="tr-pic">
-					<div class="tr-pic-title">订单号：201910005262</div>
+				<div class="tr-pic" v-for="item in transaction_list">
+					<div class="tr-pic-title">订单号：{{ item.order_no }}</div>
 					<div class="tr-pic-body">
 						<div>
 							<span class="tr-pic-body-left">订单状态：</span>
-							<span class="color-blue">等待对方确认</span>
-							<span class="complaint">投诉</span>
+							<span :class="item.status == 3 ? 'color-white' :'color-blue'">{{ getStatus(item.status) }}</span>
+							<navigator :url="'../my/complaint?type=1&id='+item.id+'&order_no='+item.order_no+'&status='+item.status+'&withdraw_amount='+item.withdraw_amount+'&bankcard='+item.bankcard+'&handing_fee='+item.handing_fee" v-if="item.status==2" class="complaint">
+								投诉
+							</navigator>
 						</div>
 						
 						<div>
 							<span class="tr-pic-body-left">交易金额：</span>
-							<span class="color-white">8000.00</span>
+							<span class="color-white">{{  item.withdraw_amount }}</span>
 						</div>
 
 						<div>
 							<span class="tr-pic-body-left">银行卡号：</span>
-							<span class="color-white">6211555200005320875</span>
+							<span class="color-white">{{  item.bankcard }}</span>
 						</div>
 						
 						<div>
 							<span class="tr-pic-body-left">收益：</span>
-							<span class="color-white">48.00</span>
+							<span class="color-white">{{ item.brokerage_fee }}</span>
 						</div>
 					</div>
 				</div>
-				
-				
-				<div class="tr-pic">
-					<div class="tr-pic-title">订单号：201910005262</div>
-					<div class="tr-pic-body">
-						<div>
-							<span class="tr-pic-body-left">订单状态：</span>
-							<span class="color-white">成功</span>
-						</div>
-						
-						<div>
-							<span class="tr-pic-body-left">交易金额：</span>
-							<span class="color-white">8000.00</span>
-						</div>
-				
-						<div>
-							<span class="tr-pic-body-left">银行卡号：</span>
-							<span class="color-white">6211555200005320875</span>
-						</div>
-						
-						<div>
-							<span class="tr-pic-body-left">收益：</span>
-							<span class="color-white">48.00</span>
-						</div>
-					</div>
-				</div>
-				
 				
 			</div>
 			
@@ -67,11 +42,52 @@
 	export default {
 		data() {
 			return {
-				
+				transaction_list:[]
 			};
+		},
+		
+		onLoad() {
+			let accessToken = this.getGlobalAccessToken();
+			if(accessToken != null){
+				//获取用户信息
+				uni.request({
+					url: this.serverUrl + 'transaction-list',
+					header: {
+						"Authorization": accessToken,
+						"Accept":'application/json'
+					},
+					method: "GET",
+					success: (res) => {
+						// 获取真实数据之前，务必判断状态是否为200
+						if (res.data.code == 200) {
+							this.transaction_list=res.data.data;
+								
+						} else if (res.data.code == 422) {
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
+						}
+					}
+				});
+			}
 		},
 
 		methods: {
+			
+			getStatus(status){				
+				if(status == 1){
+					return "等待您出款"
+				}
+				
+				if(status == 2){
+					return "等待对方确认"
+				}
+				
+				if(status == 3){
+					return "成功"
+				}
+			},
 		
 			back: function (e) {
 				uni.navigateBack()

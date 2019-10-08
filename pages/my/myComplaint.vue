@@ -8,6 +8,10 @@
 					<div class="tr-pic-title">订单号：{{  item.withdraw.order_no }}</div>
 					<div class="tr-pic-body">
 						<div>
+							<span class="tr-pic-body-left">投诉类型：</span>
+							<span style="margin-top: 20upx;">{{ item.type==1?'交易':'提现' }}</span>
+						</div>
+						<div>
 							<span class="tr-pic-body-left">投诉状态：</span>
 							<span :class="item.status == 2 ? 'color-white' : 'color-blue'">{{ getStatus(item.status) }}</span>
 						</div>
