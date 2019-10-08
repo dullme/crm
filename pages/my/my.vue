@@ -8,7 +8,7 @@
 						<span>{{ userInfo.name ? userInfo.name : userInfo.username }}</span>
 						<div @click="toMessage()">
 							<image style="width: 40upx;height: 40upx;" src="../../static/message.png"></image>
-							<span :class="userInfo.message?'has-message':''" ></span>
+							<span :class="message?'has-message':''" ></span>
 						</div>
 						
 					</div>
@@ -90,8 +90,24 @@
 		data() {
 			return {
 				userInfo: {},
+				message:0
 			};
 		},
+		onShow() {
+			let accessToken = this.getGlobalAccessToken();
+			uni.request({
+				url: this.serverUrl + 'message-count',
+				header: {
+					"Authorization": accessToken,
+					"Accept":'application/json'
+				},
+				method: "GET",
+				success: (res) => {
+					this.message = res.data.data;
+				}
+			});
+		},
+		
 		onLoad() {
 			let accessToken = this.getGlobalAccessToken();
 			if(accessToken != null){

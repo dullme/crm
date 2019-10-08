@@ -254,6 +254,8 @@
 		background-color: unset;
 		color: #40BCFF;
 		font-size: 20upx;
+		padding: 5upx 15upx;
+		line-height: 40upx;
 	}
 	
 	.memu-pic{

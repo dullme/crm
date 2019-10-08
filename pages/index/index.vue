@@ -6,13 +6,13 @@
 				<image src="../../static/index-bg.png"></image>
 				<div class="amount-text">
 					<p>当日可抢额度</p>
-					<p>16054.50</p>
+					<p>{{ index_amount }}</p>
 				</div>
 			</div>
 			
 			<div class="buttom-list">
-				<navigator url="../my/deposit" open-type="navigate">保证金(2000.00)</navigator>
-				<navigator url="myTeam" open-type="navigate">立即抢单</navigator>
+				<navigator url="../my/deposit" open-type="navigate">保证金<span v-if="deposit_amount > 0">({{ deposit_amount }})</span></navigator>
+				<span class="grab" @click="grabOrder()">立即抢单</span>
 			</div>
 			
 			<div class="my-info">
@@ -24,20 +24,20 @@
 					<div class="info-content-top">
 						<div class="div-image">
 							<div class="div-image-o"><image src="../../static/bank_icon.png"></image></div>
-							<span>交通银行</span>
+							<span>{{ userInfo.bank_name }}</span>
 						</div>
 						<div>
-							<span class="has-card">持卡人：</span><span class="my-name">张满月</span>
+							<span class="has-card">持卡人：</span><span class="my-name">{{ userInfo.name }}</span>
 						</div>
 						
 					</div>
-					<div class="card-number">6222 0188 4511 4785 454</div>
+					<div class="card-number">{{ userInfo.bank_card }}</div>
 					<div>
 						<div class="div-image div-image-samll">
 							<div class="div-image-o"><image src="../../static/ketixian_icon.png"></image></div>
 							<div>
 								<span>可提现额度：</span>
-								<span class="has-amount">5000.00</span>
+								<span class="has-amount">{{ withdraw_amount }}</span>
 							</div>
 							
 						</div>
@@ -55,7 +55,26 @@
 		data() {
 			return {
 				userInfo: {},
+				deposit_amount:0,
+				withdraw_amount:0,
+				index_amount:0,
 			};
+		},
+		onShow() {
+			let accessToken = this.getGlobalAccessToken();
+			uni.request({
+				url: this.serverUrl + 'deposit-count',
+				header: {
+					"Authorization": accessToken,
+					"Accept":'application/json'
+				},
+				method: "GET",
+				success: (res) => {
+					this.deposit_amount = res.data.data.deposit_amount;
+					this.withdraw_amount = res.data.data.withdraw_amount;
+					this.index_amount = res.data.data.index_amount;
+				}
+			});
 		},
 		onLoad() {
 			let accessToken = this.getGlobalAccessToken();
@@ -136,6 +155,34 @@
 			// }
 		},
 		methods: {
+			
+			grabOrder(){
+				let accessToken = this.getGlobalAccessToken();
+				uni.request({
+					url: this.serverUrl + 'grab-order',
+					header: {
+						"Authorization": accessToken,
+						"Accept":'application/json'
+					},
+					method: "GET",
+					success: (res) => {
+						// 获取真实数据之前，务必判断状态是否为200
+						if (res.data.code == 200) {
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/success.png"
+							})
+								
+						} else if (res.data.code == 422) {
+							uni.showToast({
+								title: res.data.message,
+								image: "../../static/icons/warning.png"
+							})
+						}
+					}
+				});
+			},
+			
 			contacts: function (e) {
 				uni.showModal({
 					title: "联系人",
@@ -228,7 +275,7 @@
 		justify-content: space-between;
 	}
 	
-	.buttom-list navigator{
+	.buttom-list navigator, .buttom-list .grab{
 		flex: 1;
 		font-size: 30upx;
 		border-radius: 100upx;
@@ -244,14 +291,14 @@
 		background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	}
 	
-	.buttom-list navigator:last-child{
+	.buttom-list .grab{
 		padding: 22upx;
 		margin-left: 20upx;
 		background-image: linear-gradient(141deg, #FFC253 30%, #FFB249 61%, #FFAB45 100%);
 	}
 	
 	.my-info{
-		padding-top: 40upx;
+		padding-top: 20upx;
 	}
 	
 	.my-info-title:before{
@@ -321,7 +368,6 @@
 	.div-image-samll .div-image-o{
 		width: 40upx;
 		height: 40upx;
-		padding: 15upx;
 		margin-right: 22upx;
 		background-color: #161F37;
 	}
