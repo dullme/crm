@@ -6,9 +6,9 @@
 				<div style="flex: 1;">
 					<div style="display: flex;align-items: center; justify-content: space-between;">
 						<span>{{ userInfo.name ? userInfo.name : userInfo.username }}</span>
-						<div>
+						<div @click="toMessage()">
 							<image style="width: 40upx;height: 40upx;" src="../../static/message.png"></image>
-							<span class="has-message" ></span>
+							<span :class="userInfo.message?'has-message':''" ></span>
 						</div>
 						
 					</div>
@@ -130,7 +130,11 @@
 			}
 		},
 		methods: {
-			
+			toMessage(){
+				uni.navigateTo({
+					url: "../my/myMessage"
+				})
+			}
 		}
 	}
 </script>

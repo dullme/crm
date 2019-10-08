@@ -112,6 +112,14 @@
 				"navigationBarBackgroundColor": "#19233C",
 				"backgroundColor": "#19233C"
 			}
+		},
+		{
+			"path": "pages/my/myMessage",
+			"style": {
+				"navigationBarTitleText": "我的消息",
+				"navigationBarBackgroundColor": "#19233C",
+				"backgroundColor": "#19233C"
+			}
 		}
         
     ],
