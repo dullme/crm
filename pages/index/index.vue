@@ -11,8 +11,8 @@
 			</div>
 			
 			<div class="buttom-list">
-				<navigator url="../my/deposit" open-type="navigate">保证金<span v-if="deposit_amount > 0">({{ deposit_amount }})</span></navigator>
-				<span class="grab" @click="grabOrder()">立即抢单</span>
+				<button @click="submitDeposit()">保证金<span v-if="deposit_amount > 0">({{ deposit_amount }})</span></button>
+				<button class="grab" @click="grabOrder()">立即抢单</button>
 			</div>
 			
 			<div class="my-info">
@@ -56,8 +56,10 @@
 			return {
 				userInfo: {},
 				deposit_amount:0,
+				deposit:0,
 				withdraw_amount:0,
 				index_amount:0,
+				deposit_enough_message:'',
 			};
 		},
 		onShow() {
@@ -131,6 +133,8 @@
 					success: (res) => {
 						if(res.data.code == 200){
 							this.deposit_amount = res.data.data.deposit_amount;
+							this.deposit_enough_message = res.data.data.deposit_enough_message
+							this.deposit = res.data.data.deposit;
 							this.withdraw_amount = res.data.data.withdraw_amount;
 							this.index_amount = res.data.data.index_amount;
 						}
@@ -138,6 +142,21 @@
 					}
 				});
 				
+			},
+			
+			submitDeposit(){
+				if(this.deposit_amount >= this.deposit){
+					uni.showModal({
+						title: "保证金",
+						content: this.deposit_enough_message,
+						showCancel: false,
+						confirmText: "确定"
+					})
+				}else{
+					uni.navigateTo({
+						url:"../my/deposit"
+					})
+				}
 			},
 			
 			grabOrder(){
@@ -152,15 +171,28 @@
 					success: (res) => {
 						// 获取真实数据之前，务必判断状态是否为200
 						if (res.data.code == 200) {
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/success.png"
+							uni.showModal({
+								title: "抢单成功",
+								content: res.data.message,
+								showCancel: false,
+								confirmText: "确定",
+								success:res => {
+									if (res.confirm) {
+										uni.switchTab({
+											url:"../my/grab"
+										})
+									}
+									
+								}
 							})
 								
 						} else if (res.data.code == 422) {
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/warning.png"
+							
+							uni.showModal({
+								title: "抢单失败",
+								content: res.data.message,
+								showCancel: false,
+								confirmText: "确定"
 							})
 						}
 					}
@@ -259,24 +291,22 @@
 		justify-content: space-between;
 	}
 	
-	.buttom-list navigator, .buttom-list .grab{
+	.buttom-list button{
 		flex: 1;
 		font-size: 30upx;
 		border-radius: 100upx;
 		color: white;
-		padding: 22upx;
+		padding: 5upx;
 		text-align: center;
 		
 	}
 	
-	.buttom-list navigator:first-child{
-		padding: 22upx;
+	.buttom-list button:first-child{
 		margin-right: 20upx;
 		background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	}
 	
-	.buttom-list .grab{
-		padding: 22upx;
+	.buttom-list button:last-child{
 		margin-left: 20upx;
 		background-image: linear-gradient(141deg, #FFC253 30%, #FFB249 61%, #FFAB45 100%);
 	}

@@ -1,6 +1,6 @@
 <template>
 	<view class="body index-body">
-		<div class="real-body" v-if="grab">
+		<div class="real-body" v-if="grab.id">
 			
 			<div class="memu-list">
 				
@@ -81,6 +81,19 @@
 						success: (res) => {
 							if(res.data.code == 200){
 								this.grab = res.data.data
+							}else if(res.data.code == 422){
+								uni.showModal({
+								    title: '等待对方确认',
+								    content: res.data.message,
+									showCancel: true,
+								    success: (res) => {
+								        if (res.confirm) {
+											uni.navigateTo({
+												url: "../my/myTransaction"
+											})
+								        }
+								    }
+								});
 							}else if(res.data.code == 429){
 								uni.showToast({
 									title: res.data.message,

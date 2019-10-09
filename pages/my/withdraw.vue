@@ -131,10 +131,13 @@
 							}, 1000)
 								
 						} else if (res.data.code == 422) {
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/warning.png"
+							uni.showModal({
+								title: "提现失败",
+								content: res.data.message,
+								showCancel: false,
+								confirmText: "确定"
 							})
+							
 						}
 					}
 				});

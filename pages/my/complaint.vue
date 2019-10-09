@@ -67,6 +67,7 @@
 				handing_fee:'',
 				content:'',
 				type:'',
+				message:''
 			};
 		},
 		
@@ -78,6 +79,7 @@
 			this.withdraw_amount = options.withdraw_amount;
 			this.bankcard = options.bankcard;
 			this.handing_fee = options.handing_fee;
+			this.getMessage();
 		},
 
 		methods: {
@@ -113,41 +115,71 @@
 				}
 			},
 			
-			submit(){
+			getMessage(){
 				let accessToken = this.getGlobalAccessToken();
 				let me = this;
 				var serverUrl = me.serverUrl;
 				uni.request({
-					url: serverUrl + 'complaint',
+					url: serverUrl + 'complaint-message',
 					header: {
 						"Authorization": accessToken,
 						"Accept":'application/json'
 					},
-					data: {
-						"id": me.id,
-						"content": me.content,
-					},
-					method: "POST",
-					success: (res) => {						
-						// 获取真实数据之前，务必判断状态是否为200
-						if (res.data.code == 200) {							
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/success.png"
-							})
-							
-							setTimeout(()=>{
-								uni.navigateBack()
-							}, 1000)
-							
-						} else if (res.data.code == 422) {
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/warning.png"
-							})
-						}
+					method: "GET",
+					success: (res) => {
+						this.message = res.data.data
 					}
 				});
+			},
+			
+			submit(){
+				uni.showModal({
+					title: "确定要投诉",
+					content: this.message,
+					showCancel: true,
+					confirmText: "确定",
+					success:res => {
+						if (res.confirm) {
+							let accessToken = this.getGlobalAccessToken();
+							let me = this;
+							var serverUrl = me.serverUrl;
+							uni.request({
+								url: serverUrl + 'complaint',
+								header: {
+									"Authorization": accessToken,
+									"Accept":'application/json'
+								},
+								data: {
+									"id": me.id,
+									"content": me.content,
+								},
+								method: "POST",
+								success: (res) => {						
+									// 获取真实数据之前，务必判断状态是否为200
+									if (res.data.code == 200) {							
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/success.png"
+										})
+										
+										setTimeout(()=>{
+											uni.navigateBack()
+										}, 1000)
+										
+									} else if (res.data.code == 422) {
+										uni.showToast({
+											title: res.data.message,
+											image: "../../static/icons/warning.png"
+										})
+									}
+								}
+							});
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				})
+				
 			},
 			
 			back: function (e) {

@@ -161,15 +161,20 @@
 						// 获取真实数据之前，务必判断状态是否为200
 						if (res.data.code == 200) {
 							this.images = [];
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/success.png"
+							this.amount = 0;
+							uni.showModal({
+								title: "提交成功",
+								content: res.data.message,
+								showCancel: false,
+								confirmText: "确定"
 							})
 								
 						} else if (res.data.code == 422) {
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/warning.png"
+							uni.showModal({
+								title: "提交失败",
+								content: res.data.message,
+								showCancel: false,
+								confirmText: "确定"
 							})
 						}
 					}
