@@ -65,7 +65,7 @@ page{
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 }
-.buttom-list navigator, .buttom-list .grab{
+.buttom-list button{
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
 	    -ms-flex: 1;
@@ -73,17 +73,15 @@ page{
 	font-size: 30rpx;
 	border-radius: 100rpx;
 	color: white;
-	padding: 22rpx;
+	padding: 5rpx;
 	text-align: center;
 }
-.buttom-list navigator:first-child{
-	padding: 22rpx;
+.buttom-list button:first-child{
 	margin-right: 20rpx;
 	background-image: -o-linear-gradient(309deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 }
-.buttom-list .grab{
-	padding: 22rpx;
+.buttom-list button:last-child{
 	margin-left: 20rpx;
 	background-image: -o-linear-gradient(309deg, #FFC253 30%, #FFB249 61%, #FFAB45 100%);
 	background-image: linear-gradient(141deg, #FFC253 30%, #FFB249 61%, #FFAB45 100%);

@@ -181,6 +181,7 @@
 						// 获取真实数据之前，务必判断状态是否为200
 						if (res.data.code == 200) {
 							this.images=[];
+							this.grab = [];
 							uni.showToast({
 								title: res.data.message,
 								image: "../../static/icons/success.png"
