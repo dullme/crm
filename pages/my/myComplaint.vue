@@ -43,33 +43,44 @@
 		},
 		
 		onLoad() {
-			let accessToken = this.getGlobalAccessToken();
-			if(accessToken != null){
-				//获取用户信息
-				uni.request({
-					url: this.serverUrl + 'complaint-list',
-					header: {
-						"Authorization": accessToken,
-						"Accept":'application/json'
-					},
-					method: "GET",
-					success: (res) => {
-						// 获取真实数据之前，务必判断状态是否为200
-						if (res.data.code == 200) {
-							this.complaint_list=res.data.data;
-								
-						} else if (res.data.code == 422) {
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/warning.png"
-							})
-						}
-					}
-				});
-			}
+			this.getComplaintList();
+		},
+		
+		onPullDownRefresh() {
+			this.getComplaintList();
+			setTimeout(function () {
+				uni.stopPullDownRefresh();
+			}, 100);
 		},
 
 		methods: {
+			
+			getComplaintList(){
+				let accessToken = this.getGlobalAccessToken();
+				if(accessToken != null){
+					//获取用户信息
+					uni.request({
+						url: this.serverUrl + 'complaint-list',
+						header: {
+							"Authorization": accessToken,
+							"Accept":'application/json'
+						},
+						method: "GET",
+						success: (res) => {
+							// 获取真实数据之前，务必判断状态是否为200
+							if (res.data.code == 200) {
+								this.complaint_list=res.data.data;
+									
+							} else if (res.data.code == 422) {
+								uni.showToast({
+									title: res.data.message,
+									image: "../../static/icons/warning.png"
+								})
+							}
+						}
+					});
+				}
+			},
 			
 			getStatus(status){
 				if(status == 0){

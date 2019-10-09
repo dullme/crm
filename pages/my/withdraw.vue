@@ -11,7 +11,7 @@
 				
 				<div style="flex-flow: column;align-items: flex-start;">
 					<span>提现金额：</span>
-					<input @change="gethandlingFee()" style="margin-top: 40upx;height: 100upx; font-size: 100upx;" type="number" v-model="withdraw_amount" placeholder="0.00" placeholder-style="color:#4E5A7D">
+					<input @change="gethandlingFee()" style="margin-top: 40upx;height: 120upx;line-height: 100upx; font-size: 100upx;" type="number" v-model="withdraw_amount" placeholder="0.00" placeholder-style="color:#4E5A7D">
 				</div>
 				
 				<div>
