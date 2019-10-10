@@ -112,19 +112,6 @@
 									title: res.data.message,
 									image: "../../static/icons/warning.png"
 								})
-							}else{
-								uni.showModal({
-								    title: '未登录',
-								    content: '您未登录，需要登录后才能继续',
-									showCancel: false,
-								    success: (res) => {
-								        if (res.confirm) {
-											uni.reLaunch({
-											    url: '../registLogin/registLogin'
-											});
-								        }
-								    }
-								});
 							}
 						}
 					});
