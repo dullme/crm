@@ -96,7 +96,11 @@
 					}
 					
 					if(status == 3){
-						return "成功"
+						return "交易完成"
+					}
+					
+					if(status == 4){
+						return "交易取消"
 					}
 				}else{
 					if(status == 0){
@@ -112,7 +116,11 @@
 					}
 					
 					if(status == 3){
-						return "完成"
+						return "交易完成"
+					}
+					
+					if(status == 4){
+						return "交易取消"
 					}
 				}
 			},

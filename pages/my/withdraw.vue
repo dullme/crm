@@ -58,8 +58,8 @@
 					success: (res) => {
 						if(res.data.code == 200){
 							this.amount = res.data.data.amount;
-							this.bankcard = res.data.data.admin_bankcard;
-							this.bankname = res.data.data.admin_bankname;
+							this.bankcard = res.data.data.bank_card;
+							this.bankname = res.data.data.bank_name;
 							this.operationFee = res.data.data.admin_operation_fee;
 							this.getOperationFee();
 						}else if(res.data.code == 429){
