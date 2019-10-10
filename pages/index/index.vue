@@ -31,7 +31,7 @@
 						</div>
 						
 					</div>
-					<div class="card-number">{{ userInfo.bank_card }}</div>
+					<div class="card-number">{{ userInfo.bank_card.replace(/(\d{4})(?=\d)/g,"$1"+" ") }}</div>
 					<div>
 						<div class="div-image div-image-samll">
 							<div class="div-image-o"><image src="../../static/ketixian_icon.png"></image></div>
