@@ -24,7 +24,7 @@
 						
 						<div>
 							<span class="tr-pic-body-left">{{  type==1 ? '收益' : '平台手续费' }}：</span>
-							<span class="color-white">{{ handing_fee }}</span>
+							<span class="color-white">{{ type==1 ? brokerage_fee:operation_fee }}</span>
 						</div>
 						
 						<div>
@@ -64,7 +64,8 @@
 				status:'',
 				withdraw_amount:'',
 				bankcard:'',
-				handing_fee:'',
+				operation_fee:'',
+				brokerage_fee:'',
 				content:'',
 				type:'',
 				message:''
@@ -78,7 +79,8 @@
 			this.status = options.status;
 			this.withdraw_amount = options.withdraw_amount;
 			this.bankcard = options.bankcard;
-			this.handing_fee = options.handing_fee;
+			this.brokerage_fee = options.brokerage_fee;
+			this.operation_fee = options.operation_fee;
 			this.getMessage();
 		},
 

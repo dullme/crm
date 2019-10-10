@@ -10,7 +10,7 @@
 						<div>
 							<span class="tr-pic-body-left">订单状态：</span>
 							<span :class="item.status == 3 ? 'color-white' :'color-blue'">{{ getStatus(item.status) }}</span>
-							<navigator :url="'../my/complaint?type=1&id='+item.id+'&order_no='+item.order_no+'&status='+item.status+'&withdraw_amount='+item.withdraw_amount+'&bankcard='+item.bankcard+'&handing_fee='+item.handing_fee" v-if="item.status==2" class="complaint">
+							<navigator :url="'../my/complaint?type=1&id='+item.id+'&order_no='+item.order_no+'&status='+item.status+'&withdraw_amount='+item.withdraw_amount+'&bankcard='+item.bankcard+'&brokerage_fee='+item.brokerage_fee" v-if="item.status==2" class="complaint">
 								投诉
 							</navigator>
 						</div>

@@ -14,4 +14,11 @@ page{
 	margin-top: 30rpx;
 	padding: 0rpx 40rpx 0 40rpx;
 }
+.help{
+	font-size: 30rpx;
+	border-bottom: 1px solid #323D5E;
+}
+.help:last-child{
+	border-bottom: 0;
+}
 

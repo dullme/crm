@@ -1,0 +1,28 @@
+
+page{
+	background: #19233C;
+}
+.body{
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	color: white;
+	background: #19233C;
+	color:#E9EAEB;
+}
+.real-body{
+	margin-top: 60rpx;
+	padding: 0rpx 50rpx 0 50rpx;
+}
+.box-list{
+	font-size: 30rpx;
+}
+.message{
+	background-color: #2A3452;
+	padding: 35rpx;
+	border-radius: 8rpx;
+	font-size: 26rpx;
+	margin-bottom: 20rpx;
+}
+
+

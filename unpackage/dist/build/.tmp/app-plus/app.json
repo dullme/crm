@@ -4,20 +4,21 @@
     "pages/registLogin/registLogin",
     "pages/registLogin/regist",
     "pages/my/my",
+    "pages/my/grab",
+    "pages/my/myInfo",
+    "pages/my/withdraw",
+    "pages/my/complaint",
+    "pages/my/myComplaint",
+    "pages/my/deposit",
     "pages/help/help",
     "pages/my/myTeam",
     "pages/my/myTransaction",
     "pages/my/myWithdraw",
-    "pages/customerList/customerList",
-    "pages/customer/customer",
-    "pages/follow/follow",
-    "pages/info/info",
-    "pages/find/find",
-    "pages/followEdit/followEdit"
+    "pages/my/myMessage"
   ],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "客户管理系统",
+    "navigationBarTitleText": "抢单系统",
     "navigationBarBackgroundColor": "black",
     "backgroundColor": "black"
   },
@@ -34,7 +35,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/customerList/customerList",
+        "pagePath": "pages/my/grab",
         "iconPath": "static/qiangdan_moren.png",
         "selectedIconPath": "static/qiangdan_jihuo.png",
         "text": "抢单"
@@ -60,6 +61,6 @@
     "autoclose": false
   },
   "appname": "crm",
-  "compilerVersion": "2.2.1",
+  "compilerVersion": "2.3.3",
   "usingComponents": {}
 }

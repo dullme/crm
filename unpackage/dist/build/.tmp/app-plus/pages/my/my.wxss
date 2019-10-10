@@ -45,8 +45,8 @@ page{
 	color: #F65D6B;
 	font-size: 18rpx;
 	position: absolute;
-	margin-left: -22rpx;
-	margin-top: -10rpx;
+	margin-left: -21rpx;
+	margin-top: -5rpx;
 }
 .memu-list{
 	border-radius: 10rpx;

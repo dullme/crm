@@ -10,7 +10,7 @@
 				
 				<div class="water" v-for="item in team_list">
 					<span>{{ item.name }}</span>
-					<span>{{ item.today_water }}/{{ item.brokerage_fee }}</span>
+					<span>{{ item.today_water }}/{{ item.parent_brokerage_fee }}</span>
 				</div>
 			</div>
 			

@@ -23,7 +23,7 @@
 				<div class="info-content">
 					<div class="info-content-top">
 						<div class="div-image">
-							<div class="div-image-o"><image src="../../static/bank_icon.png"></image></div>
+							<div class="div-image-o"><image :src="userInfo.user_bank_image"></image></div>
 							<span>{{ userInfo.bank_name }}</span>
 						</div>
 						<div>
@@ -67,6 +67,14 @@
 			this.getUserInfo();
 						
 		},
+		
+		onPullDownRefresh() {
+			this.getUserInfo();
+			setTimeout(function () {
+				uni.stopPullDownRefresh();
+			}, 100);
+		},
+		
 		methods: {
 			
 			getUserInfo(){
