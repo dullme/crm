@@ -7,13 +7,13 @@
 				<div>
 					<span>银行卡号：</span>
 					<span style="flex: 1;">{{ bankcard }}</span>
-					<button>复制</button>
+					<button @click="copy(bankcard)">复制</button>
 				</div>
 				
 				<div>
 					<span>开户银行：</span>
 					<span style="flex: 1;">{{ bankname }}</span>
-					<button>复制</button>
+					<button @click="copy(bankname)">复制</button>
 				</div>
 				
 				<div>
@@ -98,6 +98,14 @@
 			}
 		},
 		methods: {
+			copy(text){
+				uni.setClipboardData({
+				    data: text,
+				    success: function () {
+				        console.log('success');
+				    }
+				});
+			},
 			removeImage(index){
 				uni.showModal({
 					title: "删除",

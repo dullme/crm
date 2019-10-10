@@ -7,25 +7,25 @@
 				<div>
 					<span>银行卡号：</span>
 					<span style="flex: 1;">{{ grab.bankcard }}</span>
-					<button>复制</button>
+					<button @click="copy(grab.bankcard)">复制</button>
 				</div>
 				
 				<div>
 					<span>开户银行：</span>
 					<span style="flex: 1;">{{ grab.bankname }}</span>
-					<button>复制</button>
+					<button @click="copy(grab.bankname)">复制</button>
 				</div>
 				
 				<div>
 					<span>收&nbsp;&nbsp;款&nbsp;&nbsp;人：</span>	
 					<span style="flex: 1;">{{ grab.name }}</span>
-					<button >复制</button>
+					<button @click="copy(grab.name)">复制</button>
 				</div>
 				
 				<div>
 					<span>汇款金额：</span>		
 					<span style="flex: 1;">{{ grab.withdraw_amount }}</span>
-					<button>复制</button>
+					<button @click="copy(grab.withdraw_amount)">复制</button>
 				</div>
 				
 				<div style="display: flex;flex-flow: column;align-items: start;">
@@ -67,6 +67,15 @@
 			this.getGrab()
 		},
 		methods: {
+			copy(text){
+				uni.setClipboardData({
+				    data: text,
+				    success: function () {
+				        console.log('success');
+				    }
+				});
+			},
+			
 			getGrab(){
 				let accessToken = this.getGlobalAccessToken();
 				if(accessToken != null){

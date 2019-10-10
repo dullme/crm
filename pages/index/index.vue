@@ -31,7 +31,7 @@
 						</div>
 						
 					</div>
-					<div class="card-number">{{ userInfo.bank_card.replace(/(\d{4})(?=\d)/g,"$1"+" ") }}</div>
+					<div class="card-number">{{ userInfo.bank_card ? userInfo.bank_card.replace(/(\d{4})(?=\d)/g,"$1"+" ") : '' }}</div>
 					<div>
 						<div class="div-image div-image-samll">
 							<div class="div-image-o"><image src="../../static/ketixian_icon.png"></image></div>
@@ -112,6 +112,21 @@
 									title: res.data.message,
 									image: "../../static/icons/warning.png"
 								})
+							} else {
+								uni.showModal({
+									title: '未登录',
+									content: '您未登录，需要登录后才能继续',
+									showCancel: false,
+									success: (res) => {
+										if (res.confirm) {
+											uni.reLaunch({
+												url: '../registLogin/registLogin'
+											});
+										}
+									}
+								});
+								
+								return null;
 							}
 						}
 					});
