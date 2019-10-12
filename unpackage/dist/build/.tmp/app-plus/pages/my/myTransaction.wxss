@@ -42,6 +42,9 @@ page{
 .color-white{
 	color:#FFFFFF !important;
 }
+.color-red{
+	color:#F65D6B !important;
+}
 .color-blue{
 	color:#40BCFF !important;
 }

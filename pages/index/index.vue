@@ -272,7 +272,7 @@
 	}
 	
 	.amount{
-		padding: 70upx 0;
+		padding: 50upx 0;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -280,7 +280,7 @@
 	}
 	
 	.message-amount{
-		padding: 20upx 0 70upx 0;
+		padding: 0 0 50upx 0;
 	}
 	
 	

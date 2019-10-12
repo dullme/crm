@@ -2,27 +2,33 @@
 	<view class="body index-body">
 		<div class="real-body">
 			
-			<div class="memu-list">
-				
-				<div>
-					<span>到账银行卡：</span>
-					<span>{{ user.bank_name }}({{ user.bank_card.substr(user.bank_card.length-4,4) }})</span>
+			<div>
+				<div class="memu-list">
+					
+					<div>
+						<span>到账银行卡：</span>
+						<span>{{ user.bank_name }}({{ user.bank_card ? user.bank_card.substr(user.bank_card.length-4,4) : '' }})</span>
+					</div>
+					
+					<div style="flex-flow: column;align-items: flex-start;">
+						<span>提现金额：</span>
+						<span style="margin-top: 40upx;height: 120upx;line-height: 100upx; font-size: 100upx;" type="number" >{{ user.deposit }}</span>
+					</div>
+					
+					<div>
+						<span>平台运营手续费：</span>		
+						<span>{{ user.fee }}</span>
+					</div>
+					
 				</div>
 				
-				<div style="flex-flow: column;align-items: flex-start;">
-					<span>提现金额：</span>
-					<span style="margin-top: 40upx;height: 120upx;line-height: 100upx; font-size: 100upx;" type="number" >{{ user.deposit }}</span>
-				</div>
-				
-				<div>
-					<span>平台运营手续费：</span>		
-					<span>{{ user.fee }}</span>
-				</div>
-				
+				<button class="form-button form-button-active" @click="submit()">提现</button>
 			</div>
 			
-			<button class="form-button form-button-active" @click="submit()">提现</button>
-			
+			<div v-if="user.text.length" style="display: flex;flex-flow: column;font-size: 22upx;color: #6A77A0;">
+				<span style="padding: 50upx 0 10upx 0;">提现说明:</span>
+				<span style="margin-left: 45upx;line-height: 40upx;" v-if="item" v-for="(item,index) in user.text">{{ index+1 }}、{{ item }}</span>
+			</div>
 		</div>
 	</view>
 </template>
@@ -150,8 +156,7 @@
 	}
 	
 	.real-body{
-		margin-top: 60upx;
-		padding: 0upx 50upx 0 50upx;
+		padding: 60upx 50upx 50upx 50upx;
 		background-size:100%;
 	}
 	
