@@ -33,8 +33,10 @@
 						</div>
 					</div>
 				</div>	
-				
+				<div style="text-align:center;padding: 40upx;font-size: 24upx;color: #6A77A0;">仅能查看进{{ display_days }}天的记录</div>
 			</div>
+			
+			
 			
 		</div>
 	</view>
@@ -44,7 +46,8 @@
 	export default {
 		data() {
 			return {
-				withdraw_list:[]
+				withdraw_list:[],
+				display_days:''
 			};
 		},
 		
@@ -75,7 +78,8 @@
 						success: (res) => {
 							// 获取真实数据之前，务必判断状态是否为200
 							if (res.data.code == 200) {
-								this.withdraw_list=res.data.data;
+								this.withdraw_list=res.data.data.withdraw_list;
+								this.display_days=res.data.data.display_days;
 									
 							} else if (res.data.code == 422) {
 								uni.showToast({

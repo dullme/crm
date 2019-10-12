@@ -1,11 +1,5 @@
 <template>
 	<view class="body index-body">
-		<div class="message" style="display: flex;align-items: center;background-color: #13182A;padding: 20upx 50upx;">
-			<image style="width: 30upx;height: 30upx;margin-right: 20upx;" src="../../static/notice_icon.png"></image>
-			<marquee style="flex: 1;font-size: 30upx;color: #6A77A0;">{{ message }}</marquee>
-		</div>
-		
-		
 		<div class="real-body">
 			<div style="background-color: #2A3452;padding: 0 30upx;border-radius: 10upx;">
 				
@@ -36,7 +30,6 @@
 		data() {
 			return {
 				help_list:[],
-				message:"",
 			};
 		},
 		
@@ -68,7 +61,6 @@
 						success: (res) => {
 							if(res.data.code == 200){
 								this.help_list = res.data.data.helps;
-								this.message = res.data.data.message;
 							}
 						}
 					});

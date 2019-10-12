@@ -2,7 +2,13 @@
 	<view class="body index-body">
 		<div class="real-body">
 			<div class="title">APP Name</div>
-			<div class="amount">
+			
+			<div v-if="userInfo.message" class="message" style="margin-left: -50upx;margin-right: -50upx;display: flex;align-items: center;padding: 20upx 30upx;">
+				<image style="width: 30upx;height: 30upx;margin-right: 20upx;" src="../../static/notice_icon.png"></image>
+				<marquee style="flex: 1;font-size: 30upx;color: #a3a4a5;">{{ userInfo.message }}</marquee>
+			</div>
+			
+			<div class="amount" :class="userInfo.message ? 'message-amount' : ''">
 				<image src="../../static/index-bg.png"></image>
 				<div class="amount-text">
 					<p>当日可抢额度</p>
@@ -272,6 +278,11 @@
 		align-items: center;
 		position: relative;
 	}
+	
+	.message-amount{
+		padding: 20upx 0 70upx 0;
+	}
+	
 	
 	.amount image{
 		width: 360upx;

@@ -1,7 +1,7 @@
 <template>
 	<view class="body index-body">
 		<div class="real-body" v-if="grab.id">
-			
+						
 			<div class="memu-list">
 				
 				<div>
@@ -43,7 +43,18 @@
 				
 			</div>
 			
-			<button class="form-button form-button-active" @click="submit()">我已付款</button>
+			<view v-if="time_up == false" class="count-down" style="display: flex;justify-content: center;padding: 40upx;font-size: 24upx;align-items: center;color: #475474;">
+				<span style="margin-right: 5upx;">剩余</span>
+				<uni-count-down color="#475474" splitor-color="#475474" background-color="#19233C" border-color="#19233C" :show-day="false" :second="grab.time_up_seconds" @timeup="timeup"/>
+				<span style="margin-left: 5upx;">后自动取消</span>
+			</view>
+			<view v-else class="count-down" style="display: flex;justify-content: center;padding: 40upx;font-size: 24upx;align-items: center;color: #475474;">
+				已{{ grab.time_out_at ? '于 ' + grab.time_out_at.substr(0,10) + '' : '' }}自动取消
+			</view>
+			
+			<button v-if="time_up == false" class="form-button form-button-active" @click="submit()">我已付款</button>
+			<button v-else class="form-button form-button-active form-button-canel">已取消</button>
+			
 			
 		</div>
 		
@@ -56,17 +67,35 @@
 </template>
 
 <script>
+	
+	import uniCountDown from '../../components/uni-countdown/uni-countdown.vue'
+	
 	export default {
+		
+		components: {
+			uniCountDown
+		},
+		
 		data() {
 			return {
 				grab:[],
-				images:[]
+				images:[],
+				time_up: false,
 			};
 		},
 		onShow() {
 			this.getGrab()
 		},
 		methods: {
+			timeup() {
+				this.time_up = true;
+				uni.showToast({
+					title: "已自动取消",
+					image: "../../static/icons/warning.png"
+				})
+				console.log('时间到');
+			},
+			
 			copy(text){
 				uni.setClipboardData({
 				    data: text,
@@ -146,70 +175,88 @@
 			},
 			
 			uploadImage(){
-				uni.chooseImage({
-				    success: (chooseImageRes) => {
-				        const tempFilePaths = chooseImageRes.tempFilePaths;
-						let accessToken = this.getGlobalAccessToken();
-				        uni.uploadFile({
-				            url: this.serverUrl+'upload',
-				            filePath: tempFilePaths[0],
-				            name: 'file',
-							header: {
-								"Authorization": accessToken,
-								"Accept":'application/json'
-							},
-				            formData: {
-				                'type': '1'
-				            },
-				            success: (uploadFileRes) => {
-								let data =JSON.parse(uploadFileRes.data)
-								console.log(data.data)
-								this.images.push(data.data)
-				            }
-				        });
-				    }
-				});
+				if(this.time_up){
+					uni.showToast({
+						title: "已自动取消",
+						image: "../../static/icons/warning.png"
+					})
+				}else{
+					uni.chooseImage({
+					    success: (chooseImageRes) => {
+					        const tempFilePaths = chooseImageRes.tempFilePaths;
+							let accessToken = this.getGlobalAccessToken();
+					        uni.uploadFile({
+					            url: this.serverUrl+'upload',
+					            filePath: tempFilePaths[0],
+					            name: 'file',
+								header: {
+									"Authorization": accessToken,
+									"Accept":'application/json'
+								},
+					            formData: {
+					                'type': '1'
+					            },
+					            success: (uploadFileRes) => {
+									let data =JSON.parse(uploadFileRes.data)
+									console.log(data.data)
+									this.images.push(data.data)
+					            }
+					        });
+					    }
+					});
+				}
+				
+				
 			},
 			
 			submit(){
-				let accessToken = this.getGlobalAccessToken();
-				let me = this;
-				var serverUrl = me.serverUrl;
-				uni.request({
-					url: serverUrl + 'save-grab',
-					header: {
-						"Authorization": accessToken,
-						"Accept":'application/json'
-					},
-					data: {
-						"id": me.grab.id,
-						"images": me.images,
-					},
-					method: "POST",
-					success: (res) => {						
-						// 获取真实数据之前，务必判断状态是否为200
-						if (res.data.code == 200) {
-							this.images=[];
-							this.grab = [];
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/success.png"
-							})
-							
-							setTimeout(()=>{
-								uni.navigateTo({
-									url: "../my/myTransaction"
+				if(this.time_up){
+					uni.showToast({
+						title: "已自动取消",
+						image: "../../static/icons/warning.png"
+					})
+				}else{
+					let accessToken = this.getGlobalAccessToken();
+					let me = this;
+					var serverUrl = me.serverUrl;
+					uni.request({
+						url: serverUrl + 'save-grab',
+						header: {
+							"Authorization": accessToken,
+							"Accept":'application/json'
+						},
+						data: {
+							"id": me.grab.id,
+							"images": me.images,
+						},
+						method: "POST",
+						success: (res) => {						
+							// 获取真实数据之前，务必判断状态是否为200
+							if (res.data.code == 200) {
+								this.images=[];
+								this.grab = [];
+								uni.showToast({
+									title: res.data.message,
+									image: "../../static/icons/success.png"
 								})
-							}, 1000)
 								
-						} else if (res.data.code == 422) {
-							uni.showToast({
-								title: res.data.message,
-								image: "../../static/icons/warning.png"
-							})
+								setTimeout(()=>{
+									uni.navigateTo({
+										url: "../my/myTransaction"
+									})
+								}, 1000)
+									
+							} else if (res.data.code == 422) {
+								uni.showToast({
+									title: res.data.message,
+									image: "../../static/icons/warning.png"
+								})
+							}
 						}
-					}
-				});
+					});
+				}
+				
+				
 			}
 		}
 	}
@@ -330,10 +377,15 @@
 	}
 	
 	.form-button{
-		margin-top: 100upx;
 		border-radius: 100upx;
 		padding: 12upx;
 		color: white;
 		background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	}
+	
+	.form-button-canel{
+		color: #6A77A0 !important;
+		background-color: #2a3452 !important;
+		background-image: unset !important;
 	}
 </style>

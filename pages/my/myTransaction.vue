@@ -2,7 +2,7 @@
 	<view class="body index-body">
 		<div class="real-body">
 		
-			<div class="box-list">
+			<div class="box-list" style="margin-bottom: 100upx;">
 				
 				<div class="tr-pic" v-for="item in transaction_list">
 					<div class="tr-pic-title">订单号：{{ item.order_no }}</div>
@@ -33,6 +33,8 @@
 					</div>
 				</div>
 				
+				<div style="text-align:center;padding: 40upx;font-size: 24upx;color: #6A77A0;">仅能查看进{{ display_days }}天的记录</div>
+				
 			</div>
 			
 		</div>
@@ -43,7 +45,8 @@
 	export default {
 		data() {
 			return {
-				transaction_list:[]
+				transaction_list:[],
+				display_days:''
 			};
 		},
 		
@@ -74,7 +77,8 @@
 						success: (res) => {
 							// 获取真实数据之前，务必判断状态是否为200
 							if (res.data.code == 200) {
-								this.transaction_list=res.data.data;
+								this.transaction_list=res.data.data.transaction_list;
+								this.display_days = res.data.data.display_days
 									
 							} else if (res.data.code == 422) {
 								uni.showToast({

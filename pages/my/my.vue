@@ -77,6 +77,16 @@
 					</div>
 				</navigator>
 				
+				<navigator url="depositWithdraw" open-type="navigate">
+					<div class="memu-pic">
+						<div class="left-pic">
+							<image src="../../static/mine_tixian.png"></image>
+							<span>保证金提现</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
+					</div>
+				</navigator>
+				
 				
 				
 			</div>
