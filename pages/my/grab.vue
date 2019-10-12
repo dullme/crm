@@ -28,6 +28,12 @@
 					<button @click="copy(grab.withdraw_amount)">复制</button>
 				</div>
 				
+				<div>
+					<span>汇&nbsp;&nbsp;款&nbsp;&nbsp;人：</span>		
+					<input type="text" v-model="remitter"/>
+					
+				</div>
+				
 				<div style="display: flex;flex-flow: column;align-items: start;">
 					<span>汇款回执单：</span>
 					<div style="display: flex;padding-top: 40upx;flex-wrap:wrap">
@@ -60,7 +66,7 @@
 		
 		
 		<div class="real-body" v-else style="display: flex;justify-content: center;align-items: center;height: 100%;color: #6A77A0;">
-			暂无单子
+			暂无待处理的订单
 		</div>
 		
 	</view>
@@ -81,6 +87,7 @@
 				grab:[],
 				images:[],
 				time_up: false,
+				remitter:'',
 			};
 		},
 		onShow() {
@@ -227,6 +234,7 @@
 						},
 						data: {
 							"id": me.grab.id,
+							"remitter": me.remitter,
 							"images": me.images,
 						},
 						method: "POST",

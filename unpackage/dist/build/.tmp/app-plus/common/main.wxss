@@ -13,9 +13,58 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*每个页面公共css */
 .body{
-	background: #FFFFFF;
+	background: #19233C;
 	padding: 35rpx;
 }
 

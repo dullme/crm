@@ -4,5 +4,7 @@
   "backgroundColor": "#000000",
   "enablePullDownRefresh": true,
   "titleNView": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-notice-bar": "/components/uni-notice-bar/uni-notice-bar"
+  }
 }

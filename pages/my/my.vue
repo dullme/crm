@@ -78,10 +78,20 @@
 				</navigator>
 				
 				<navigator url="depositWithdraw" open-type="navigate">
-					<div class="memu-pic">
+					<div class="memu-pic" style="border-bottom: 0">
 						<div class="left-pic">
 							<image src="../../static/mine_tixian.png"></image>
 							<span>保证金提现</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
+					</div>
+				</navigator>
+				
+				<navigator url="../update/index" open-type="navigate">
+					<div class="memu-pic" style="border-bottom: 0">
+						<div class="left-pic">
+							<image src="../../static/mine_tixian.png"></image>
+							<span>更新</span>
 						</div>
 						<image src="../../static/pointer.png"></image>
 					</div>
@@ -180,7 +190,8 @@
 	}
 	
 	.real-body{
-		margin-top: 60upx;
+		margin-top: 40upx;
+		margin-bottom: 40upx;
 		padding: 0upx 50upx 0 50upx;
 		background-size:100%;
 	}
@@ -228,6 +239,7 @@
 		padding: 35upx 0;
 		border-bottom: 1px solid #323D5E;
 	}
+
 	
 	.memu-list navigator{
 		padding: 0 40upx;

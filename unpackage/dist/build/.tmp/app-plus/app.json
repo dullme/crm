@@ -7,6 +7,7 @@
     "pages/my/grab",
     "pages/my/myInfo",
     "pages/my/withdraw",
+    "pages/my/depositWithdraw",
     "pages/my/complaint",
     "pages/my/myComplaint",
     "pages/my/deposit",
@@ -14,7 +15,8 @@
     "pages/my/myTeam",
     "pages/my/myTransaction",
     "pages/my/myWithdraw",
-    "pages/my/myMessage"
+    "pages/my/myMessage",
+    "pages/update/index"
   ],
   "window": {
     "navigationBarTextStyle": "white",

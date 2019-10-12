@@ -21,6 +21,11 @@
 							<span class="tr-pic-body-left">交易金额：</span>
 							<span class="color-white">{{ item.withdraw_amount }}</span>
 						</div>
+						
+						<div>
+							<span class="tr-pic-body-left">汇款人：</span>
+							<span class="color-white">{{ item.remitter }}</span>
+						</div>
 				
 						<div>
 							<span class="tr-pic-body-left">银行卡号：</span>
@@ -33,7 +38,7 @@
 						</div>
 					</div>
 				</div>	
-				<div style="text-align:center;padding: 40upx;font-size: 24upx;color: #6A77A0;">仅能查看进{{ display_days }}天的记录</div>
+				<div style="text-align:center;padding: 40upx;font-size: 24upx;color: #6A77A0;">仅能查看近{{ display_days }}天的记录</div>
 			</div>
 			
 			

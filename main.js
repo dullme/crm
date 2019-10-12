@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import App from './App'
 
+const currentVersion = {
+    id: 1003
+}
+
+Vue.prototype.$current = currentVersion
+
 Vue.config.productionTip = false
 
 Vue.prototype.serverUrl = "http://crm-api.dullme.com/api/";			// 生产环境

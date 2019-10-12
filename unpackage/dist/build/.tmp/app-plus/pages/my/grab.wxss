@@ -122,11 +122,15 @@ page{
 	font-size: 20rpx;
 }
 .form-button{
-	margin-top: 100rpx;
 	border-radius: 100rpx;
 	padding: 12rpx;
 	color: white;
 	background-image: -o-linear-gradient(309deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+}
+.form-button-canel{
+	color: #6A77A0 !important;
+	background-color: #2a3452 !important;
+	background-image: unset !important;
 }
 

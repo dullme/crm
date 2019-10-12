@@ -15,7 +15,8 @@
     "pages/my/myTeam",
     "pages/my/myTransaction",
     "pages/my/myWithdraw",
-    "pages/my/myMessage"
+    "pages/my/myMessage",
+    "pages/update/index"
   ],
   "window": {
     "navigationBarTextStyle": "white",
