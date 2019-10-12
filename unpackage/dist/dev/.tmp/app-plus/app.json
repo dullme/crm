@@ -7,6 +7,7 @@
     "pages/my/grab",
     "pages/my/myInfo",
     "pages/my/withdraw",
+    "pages/my/depositWithdraw",
     "pages/my/complaint",
     "pages/my/myComplaint",
     "pages/my/deposit",

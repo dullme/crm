@@ -177,10 +177,13 @@
 										}, 1000)
 										
 									} else if (res.data.code == 422) {
-										uni.showToast({
-											title: res.data.message,
-											image: "../../static/icons/warning.png"
-										})
+										
+										uni.showModal({
+										    title: '投诉失败',
+										    content: res.data.message,
+											showCancel: false,
+										});
+										
 									}
 								}
 							});

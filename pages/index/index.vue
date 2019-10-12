@@ -3,12 +3,15 @@
 		<div class="real-body">
 			<div class="title">APP Name</div>
 			
-			<div v-if="userInfo.message" class="message" style="margin-left: -50upx;margin-right: -50upx;display: flex;align-items: center;padding: 20upx 30upx;">
+			<!-- <div v-if="userInfo.message" class="message" style="margin-left: -50upx;margin-right: -50upx;display: flex;align-items: center;padding: 20upx 30upx;">
 				<image style="width: 30upx;height: 30upx;margin-right: 20upx;" src="../../static/notice_icon.png"></image>
 				<marquee style="flex: 1;font-size: 30upx;color: #a3a4a5;">{{ userInfo.message }}</marquee>
-			</div>
+			</div> -->
 			
-			<div class="amount" :class="userInfo.message ? 'message-amount' : ''">
+			<uni-notice-bar v-if="message_text" background-color="unset" speed="50" color="#a3a4a5" scrollable="true" single="true" :text="message_text"></uni-notice-bar>
+
+			
+			<div class="amount" :class="message_text ? 'message-amount' : ''">
 				<image src="../../static/index-bg.png"></image>
 				<div class="amount-text">
 					<p>当日可抢额度</p>
@@ -57,10 +60,17 @@
 </template>
 
 <script>
+	import uniNoticeBar from '../../components/uni-notice-bar/uni-notice-bar.vue'
+
+	
 	export default {
+		components: {
+			uniNoticeBar
+		},
 		data() {
 			return {
 				userInfo: {},
+				message_text:'',
 				deposit_amount:0,
 				deposit:0,
 				withdraw_amount:0,
@@ -97,6 +107,7 @@
 						success: (res) => {
 							if(res.data.code == 200){
 								this.userInfo = res.data.data;
+								this.message_text = res.data.data.message
 								
 								if(!this.userInfo.bank_card || !this.userInfo.bank_name || !this.userInfo.name){
 									uni.showModal({
@@ -266,6 +277,11 @@
 		background-size:100%;
 	}
 	
+	.real-body .uni-noticebar{
+		margin-left: -50upx;
+		margin-right: -50upx;
+	}
+	
 	.title{
 		font-size: 40upx;
 		text-align: center;
@@ -414,4 +430,6 @@
 	.has-amount, .my-name{
 		color:#E9EAEB !important;
 	}
+	
+	
 </style>

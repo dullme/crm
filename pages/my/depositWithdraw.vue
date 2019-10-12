@@ -1,6 +1,6 @@
 <template>
 	<view class="body index-body">
-		<div class="real-body">
+		<div class="real-body" v-if="show">
 			
 			<div>
 				<div class="memu-list">
@@ -37,7 +37,8 @@
 	export default {
 		data() {
 			return {
-				user:[]
+				user:[],
+				show:false,
 			};
 		},
 		onLoad() {
@@ -53,6 +54,7 @@
 					method: "GET",
 					success: (res) => {
 						if(res.data.code == 200){
+							this.show = true;
 							this.user = res.data.data;
 						}else if(res.data.code == 429){
 							uni.showToast({
@@ -66,9 +68,7 @@
 								showCancel: false,
 							    success: (res) => {
 							        if (res.confirm) {
-										uni.reLaunch({
-										    url: '../my/my'
-										});
+										uni.navigateBack()
 							        }
 							    }
 							});
