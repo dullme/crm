@@ -271,6 +271,10 @@ export default {
 </script>
 
 <style>
+	page{
+		background-color: #19233C;
+	}
+	
 	.flex-column {
 		display: flex;
 		flex-direction: column;
@@ -293,18 +297,18 @@ export default {
   }
 	.title {
 		font-size: 36upx;
-		color: #373737;
+		color: #FFFFFF;
 		font-weight: bold;
 	}
 	.infoTitle {
 		font-size: 32upx;
-		color: #373737;
+		color: #FFFFFF;
 		padding-left: 15upx;
 		font-weight: bold;
 	}
 	.tip {
 		font-size: 28upx;
-		color: #7E7E83;
+		color: #FFFFFF;
 		vertical-align:text-top;
 	}
 	.bottom_aera {
@@ -331,7 +335,7 @@ export default {
 	}
 	.updateInfo {
 		font-size: 28upx;
-		color: #7E7E83;
+		color: #FFFFFF;
 		padding: 0 80upx;
   }
   .smallTitle {
@@ -339,6 +343,11 @@ export default {
     font-weight:500;
     padding:20upx 0;
     line-height:1.5;
-    color:#888;
+    color:#FFFFFF;
+  }
+  
+  uni-button{
+	  background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	  border-radius: 200upx;
   }
 </style>

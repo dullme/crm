@@ -146,16 +146,16 @@
 			"path": "pages/update/index",
 			"style": {
 				"navigationBarTitleText": "软件更新",
-				"navigationBarBackgroundColor": "#007AFF",
+				"navigationBarBackgroundColor": "#19233C",
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": {
-						"backgroundColor": "#007AFF"
+						"backgroundColor": "#19233C"
 					},
 					"pullToRefresh": {
 						"support": true,
-						"color": "#007AFF",
+						"color": "#19233C",
 						"style": "circle"
 					}
 				}

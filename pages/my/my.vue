@@ -171,7 +171,7 @@
 				uni.showModal({
 				    title: '注销',
 				    content: '确定退出登录',
-					showCancel: false,
+					showCancel: true,
 				    success: (res) => {
 				        if (res.confirm) {
 							this.removeGlobalAccessToken();
