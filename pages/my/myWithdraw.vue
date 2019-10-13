@@ -37,9 +37,9 @@
 							<span class="color-white">{{ item.operation_fee }}</span>
 						</div>
 						
-						<div>
+						<div v-if="item.complaint">
 							<span class="tr-pic-body-left">投状态：</span>
-							<span :class="item.complaint ? 'color-red' : 'color-white'">{{ item.complaint ? '已被投诉' : '未被投诉'  }}</span>
+							<span class="color-red">已被投诉</span>
 						</div>
 					</div>
 				</div>	

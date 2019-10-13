@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 
 const currentVersion = {
-    id: 1009
+    id: 2001
 }
 
 Vue.prototype.$current = currentVersion
@@ -10,7 +10,7 @@ Vue.prototype.$current = currentVersion
 Vue.config.productionTip = false
 
 Vue.prototype.serverUrl = "http://crm-api.dullme.com/api/";			// 生产环境
-Vue.prototype.serverUrl = "http://crm-api.test/api/";		// 开发环境
+// Vue.prototype.serverUrl = "http://crm-api.test/api/";		// 开发环境
 
 Vue.prototype.removeGlobalAccessToken = function() {
 	uni.removeStorageSync("globalAccessToken");

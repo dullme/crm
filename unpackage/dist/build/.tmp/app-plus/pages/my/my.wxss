@@ -12,7 +12,7 @@ page{
 }
 .real-body{
 	margin-top: 40rpx;
-	margin-bottom: 40rpx;
+	margin-bottom: 200rpx;
 	padding: 0rpx 50rpx 0 50rpx;
 	background-size:100%;
 }
@@ -70,7 +70,7 @@ page{
 	padding: 35rpx 0;
 	border-bottom: 1px solid #323D5E;
 }
-.memu-list navigator{
+.memu-list navigator, .memu-list > ._div{
 	padding: 0 40rpx;
 }
 .left-pic{
