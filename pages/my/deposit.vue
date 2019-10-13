@@ -26,6 +26,11 @@
 					<input style="flex: 1;" type="text" v-model="amount"/>
 				</div>
 				
+				<div>
+					<span>汇&nbsp;&nbsp;款&nbsp;&nbsp;人：</span>	
+					<span style="flex: 1;">{{ myname }}</span>
+				</div>
+				
 				<div style="display: flex;flex-flow: column;align-items: start;">
 					<span>汇款回执单：</span>
 					<div style="display: flex;padding-top: 40upx;flex-wrap:wrap">
@@ -55,6 +60,7 @@
 				bankname:'',
 				bankcard:'',
 				name:'',
+				myname:'',
 				images:[]
 			};
 		},
@@ -74,6 +80,7 @@
 							this.name = res.data.data.admin_name;
 							this.bankcard = res.data.data.admin_bankcard;
 							this.bankname = res.data.data.admin_bankname;
+							this.myname = res.data.data.name;
 						}else if(res.data.code == 429){
 							uni.showToast({
 								title: res.data.message,

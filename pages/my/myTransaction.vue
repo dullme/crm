@@ -30,6 +30,11 @@
 							<span class="tr-pic-body-left">收益：</span>
 							<span class="color-white">{{ item.brokerage_fee }}</span>
 						</div>
+						
+						<div>
+							<span class="tr-pic-body-left">投状态：</span>
+							<span :class="item.complaint ? 'color-red' : 'color-white'">{{ item.complaint ? '已被投诉' : '未被投诉'  }}</span>
+						</div>
 					</div>
 				</div>
 				

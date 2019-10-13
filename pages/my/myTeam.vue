@@ -7,6 +7,10 @@
 					<span>姓名</span>
 					<span>当日流水/佣金</span>
 				</div>
+				<div class="water">
+					<span>{{ mine.name }}</span>
+					<span>{{ mine.today_water }}/{{ mine.parent_brokerage_fee }}</span>
+				</div>
 				
 				<div class="water" v-for="item in team_list">
 					<span>{{ item.name }}</span>
@@ -22,6 +26,7 @@
 	export default {
 		data() {
 			return {
+				mine:[],
 				team_list:[]
 			};
 		},
@@ -39,7 +44,8 @@
 					success: (res) => {
 						// 获取真实数据之前，务必判断状态是否为200
 						if (res.data.code == 200) {
-							this.team_list=res.data.data;
+							this.mine=res.data.data.mine;
+							this.team_list=res.data.data.others;
 								
 						} else if (res.data.code == 422) {
 							uni.showToast({

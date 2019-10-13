@@ -28,6 +28,8 @@
 			
 			<button class="form-button form-button-active" @click="submit()">提现</button>
 			
+			<navigator url="depositWithdraw" style="font-size: 30upx; float: right;color: #6A77A0;margin-right: 20upx;margin-top: 100upx;">保证金提现</navigator>
+			
 		</div>
 	</view>
 </template>

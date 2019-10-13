@@ -12,7 +12,7 @@
 						</div>
 						
 					</div>
-					<p class="my-code">推荐码：{{ userInfo.invitation_code }}</p>
+					<p class="my-code" @click="copy(userInfo.invitation_code)">推荐码：{{ userInfo.invitation_code }}</p>
 				</div>
 			</div>
 			
@@ -77,18 +77,8 @@
 					</div>
 				</navigator>
 				
-				<navigator url="depositWithdraw" open-type="navigate">
-					<div class="memu-pic" style="border-bottom: 0">
-						<div class="left-pic">
-							<image src="../../static/mine_tixian.png"></image>
-							<span>保证金提现</span>
-						</div>
-						<image src="../../static/pointer.png"></image>
-					</div>
-				</navigator>
-				
 				<navigator url="../update/index" open-type="navigate">
-					<div class="memu-pic" style="border-bottom: 0">
+					<div class="memu-pic">
 						<div class="left-pic">
 							<image src="../../static/mine_tixian.png"></image>
 							<span>更新</span>
@@ -96,6 +86,16 @@
 						<image src="../../static/pointer.png"></image>
 					</div>
 				</navigator>
+				
+				<div @click="exit()">
+					<div class="memu-pic" style="border-bottom: 0;">
+						<div class="left-pic">
+							<image src="../../static/mine_tixian.png"></image>
+							<span>注销</span>
+						</div>
+						<image src="../../static/pointer.png"></image>
+					</div>
+				</div>
 				
 				
 				
@@ -166,6 +166,32 @@
 			}
 		},
 		methods: {
+			exit(){
+				
+				uni.showModal({
+				    title: '注销',
+				    content: '确定退出登录',
+					showCancel: false,
+				    success: (res) => {
+				        if (res.confirm) {
+							this.removeGlobalAccessToken();
+							uni.reLaunch({
+							    url: '../registLogin/registLogin'
+							});
+				        }
+				    }
+				});
+				
+			
+			},
+			copy(text){
+				uni.setClipboardData({
+				    data: text,
+				    success: function () {
+				        console.log('success');
+				    }
+				});
+			},
 			toMessage(){
 				uni.navigateTo({
 					url: "../my/myMessage"
@@ -191,7 +217,7 @@
 	
 	.real-body{
 		margin-top: 40upx;
-		margin-bottom: 40upx;
+		margin-bottom: 200upx;
 		padding: 0upx 50upx 0 50upx;
 		background-size:100%;
 	}
@@ -241,7 +267,7 @@
 	}
 
 	
-	.memu-list navigator{
+	.memu-list navigator, .memu-list > div{
 		padding: 0 40upx;
 	}
 	
