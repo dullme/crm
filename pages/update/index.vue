@@ -150,15 +150,12 @@ export default {
       this.latest = null
 
       uni.request({
-        url: 'https://www.easy-mock.com/mock/5c95e1ac8e241c358386bc16/pure-updater/version/info',
+        url: this.serverUrl +'version/info',
         method: 'GET',
-        data: {
-          search: 'latestInfo'
-        },
         success: (res) => {
-          if (res.statusCode === 200) {
-            const response = res.data
-            this.latest = response.latest.info
+          if (res.data.code === 200) {
+            const response = res.data.data
+            this.latest = response.info
             this.buttonLoading = false
             this.checkLatest()
           }

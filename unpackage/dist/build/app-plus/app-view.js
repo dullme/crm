@@ -1179,7 +1179,7 @@ __WXML_GLOBAL__.ops_cached.$gwx_5=[];
 Z([3,'body index-body'])
 Z([3,'real-body _div'])
 Z([3,'title _div'])
-Z([3,'APP Name'])
+Z([3,'APP Name1.0.8'])
 Z([[7],[3,'message_text']])
 Z([3,'unset'])
 Z([3,'__l'])

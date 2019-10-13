@@ -1,13 +1,13 @@
-export function checkUpdater(currentId, updaterPage) {
+export function checkUpdater(currentId, updaterPage, serverUrl) {
     uni.request({
-        url: 'https://www.easy-mock.com/mock/5c95e1ac8e241c358386bc16/pure-updater/version/id',
+        url: serverUrl +'version/id',
         method: 'GET',
         data: {
             search: 'latestId'
         },
         success: res => {
-            if (res.statusCode === 200) {
-                const response = res.data
+            if (res.data.code === 200) {
+                const response = res.data.data
                 const latestId = response.latest.id
                 const method = response.latest.method
                 if (!latestId) {
@@ -16,7 +16,7 @@ export function checkUpdater(currentId, updaterPage) {
                     console.log('确认强制更新，正在取得地址')
                     //  如果需要背地（静默）热更新，获取下载地址
                     uni.request({
-                        url: 'https://www.easy-mock.com/mock/5c95e1ac8e241c358386bc16/pure-updater/version/info',
+                        url: serverUrl +'version/info',
                         method: 'GET',
                         data: {
                           search: 'latestInfo'
@@ -24,9 +24,9 @@ export function checkUpdater(currentId, updaterPage) {
                         success: (res) => {
                             if (res.statusCode === 200) {
                                 console.log('地址请求成功')
-                                const response = res.data
-                                const iosLink = response.latest.info.iosLink
-                                const androidLink = response.latest.info.androidLink
+                                const response = res.data.data
+                                const iosLink = response.info.iosLink
+                                const androidLink = response.info.androidLink
                                 let downloadLink = ''
                                 let ready = false
                                 // 判断系统类型

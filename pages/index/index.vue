@@ -1,7 +1,7 @@
 <template>
 	<view class="body index-body">
 		<div class="real-body">
-			<div class="title">APP Name</div>
+			<div class="title">APP Name1.0.8</div>
 			
 			<!-- <div v-if="userInfo.message" class="message" style="margin-left: -50upx;margin-right: -50upx;display: flex;align-items: center;padding: 20upx 30upx;">
 				<image style="width: 30upx;height: 30upx;margin-right: 20upx;" src="../../static/notice_icon.png"></image>
