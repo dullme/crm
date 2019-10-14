@@ -9,7 +9,7 @@
 				</div>
 				<div class="water">
 					<span>{{ mine.name }}</span>
-					<span>{{ mine.today_water }}/{{ mine.parent_brokerage_fee }}</span>
+					<span>{{ mine.today_water }}/{{ mine.brokerage_fee }}</span>
 				</div>
 				
 				<div class="water" v-for="item in team_list">

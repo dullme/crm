@@ -63,6 +63,10 @@
 </script>
 
 <style>
+	page{
+		background: #19233C;
+	}
+	
 	/*每个页面公共css */
 	.body{
 		background: #19233C;

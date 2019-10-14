@@ -32,7 +32,7 @@
 						</div>
 						
 						<div v-if="item.complaint">
-							<span class="tr-pic-body-left">投状态：</span>
+							<span class="tr-pic-body-left">异常提醒：</span>
 							<span class="color-red">已被投诉</span>
 						</div>
 					</div>

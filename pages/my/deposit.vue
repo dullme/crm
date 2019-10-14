@@ -27,8 +27,8 @@
 				</div>
 				
 				<div>
-					<span>汇&nbsp;&nbsp;款&nbsp;&nbsp;人：</span>	
-					<span style="flex: 1;">{{ myname }}</span>
+					<span>汇&nbsp;&nbsp;款&nbsp;&nbsp;人：</span>		
+					<input type="text" v-model="remitter"/>
 				</div>
 				
 				<div style="display: flex;flex-flow: column;align-items: start;">
@@ -61,7 +61,9 @@
 				bankcard:'',
 				name:'',
 				myname:'',
-				images:[]
+				images:[],
+				remitter:'',
+				image_uploading:false,
 			};
 		},
 		onLoad() {
@@ -136,6 +138,10 @@
 				    success: (chooseImageRes) => {
 				        const tempFilePaths = chooseImageRes.tempFilePaths;
 						let accessToken = this.getGlobalAccessToken();
+						this.image_uploading = true;
+						uni.showLoading({
+						    title: '图片上传中'
+						});
 				        uni.uploadFile({
 				            url: this.serverUrl+'upload',
 				            filePath: tempFilePaths[0],
@@ -151,6 +157,10 @@
 								let data =JSON.parse(uploadFileRes.data)
 								console.log(data.data)
 								this.images.push(data.data)
+								setTimeout(function () {
+								    uni.hideLoading();
+								}, 500);
+								this.image_uploading = false;
 				            }
 				        });
 				    }
@@ -158,42 +168,52 @@
 			},
 			
 			submit(){
-				let accessToken = this.getGlobalAccessToken();
-				let me = this;
-				var serverUrl = me.serverUrl;
-				uni.request({
-					url: serverUrl + 'save-deposit',
-					header: {
-						"Authorization": accessToken,
-						"Accept":'application/json'
-					},
-					data: {
-						"amount": me.amount,
-						"images": me.images,
-					},
-					method: "POST",
-					success: (res) => {						
-						// 获取真实数据之前，务必判断状态是否为200
-						if (res.data.code == 200) {
-							this.images = [];
-							this.amount = 0;
-							uni.showModal({
-								title: "提交成功",
-								content: res.data.message,
-								showCancel: false,
-								confirmText: "确定"
-							})
-								
-						} else if (res.data.code == 422) {
-							uni.showModal({
-								title: "提交失败",
-								content: res.data.message,
-								showCancel: false,
-								confirmText: "确定"
-							})
+				if(this.image_uploading){
+					uni.showToast({
+						title: '图片未上传完成',
+						image: "../../static/icons/success.png"
+					})
+				}else{
+					let accessToken = this.getGlobalAccessToken();
+					let me = this;
+					var serverUrl = me.serverUrl;
+					uni.request({
+						url: serverUrl + 'save-deposit',
+						header: {
+							"Authorization": accessToken,
+							"Accept":'application/json'
+						},
+						data: {
+							"amount": me.amount,
+							"remitter": me.remitter,
+							"images": me.images,
+						},
+						method: "POST",
+						success: (res) => {						
+							// 获取真实数据之前，务必判断状态是否为200
+							if (res.data.code == 200) {
+								this.images = [];
+								this.amount = 0;
+								uni.showModal({
+									title: "提交成功",
+									content: res.data.message,
+									showCancel: false,
+									confirmText: "确定"
+								})
+									
+							} else if (res.data.code == 422) {
+								uni.showModal({
+									title: "提交失败",
+									content: res.data.message,
+									showCancel: false,
+									confirmText: "确定"
+								})
+							}
 						}
-					}
-				});
+					});
+				}
+				
+				
 			}
 		}
 	}

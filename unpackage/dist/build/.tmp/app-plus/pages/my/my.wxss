@@ -44,10 +44,10 @@ page{
 .has-message:before{
 	content: "\25CF";
 	color: #F65D6B;
-	font-size: 18rpx;
+	font-size: 30rpx;
 	position: absolute;
-	margin-left: -21rpx;
-	margin-top: -5rpx;
+	margin-left: -26rpx;
+	margin-top: -10rpx;
 }
 .memu-list{
 	border-radius: 10rpx;

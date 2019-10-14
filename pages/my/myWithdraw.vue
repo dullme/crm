@@ -11,7 +11,7 @@
 							<span class="tr-pic-body-left">订单状态：</span>
 							<span v-if="item.status == 4" class="color-red">{{ getStatus(item.status) }}</span>
 							<span v-else :class="item.status == 3 ? 'color-white' :'color-blue'">{{ getStatus(item.status) }}</span>
-							<navigator :url="'../my/complaint?type=2&id='+item.id+'&order_no='+item.order_no+'&status='+item.status+'&withdraw_amount='+item.withdraw_amount+'&bankcard='+item.bankcard+'&operation_fee='+item.operation_fee" v-if="item.status==1 || item.status==2" class="complaint">
+							<navigator :url="'../my/complaint?type=2&id='+item.id+'&order_no='+item.order_no+'&status='+item.status+'&withdraw_amount='+item.withdraw_amount+'&bankcard='+item.bankcard+'&operation_fee='+item.operation_fee" v-if="item.status==2" class="complaint">
 								投诉
 							</navigator>
 							<span v-if="item.status==2" class="confirm" @click="conform(item.id, index)">确认</span>
@@ -22,9 +22,9 @@
 							<span class="color-white">{{ item.withdraw_amount }}</span>
 						</div>
 						
-						<div>
+						<div v-if="item.remitter">
 							<span class="tr-pic-body-left">汇款人：</span>
-							<span class="color-white">{{ item.remitter ? '*'+item.remitter.substr(1):'' }}</span>
+							<span class="color-white">{{ item.remitter }}</span>
 						</div>
 				
 						<div>
@@ -38,7 +38,7 @@
 						</div>
 						
 						<div v-if="item.complaint">
-							<span class="tr-pic-body-left">投状态：</span>
+							<span class="tr-pic-body-left">异常提醒：</span>
 							<span class="color-red">已被投诉</span>
 						</div>
 					</div>

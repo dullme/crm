@@ -88,6 +88,7 @@
 				images:[],
 				time_up: false,
 				remitter:'',
+				image_uploading:false,
 			};
 		},
 		onShow() {
@@ -192,6 +193,10 @@
 					    success: (chooseImageRes) => {
 					        const tempFilePaths = chooseImageRes.tempFilePaths;
 							let accessToken = this.getGlobalAccessToken();
+							this.image_uploading = true;
+							uni.showLoading({
+							    title: '图片上传中'
+							});
 					        uni.uploadFile({
 					            url: this.serverUrl+'upload',
 					            filePath: tempFilePaths[0],
@@ -207,6 +212,10 @@
 									let data =JSON.parse(uploadFileRes.data)
 									console.log(data.data)
 									this.images.push(data.data)
+									setTimeout(function () {
+									    uni.hideLoading();
+									}, 500);
+									this.image_uploading = false;
 					            }
 					        });
 					    }
@@ -217,52 +226,61 @@
 			},
 			
 			submit(){
-				if(this.time_up){
+				if(this.image_uploading){
 					uni.showToast({
-						title: "已自动取消",
-						image: "../../static/icons/warning.png"
+						title: '图片未上传完成',
+						image: "../../static/icons/success.png"
 					})
 				}else{
-					let accessToken = this.getGlobalAccessToken();
-					let me = this;
-					var serverUrl = me.serverUrl;
-					uni.request({
-						url: serverUrl + 'save-grab',
-						header: {
-							"Authorization": accessToken,
-							"Accept":'application/json'
-						},
-						data: {
-							"id": me.grab.id,
-							"remitter": me.remitter,
-							"images": me.images,
-						},
-						method: "POST",
-						success: (res) => {						
-							// 获取真实数据之前，务必判断状态是否为200
-							if (res.data.code == 200) {
-								this.images=[];
-								this.grab = [];
-								uni.showToast({
-									title: res.data.message,
-									image: "../../static/icons/success.png"
-								})
-								
-								setTimeout(()=>{
-									uni.navigateTo({
-										url: "../my/myTransaction"
+					if(this.time_up){
+						uni.showToast({
+							title: "已自动取消",
+							image: "../../static/icons/warning.png"
+						})
+					}else{
+						let accessToken = this.getGlobalAccessToken();
+						let me = this;
+						var serverUrl = me.serverUrl;
+						uni.request({
+							url: serverUrl + 'save-grab',
+							header: {
+								"Authorization": accessToken,
+								"Accept":'application/json'
+							},
+							data: {
+								"id": me.grab.id,
+								"remitter": me.remitter,
+								"images": me.images,
+							},
+							method: "POST",
+							success: (res) => {						
+								// 获取真实数据之前，务必判断状态是否为200
+								if (res.data.code == 200) {
+									this.images=[];
+									this.grab = [];
+									uni.showToast({
+										title: res.data.message,
+										image: "../../static/icons/success.png"
 									})
-								}, 1000)
 									
-							} else if (res.data.code == 422) {
-								uni.showToast({
-									title: res.data.message,
-									image: "../../static/icons/warning.png"
-								})
+									setTimeout(()=>{
+										uni.navigateTo({
+											url: "../my/myTransaction"
+										})
+									}, 1000)
+										
+								} else if (res.data.code == 422) {
+									uni.showToast({
+										title: res.data.message,
+										image: "../../static/icons/warning.png"
+									})
+								}
 							}
-						}
-					});
+						});
+					}
 				}
+				
+				
 				
 				
 			}

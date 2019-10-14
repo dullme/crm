@@ -92,7 +92,11 @@
 				}
 				
 				if(status == 2){
-					return "处理完毕"
+					return "交易正常"
+				}
+				
+				if(status == 3){
+					return "交易取消"
 				}
 			},
 		

@@ -246,10 +246,10 @@
 	.has-message:before{
 		content: "●";
 		color: #F65D6B;
-		font-size: 18upx;
+		font-size: 30upx;
 		position: absolute;
-		margin-left: -21upx;
-		margin-top: -5upx;
+		margin-left: -26upx;
+		margin-top: -10upx;
 	}
 	
 	.memu-list{
