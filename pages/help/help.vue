@@ -12,7 +12,7 @@
 						<image style="width: 30upx;height: 30upx;" :src="item.display ?'../../static/jump_top.png' : '../../static/jump_down.png'"></image>
 					</div>
 					<div class="content" v-if="item.display" style=";padding: 0 0 30upx 0;color: #6A77A0;">
-						{{ item.content }}
+						<text>{{ item.content }}</text>
 					</div>
 				</div>
 				

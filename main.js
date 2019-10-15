@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 
 const currentVersion = {
-    id: 2160
+    id: 2170
 }
 
 Vue.prototype.$current = currentVersion
