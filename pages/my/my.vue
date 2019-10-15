@@ -80,7 +80,7 @@
 				<navigator url="../update/index" open-type="navigate">
 					<div class="memu-pic">
 						<div class="left-pic">
-							<image src="../../static/mine_tixian.png"></image>
+							<image src="../../static/gengxin.png"></image>
 							<span>更新</span>
 						</div>
 						<image src="../../static/pointer.png"></image>
@@ -90,7 +90,7 @@
 				<div @click="exit()">
 					<div class="memu-pic" style="border-bottom: 0;">
 						<div class="left-pic">
-							<image src="../../static/mine_tixian.png"></image>
+							<image src="../../static/tuichu.png"></image>
 							<span>注销</span>
 						</div>
 						<image src="../../static/pointer.png"></image>

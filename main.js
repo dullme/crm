@@ -2,14 +2,14 @@ import Vue from 'vue'
 import App from './App'
 
 const currentVersion = {
-    id: 2140
+    id: 2150
 }
 
 Vue.prototype.$current = currentVersion
 
 Vue.config.productionTip = false
 
-Vue.prototype.serverUrl = "http://crm-api.dullme.com/api/";			// 生产环境
+Vue.prototype.serverUrl = "http://cc.c8080.xyz/api/";			// 生产环境
 // Vue.prototype.serverUrl = "http://crm-api.test/api/";		// 开发环境
 
 Vue.prototype.removeGlobalAccessToken = function() {

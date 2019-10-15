@@ -62,7 +62,7 @@
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
-  "appname": "crm",
+  "appname": "vv支付",
   "compilerVersion": "2.3.3",
   "usingComponents": {}
 }

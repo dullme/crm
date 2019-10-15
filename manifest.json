@@ -1,9 +1,9 @@
 {
-    "name" : "crm",
+    "name" : "vv支付",
     "appid" : "__UNI__C0C5511",
     "description" : "",
-    "versionName" : "2.1.4",
-    "versionCode" : "100",
+    "versionName" : "2.1.5",
+    "versionCode" : 2150,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -79,6 +79,13 @@
                         "spotlight@2x" : "unpackage/res/icons/80x80.png",
                         "spotlight@3x" : "unpackage/res/icons/120x120.png"
                     }
+                }
+            },
+            "splashscreen" : {
+                "android" : {
+                    "xxhdpi" : "/Users/jinjialei/SynologyDrive/借人/启动页1080x1920.png",
+                    "xhdpi" : "/Users/jinjialei/SynologyDrive/借人/启动页720x1280.png",
+                    "hdpi" : "/Users/jinjialei/SynologyDrive/借人/启动页480x800.png"
                 }
             }
         }
