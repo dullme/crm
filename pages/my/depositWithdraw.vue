@@ -95,47 +95,59 @@
 		methods: {
 			
 			submit(){
-				let accessToken = this.getGlobalAccessToken();
-				let me = this;
-				var serverUrl = me.serverUrl;
-				uni.request({
-					url: serverUrl + 'save-deposit-withdraw',
-					header: {
-						"Authorization": accessToken,
-						"Accept":'application/json'
-					},
-					method: "POST",
-					success: (res) => {						
-						// 获取真实数据之前，务必判断状态是否为200
-						if (res.data.code == 200) {
-							uni.showModal({
-							    title: '提现成功',
-							    content: res.data.message,
-								showCancel: false,
-							    success: (res) => {
-							        if (res.confirm) {
-										uni.removeStorageSync("globalAccessToken")								
-										uni.reLaunch({
-										    url: '../registLogin/registLogin'
-										});
-							        }
-							    }
-							});
-								
-						} else if (res.data.code == 422) {
-							uni.showModal({
-								title: "提现失败",
-								content: res.data.message,
-								showCancel: false,
-								confirmText: "确定"
-							})
+				uni.showModal({
+					title: "确定提现",
+					content: this.user.modal_message ? this.user.modal_message :'确定提现',
+					showCancel: true,
+					confirmText: "确定",
+					success:res => {
+						if (res.confirm) {
 							
+							let accessToken = this.getGlobalAccessToken();
+							let me = this;
+							var serverUrl = me.serverUrl;
+							uni.request({
+								url: serverUrl + 'save-deposit-withdraw',
+								header: {
+									"Authorization": accessToken,
+									"Accept":'application/json'
+								},
+								method: "POST",
+								success: (res) => {						
+									// 获取真实数据之前，务必判断状态是否为200
+									if (res.data.code == 200) {
+										uni.showModal({
+										    title: '提现成功',
+										    content: res.data.message,
+											showCancel: false,
+										    success: (res) => {
+										        if (res.confirm) {
+													uni.removeStorageSync("globalAccessToken")								
+													uni.reLaunch({
+													    url: '../registLogin/registLogin'
+													});
+										        }
+										    }
+										});
+											
+									} else if (res.data.code == 422) {
+										uni.showModal({
+											title: "提现失败",
+											content: res.data.message,
+											showCancel: false,
+											confirmText: "确定"
+										})
+										
+									}
+								}
+							});
+							
+							
+						} else if (res.cancel) {
+							console.log('用户点击取消');
 						}
 					}
-				});
-				
-				
-				
+				})
 			}
 		}
 	}
