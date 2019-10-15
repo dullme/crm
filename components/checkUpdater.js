@@ -1,6 +1,6 @@
-export function checkUpdater(currentId, updaterPage, serverUrl) {
+export function checkUpdater(currentId, updaterPage) {
     uni.request({
-        url: serverUrl +'version/id',
+        url: this.getUrl('/api/version/id'),
         method: 'GET',
         data: {
             search: 'latestId'
@@ -16,7 +16,7 @@ export function checkUpdater(currentId, updaterPage, serverUrl) {
                     console.log('确认强制更新，正在取得地址')
                     //  如果需要背地（静默）热更新，获取下载地址
                     uni.request({
-                        url: serverUrl +'version/info',
+                        url: this.getUrl('/api/version/info'),
                         method: 'GET',
                         data: {
                           search: 'latestInfo'

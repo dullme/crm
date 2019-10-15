@@ -3,7 +3,7 @@
 	import { checkUpdater } from 'components/checkUpdater.js'
 	export default {
 		onLaunch: function () {
-			checkUpdater(this.$current.id, '../update/index', this.serverUrl) 
+			checkUpdater(this.$current.id, '../update/index') 
 			console.log('App Launch')
 			// app打开时先检查是否有更新记录（更新记录会被保存在storage中）
 			// 更新记录的内容为 { 更新标记, 安装包位置 }

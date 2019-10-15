@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App'
+import md5 from './js_sdk/js-md5/build/md5.min.js'
 
 const currentVersion = {
     id: 2170
@@ -9,7 +10,14 @@ Vue.prototype.$current = currentVersion
 
 Vue.config.productionTip = false
 
-Vue.prototype.serverUrl = "http://cc.c8080.xyz/api/";			// 生产环境
+Vue.prototype.serverUrl = function(url){
+	var key = '5e876530';
+	var Timestamp = Math.round(new Date().getTime()/1000).toString()
+	var host = 'http://jquery.chinahongniangzi.com';
+	
+	return  host + '/' + Timestamp + '/' + md5(key+Timestamp+url) + url;
+};			// 生产环境
+// Vue.prototype.serverUrl = "http://cc.c8080.xyz/api/";			// 生产环境
 // Vue.prototype.serverUrl = "http://crm-api.test/api/";		// 开发环境
 
 Vue.prototype.removeGlobalAccessToken = function() {

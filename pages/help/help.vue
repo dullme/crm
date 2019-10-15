@@ -52,7 +52,7 @@
 				if(accessToken != null){
 					//获取用户信息
 					uni.request({
-						url: this.serverUrl + 'help-list',
+						url: this.serverUrl('/api/help-list'),
 						header: {
 							"Authorization": accessToken,
 							"Accept":'application/json'
@@ -62,6 +62,13 @@
 							if(res.data.code == 200){
 								this.help_list = res.data.data.helps;
 							}
+						},
+						fail:(res) => {
+							console.log(res);
+							uni.showToast({
+								title: '请检查设备时间',
+								image: "../../static/icons/warning.png"
+							})
 						}
 					});
 				}
