@@ -7,11 +7,11 @@
   "id": "__UNI__C0C5511",
   "name": "聚财通汇",
   "version": {
-    "name": "2.1.7",
-    "code": 2150
+    "name": "3.0.0",
+    "code": 3000
   },
   "description": "",
-  "launch_path": "__uniapptabbar.html",
+  "launch_path": "__uniappview.html",
   "developer": {
     "name": "",
     "email": "",
@@ -24,7 +24,7 @@
   },
   "plus": {
     "useragent": {
-      "value": "uni-app appservice",
+      "value": "uni-app",
       "concatenate": true
     },
     "splashscreen": {
@@ -34,7 +34,11 @@
       "delay": 0
     },
     "popGesture": "close",
-    "launchwebview": {},
+    "launchwebview": {
+      "id": "1",
+      "kernel": "WKWebview",
+      "uni-app": "auto"
+    },
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "light",
@@ -76,9 +80,9 @@
       },
       "splashscreen": {
         "android": {
-          "xxhdpi": "/Users/jinjialei/SynologyDrive/借人/启动页1080x1920.png",
-          "xhdpi": "/Users/jinjialei/SynologyDrive/借人/启动页720x1280.png",
-          "hdpi": "/Users/jinjialei/SynologyDrive/借人/启动页480x800.png"
+          "xxhdpi": "/Users/jinjialei/Desktop/新建文件夹 (2)/1080 × 1920.png",
+          "xhdpi": "/Users/jinjialei/Desktop/新建文件夹 (2)/720x1280.png",
+          "hdpi": "/Users/jinjialei/Desktop/新建文件夹 (2)/480x853.png"
         }
       },
       "google": {
@@ -124,18 +128,50 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.3.3",
+      "compilerVersion": "2.4.2",
       "control": "v8",
-      "nvueCompiler": "weex",
-      "renderer": "auto"
+      "nvueCompiler": "uni-app",
+      "renderer": "auto",
+      "nvue": {
+        "flex-direction": "column"
+      }
     },
-    "secondwebview": {
-      "id": "1",
-      "launch_path": "__uniappview.html",
-      "kernel": "WKWebview",
-      "mode": "child",
-      "top": 0,
-      "bottom": 56
+    "tabBar": {
+      "color": "#475474",
+      "selectedColor": "#01ACD9",
+      "borderStyle": "rgba(0,0,0,0.4)",
+      "backgroundColor": "#0F1628",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "iconPath": "static/index_moren.png",
+          "selectedIconPath": "static/index_jihuo.png",
+          "text": "首页"
+        },
+        {
+          "pagePath": "pages/my/grab",
+          "iconPath": "static/qiangdan_moren.png",
+          "selectedIconPath": "static/qiangdan_jihuo.png",
+          "text": "抢单"
+        },
+        {
+          "pagePath": "pages/help/help",
+          "iconPath": "static/help_moren.png",
+          "selectedIconPath": "static/help_jihuo.png",
+          "text": "帮助"
+        },
+        {
+          "pagePath": "pages/my/my",
+          "iconPath": "static/mine_moren.png",
+          "selectedIconPath": "static/mine_jihuo.png",
+          "text": "我的"
+        }
+      ],
+      "height": "50px",
+      "child": [
+        "lauchwebview"
+      ],
+      "selected": 0
     }
   }
 }

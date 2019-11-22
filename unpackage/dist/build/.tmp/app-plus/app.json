@@ -56,13 +56,13 @@
       }
     ]
   },
-  "nvueCompiler": "weex",
+  "nvueCompiler": "uni-app",
   "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "聚财通汇",
-  "compilerVersion": "2.3.3",
+  "compilerVersion": "2.4.2",
   "usingComponents": {}
 }

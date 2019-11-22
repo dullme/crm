@@ -2,8 +2,8 @@
     "name" : "聚财通汇",
     "appid" : "__UNI__C0C5511",
     "description" : "",
-    "versionName" : "2.1.7",
-    "versionCode" : 2150,
+    "versionName" : "3.0.0",
+    "versionCode" : 3000,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -83,9 +83,9 @@
             },
             "splashscreen" : {
                 "android" : {
-                    "xxhdpi" : "/Users/jinjialei/SynologyDrive/借人/启动页1080x1920.png",
-                    "xhdpi" : "/Users/jinjialei/SynologyDrive/借人/启动页720x1280.png",
-                    "hdpi" : "/Users/jinjialei/SynologyDrive/借人/启动页480x800.png"
+                    "xxhdpi" : "/Users/jinjialei/Desktop/新建文件夹 (2)/1080 × 1920.png",
+                    "xhdpi" : "/Users/jinjialei/Desktop/新建文件夹 (2)/720x1280.png",
+                    "hdpi" : "/Users/jinjialei/Desktop/新建文件夹 (2)/480x853.png"
                 }
             }
         }
