@@ -1,16 +1,16 @@
 <template>
 	<view class="body index-body">
 		<div class="real-body">
-			<div class="title">vv支付</div>
-			
+			<div class="title">聚财通汇</div>
+
 			<!-- <div v-if="userInfo.message" class="message" style="margin-left: -50upx;margin-right: -50upx;display: flex;align-items: center;padding: 20upx 30upx;">
 				<image style="width: 30upx;height: 30upx;margin-right: 20upx;" src="../../static/notice_icon.png"></image>
 				<marquee style="flex: 1;font-size: 30upx;color: #a3a4a5;">{{ userInfo.message }}</marquee>
 			</div> -->
-			
+
 			<uni-notice-bar v-if="message_text" background-color="unset" speed="50" color="#a3a4a5" scrollable="true" single="true" :text="message_text"></uni-notice-bar>
 
-			
+
 			<div class="amount" :class="message_text ? 'message-amount' : ''">
 				<image src="../../static/index-bg.png"></image>
 				<div class="amount-text">
@@ -18,17 +18,17 @@
 					<p>{{ index_amount }}</p>
 				</div>
 			</div>
-			
+
 			<div class="buttom-list">
 				<button @click="submitDeposit()">保证金<span v-if="deposit_amount > 0">({{ deposit_amount }})</span></button>
 				<button class="grab" @click="grabOrder()">立即抢单</button>
 			</div>
-			
+
 			<div class="my-info">
 				<div class="my-info-title">
 					<span>我的信息</span>
 				</div>
-				
+
 				<div class="info-content">
 					<div class="info-content-top">
 						<div class="div-image">
@@ -38,7 +38,7 @@
 						<div>
 							<span class="has-card">持卡人：</span><span class="my-name">{{ userInfo.name }}</span>
 						</div>
-						
+
 					</div>
 					<div class="card-number">{{ userInfo.bank_card ? userInfo.bank_card.replace(/(\d{4})(?=\d)/g,"$1"+" ") : '' }}</div>
 					<div>
@@ -48,13 +48,13 @@
 								<span>可提现额度：</span>
 								<span class="has-amount">{{ withdraw_amount }}</span>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
-			
+
 		</div>
 	</view>
 </template>
@@ -62,7 +62,7 @@
 <script>
 	import uniNoticeBar from '../../components/uni-notice-bar/uni-notice-bar.vue'
 
-	
+
 	export default {
 		components: {
 			uniNoticeBar
@@ -79,20 +79,20 @@
 			};
 		},
 		onShow() {
-			
+
 			this.getUserInfo();
-						
+
 		},
-		
+
 		onPullDownRefresh() {
 			this.getUserInfo();
 			setTimeout(function () {
 				uni.stopPullDownRefresh();
 			}, 100);
 		},
-		
+
 		methods: {
-			
+
 			getUserInfo(){
 				let accessToken = this.getGlobalAccessToken();
 				if(accessToken != null){
@@ -108,7 +108,7 @@
 							if(res.data.code == 200){
 								this.userInfo = res.data.data;
 								this.message_text = res.data.data.message
-								
+
 								if(!this.userInfo.bank_card || !this.userInfo.bank_name || !this.userInfo.name){
 									uni.showModal({
 									    title: '完善个人信息',
@@ -123,7 +123,7 @@
 									    }
 									});
 								}
-								
+
 							}else if(res.data.code == 429){
 								uni.showToast({
 									title: res.data.message,
@@ -142,14 +142,14 @@
 										}
 									}
 								});
-								
+
 								return null;
 							}
 						}
 					});
 				}
-				
-				
+
+
 				uni.request({
 					url: this.serverUrl + 'deposit-count',
 					header: {
@@ -165,12 +165,12 @@
 							this.withdraw_amount = res.data.data.withdraw_amount;
 							this.index_amount = res.data.data.index_amount;
 						}
-						
+
 					}
 				});
-				
+
 			},
-			
+
 			submitDeposit(){
 				if(this.deposit_amount >= this.deposit){
 					uni.showModal({
@@ -185,7 +185,7 @@
 					})
 				}
 			},
-			
+
 			grabOrder(){
 				let accessToken = this.getGlobalAccessToken();
 				uni.request({
@@ -209,12 +209,12 @@
 											url:"../my/grab"
 										})
 									}
-									
+
 								}
 							})
-								
+
 						} else if (res.data.code == 422) {
-							
+
 							uni.showModal({
 								title: "抢单失败",
 								content: res.data.message,
@@ -225,7 +225,7 @@
 					}
 				});
 			},
-			
+
 			contacts: function (e) {
 				uni.showModal({
 					title: "联系人",
@@ -234,7 +234,7 @@
 					confirmText: "确定"
 				})
 			},
-			
+
 			contractManagement: function (e) {
 				uni.showModal({
 					title: "合同管理",
@@ -243,7 +243,7 @@
 					confirmText: "确定"
 				})
 			},
-			
+
 			paymentManagement: function (e) {
 				uni.showModal({
 					title: "回款管理",
@@ -261,7 +261,7 @@
 		background: #19233C;
 		height: 100%;
 	}
-	
+
 	.body{
 		padding: 0;
 		width: 100%;
@@ -270,23 +270,23 @@
 		background: #19233C url('../../static/bg.png') no-repeat fixed bottom center;
 		background-size:100%;
 	}
-	
+
 	.real-body{
 		padding: 50upx 50upx 0 50upx;
 		background: url('../../static/bg-top.png') no-repeat fixed top center;
 		background-size:100%;
 	}
-	
+
 	.real-body .uni-noticebar{
 		margin-left: -50upx;
 		margin-right: -50upx;
 	}
-	
+
 	.title{
 		font-size: 40upx;
 		text-align: center;
 	}
-	
+
 	.amount{
 		padding: 50upx 0;
 		display: flex;
@@ -294,40 +294,40 @@
 		align-items: center;
 		position: relative;
 	}
-	
+
 	.message-amount{
 		padding: 0 0 50upx 0;
 	}
-	
-	
+
+
 	.amount image{
 		width: 360upx;
 		height: 360upx;
 		z-index: 1;
 	}
-	
+
 	.amount .amount-text{
 		z-index: 2;
 		position: absolute;
 		text-align: center;
 	}
-	
+
 	.amount .amount-text p:first-child{
 		color: #475474;
 		font-size: 25upx;
 		margin-bottom: 10upx;
 	}
-	
+
 	.amount .amount-text p:last-child{
 		font-size: 40upx;
 		font-weight: 800;
 	}
-	
+
 	.buttom-list{
 		display: flex;
 		justify-content: space-between;
 	}
-	
+
 	.buttom-list button{
 		flex: 1;
 		font-size: 30upx;
@@ -335,23 +335,23 @@
 		color: white;
 		padding: 5upx;
 		text-align: center;
-		
+
 	}
-	
+
 	.buttom-list button:first-child{
 		margin-right: 20upx;
 		background-image: linear-gradient(141deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	}
-	
+
 	.buttom-list button:last-child{
 		margin-left: 20upx;
 		background-image: linear-gradient(141deg, #FFC253 30%, #FFB249 61%, #FFAB45 100%);
 	}
-	
+
 	.my-info{
 		padding-top: 20upx;
 	}
-	
+
 	.my-info-title:before{
 		content: " ";
 		padding: 0 4upx;
@@ -361,7 +361,7 @@
 		margin-right: 20upx;
 		background-image: linear-gradient(180deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	}
-	
+
 	.my-info-title{
 		display: inline-flex;
 		align-items: center;
@@ -370,7 +370,7 @@
 		font-size: 32upx;
 		color:#E9EAEB !important;
 	}
-	
+
 	.info-content{
 		background-color: #283451;
 		border-radius: 20upx;
@@ -378,23 +378,23 @@
 		flex-flow: column;
 		padding: 30upx 40upx;
 	}
-	
+
 	.info-content .info-content-top{
 		font-size: 30upx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	
+
 	.div-image{
 		display: flex;
 		align-items: center;
 	}
-	
+
 	.has-card, .div-image span{
 		color:#475474;
 	}
-		
+
 	.div-image-o{
 		display: flex;
 		border-radius: 100upx;
@@ -404,32 +404,32 @@
 		padding: 15upx;
 		margin-right: 15upx;
 	}
-	
+
 	.div-image image{
 		width: 100%;
 		height: 100%;
 	}
-	
+
 	.card-number{
 		text-align: center;
 		padding: 20upx 0;
 		color:#E9EAEB !important;
 	}
-	
+
 	.div-image-samll .div-image-o{
 		width: 40upx;
 		height: 40upx;
 		margin-right: 22upx;
 		background-color: #161F37;
 	}
-	
+
 	.div-image-samll{
 		font-size: 30upx;
 	}
-	
+
 	.has-amount, .my-name{
 		color:#E9EAEB !important;
 	}
-	
-	
+
+
 </style>

@@ -12,7 +12,7 @@ if(typeof __WXML_GLOBAL__ !== 'undefined'){
 // var requirePlugin = requirePlugin || function() {};
 // var Behavior = Behavior || function() {};
 var $gwx;
-  
+
 /*v0.5vv_20190312_syb_scopedata*/global.__wcc_version__='v0.5vv_20190312_syb_scopedata';global.__wcc_version_info__={"customComponents":true,"fixZeroRpx":true,"propValueDeepCopy":false};
 var $gwxc
 var $gaic={}
@@ -33,7 +33,7 @@ function $gwh()
 function x()
 {
 }
-x.prototype = 
+x.prototype =
 {
 hn: function( obj, all )
 {
@@ -235,24 +235,24 @@ switch(vop)
 case 2:
 return ArithmeticEv(ops,e,s,g,o);
 break;
-case 4: 
+case 4:
 return rev( ops[1], e, s, g, o, _f );
 break;
-case 5: 
+case 5:
 switch( ops.length )
 {
-case 2: 
+case 2:
 _a = rev( ops[1],e,s,g,o,_f );
 return should_pass_type_info?[_a]:[wh.rv(_a)];
 return [_a];
 break;
-case 1: 
+case 1:
 return [];
 break;
 default:
 _a = rev( ops[1],e,s,g,o,_f );
 _b = rev( ops[2],e,s,g,o,_f );
-_a.push( 
+_a.push(
 should_pass_type_info ?
 _b :
 wh.rv( _b )
@@ -278,8 +278,8 @@ _tb = wh.hn(_b) === 'h';
 _bb = _tb ? wh.rv(_b) : _b;
 o.ap = ap;
 o.is_affected |= _tb;
-if( _bb===null || typeof(_bb) === 'undefined' || 
-_bb === "__proto__" || _bb === "prototype" || _bb === "caller" ) 
+if( _bb===null || typeof(_bb) === 'undefined' ||
+_bb === "__proto__" || _bb === "prototype" || _bb === "caller" )
 {
 return (_ta || _tb) ? wh.nh(undefined, 'e') : undefined;
 }
@@ -300,8 +300,8 @@ _tb = wh.hn(_b) === 'h';
 _bb = _tb ? wh.rv(_b) : _b;
 o.ap = ap;
 o.is_affected |= _tb;
-if( _bb===null || typeof(_bb) === 'undefined' || 
-_bb === "__proto__" || _bb === "prototype" || _bb === "caller" ) 
+if( _bb===null || typeof(_bb) === 'undefined' ||
+_bb === "__proto__" || _bb === "prototype" || _bb === "caller" )
 {
 return undefined;
 }
@@ -311,7 +311,7 @@ _td = wh.hn(_d)==='h';
 o.is_affected |= _td;
 return _td ? wh.rv(_d) : _d;
 }
-case 7: 
+case 7:
 switch(ops[1][0])
 {
 case 11:
@@ -328,7 +328,7 @@ o.ap = true;
 }
 else
 {
-_a = _s && _s.hasOwnProperty(_b) ? 
+_a = _s && _s.hasOwnProperty(_b) ?
 s : (_e && _e.hasOwnProperty(_b) ? e : undefined );
 }
 if( should_pass_type_info )
@@ -359,12 +359,12 @@ return wh.rv(_d);
 return undefined;
 }
 break;
-case 8: 
+case 8:
 _a = {};
 _a[ops[1]] = rev(ops[2],e,s,g,o,_f);
 return _a;
 break;
-case 9: 
+case 9:
 _a = rev(ops[1],e,s,g,o,_f);
 _b = rev(ops[2],e,s,g,o,_f);
 function merge( _a, _b, _ow )
@@ -414,15 +414,15 @@ _b = rev(ops[2],e,s,g,o,_f);
 o.ap = ap;
 _ta = wh.hn(_a)==='h';
 _tb = _ca(_b);
-_aa = wh.rv(_a);	
+_aa = wh.rv(_a);
 _bb = wh.rv(_b); snap_bb=$gdc(_bb,"nv_");
 try{
 _r = typeof _aa === "function" ? $gdc(_aa.apply(null, snap_bb)) : undefined;
 } catch (e){
 e.message = e.message.replace(/nv_/g,"");
 e.stack = e.stack.substring(0,e.stack.indexOf("\n", e.stack.lastIndexOf("at nv_")));
-e.stack = e.stack.replace(/\snv_/g," "); 
-e.stack = $gstack(e.stack);	
+e.stack = e.stack.replace(/\snv_/g," ");
+e.stack = $gstack(e.stack);
 if(g.debugInfo)
 {
 e.stack += "\n "+" "+" "+" at "+g.debugInfo[0]+":"+g.debugInfo[1]+":"+g.debugInfo[2];
@@ -436,7 +436,7 @@ return should_pass_type_info && (_tb || _ta) ? wh.nh( _r, 'f' ) : _r;
 else
 {
 if( op === 3 || op === 1) return ops[1];
-else if( op === 11 ) 
+else if( op === 11 )
 {
 var _a='';
 for( var i = 1 ; i < ops.length ; i++ )
@@ -463,8 +463,8 @@ return rev( ops, e, s, g, o, newap );
 }
 return wrapper;
 }
-gra=$gwrt(true); 
-grb=$gwrt(false); 
+gra=$gwrt(true);
+grb=$gwrt(false);
 function TestTest( expr, ops, e,s,g, expect_a, expect_b, expect_affected )
 {
 {
@@ -489,19 +489,19 @@ console.warn( "B. " + expr + " get result " + JSON.stringify(a) + ", " + o.is_af
 
 function wfor( to_iter, func, env, _s, global, father, itemname, indexname, keyname )
 {
-var _n = wh.hn( to_iter ) === 'n'; 
-var scope = wh.rv( _s ); 
+var _n = wh.hn( to_iter ) === 'n';
+var scope = wh.rv( _s );
 var has_old_item = scope.hasOwnProperty(itemname);
 var has_old_index = scope.hasOwnProperty(indexname);
 var old_item = scope[itemname];
 var old_index = scope[indexname];
 var full = Object.prototype.toString.call(wh.rv(to_iter));
-var type = full[8]; 
-if( type === 'N' && full[10] === 'l' ) type = 'X'; 
+var type = full[8];
+if( type === 'N' && full[10] === 'l' ) type = 'X';
 var _y;
 if( _n )
 {
-if( type === 'A' ) 
+if( type === 'A' )
 {
 var r_iter_item;
 for( var i = 0 ; i < to_iter.length ; i++ )
@@ -515,7 +515,7 @@ _(father,_y);
 func( env, scope, _y, global );
 }
 }
-else if( type === 'O' ) 
+else if( type === 'O' )
 {
 var i = 0;
 var r_iter_item;
@@ -531,7 +531,7 @@ func( env,scope,_y,global );
 i++;
 }
 }
-else if( type === 'S' ) 
+else if( type === 'S' )
 {
 for( var i = 0 ; i < to_iter.length ; i++ )
 {
@@ -542,7 +542,7 @@ _(father,_y);
 func( env,scope,_y,global );
 }
 }
-else if( type === 'N' ) 
+else if( type === 'N' )
 {
 for( var i = 0 ; i < to_iter ; i++ )
 {
@@ -561,7 +561,7 @@ else
 {
 var r_to_iter = wh.rv(to_iter);
 var r_iter_item, iter_item;
-if( type === 'A' ) 
+if( type === 'A' )
 {
 for( var i = 0 ; i < r_to_iter.length ; i++ )
 {
@@ -576,7 +576,7 @@ _(father,_y);
 func( env, scope, _y, global );
 }
 }
-else if( type === 'O' ) 
+else if( type === 'O' )
 {
 var i=0;
 for( var k in r_to_iter )
@@ -593,7 +593,7 @@ func( env, scope, _y, global );
 i++
 }
 }
-else if( type === 'S' ) 
+else if( type === 'S' )
 {
 for( var i = 0 ; i < r_to_iter.length ; i++ )
 {
@@ -605,7 +605,7 @@ _(father,_y);
 func( env, scope, _y, global );
 }
 }
-else if( type === 'N' ) 
+else if( type === 'N' )
 {
 for( var i = 0 ; i < r_to_iter ; i++ )
 {
@@ -640,10 +640,10 @@ delete scope[indexname];
 }
 
 function _ca(o)
-{ 
+{
 if ( wh.hn(o) == 'h' ) return true;
 if ( typeof o !== "object" ) return false;
-for(var i in o){ 
+for(var i in o){
 if ( o.hasOwnProperty(i) ){
 if (_ca(o[i])) return true;
 }
@@ -654,26 +654,26 @@ function _da( node, attrname, opindex, raw, o )
 {
 var isaffected = false;
 var value = $gdc( raw, "", 2 );
-if ( o.ap && value && value.constructor===Function ) 
+if ( o.ap && value && value.constructor===Function )
 {
-attrname = "$wxs:" + attrname; 
+attrname = "$wxs:" + attrname;
 node.attr["$gdc"] = $gdc;
 }
-if ( o.is_affected || _ca(raw) ) 
+if ( o.is_affected || _ca(raw) )
 {
 node.n.push( attrname );
 node.raw[attrname] = raw;
 }
 node.attr[attrname] = value;
 }
-function _r( node, attrname, opindex, env, scope, global ) 
+function _r( node, attrname, opindex, env, scope, global )
 {
 global.opindex=opindex;
 var o = {}, _env;
 var a = grb( z[opindex], env, scope, global, o );
 _da( node, attrname, opindex, a, o );
 }
-function _rz( z, node, attrname, opindex, env, scope, global ) 
+function _rz( z, node, attrname, opindex, env, scope, global )
 {
 global.opindex=opindex;
 var o = {}, _env;
@@ -807,7 +807,7 @@ s=undefined==s?',':s;
 var r="";
 for(var i=0;i<this.length;++i){
 if(0!=i) r+=s;
-if(null==this[i]||undefined==this[i]) r+='';	
+if(null==this[i]||undefined==this[i]) r+='';
 else if(typeof this[i]=='function') r+=this[i].nv_toString();
 else if(typeof this[i]=='object'&&this[i].nv_constructor==="Array") r+=this[i].nv_join();
 else r+=this[i].toString();
@@ -1028,7 +1028,7 @@ var $ixc={};function _ic(p,ent,me,e,s,r,gg){var x=_grp(p,ent,me);ent[me].j.push(
 function _w(tn,f,line,c){_wp(f+':template:'+line+':'+c+': Template `'+tn+'` not found.');}function _ev(dom){var changed=false;delete dom.properities;delete dom.n;if(dom.children){do{changed=false;var newch = [];for(var i=0;i<dom.children.length;i++){var ch=dom.children[i];if( ch.tag=='virtual'){changed=true;for(var j=0;ch.children&&j<ch.children.length;j++){newch.push(ch.children[j]);}}else { newch.push(ch); } } dom.children = newch; }while(changed);for(var i=0;i<dom.children.length;i++){_ev(dom.children[i]);}} return dom; }
 function _tsd( root )
 {
-if( root.tag == "wx-wx-scope" ) 
+if( root.tag == "wx-wx-scope" )
 {
 root.tag = "virtual";
 root.wxCkey = "11";
@@ -1658,7 +1658,7 @@ return root;
 
 
 
-__wxAppCode__['app.json']={"pages":["pages/index/index","pages/registLogin/registLogin","pages/registLogin/regist","pages/my/my","pages/my/grab","pages/my/myInfo","pages/my/withdraw","pages/my/depositWithdraw","pages/my/complaint","pages/my/myComplaint","pages/my/deposit","pages/help/help","pages/my/myTeam","pages/my/myTransaction","pages/my/myWithdraw","pages/my/myMessage","pages/update/index"],"window":{"navigationBarTextStyle":"white","navigationBarTitleText":"抢单系统","navigationBarBackgroundColor":"black","backgroundColor":"black"},"tabBar":{"color":"#475474","selectedColor":"#01ACD9","borderStyle":"black","backgroundColor":"#0F1628","list":[{"pagePath":"pages/index/index","iconPath":"static/index_moren.png","selectedIconPath":"static/index_jihuo.png","text":"首页"},{"pagePath":"pages/my/grab","iconPath":"static/qiangdan_moren.png","selectedIconPath":"static/qiangdan_jihuo.png","text":"抢单"},{"pagePath":"pages/help/help","iconPath":"static/help_moren.png","selectedIconPath":"static/help_jihuo.png","text":"帮助"},{"pagePath":"pages/my/my","iconPath":"static/mine_moren.png","selectedIconPath":"static/mine_jihuo.png","text":"我的"}]},"nvueCompiler":"weex","renderer":"auto","splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"appname":"vv支付","compilerVersion":"2.3.3","usingComponents":{}};
+__wxAppCode__['app.json']={"pages":["pages/index/index","pages/registLogin/registLogin","pages/registLogin/regist","pages/my/my","pages/my/grab","pages/my/myInfo","pages/my/withdraw","pages/my/depositWithdraw","pages/my/complaint","pages/my/myComplaint","pages/my/deposit","pages/help/help","pages/my/myTeam","pages/my/myTransaction","pages/my/myWithdraw","pages/my/myMessage","pages/update/index"],"window":{"navigationBarTextStyle":"white","navigationBarTitleText":"抢单系统","navigationBarBackgroundColor":"black","backgroundColor":"black"},"tabBar":{"color":"#475474","selectedColor":"#01ACD9","borderStyle":"black","backgroundColor":"#0F1628","list":[{"pagePath":"pages/index/index","iconPath":"static/index_moren.png","selectedIconPath":"static/index_jihuo.png","text":"首页"},{"pagePath":"pages/my/grab","iconPath":"static/qiangdan_moren.png","selectedIconPath":"static/qiangdan_jihuo.png","text":"抢单"},{"pagePath":"pages/help/help","iconPath":"static/help_moren.png","selectedIconPath":"static/help_jihuo.png","text":"帮助"},{"pagePath":"pages/my/my","iconPath":"static/mine_moren.png","selectedIconPath":"static/mine_jihuo.png","text":"我的"}]},"nvueCompiler":"weex","renderer":"auto","splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"appname":"聚财通汇","compilerVersion":"2.3.3","usingComponents":{}};
 __wxAppCode__['app.wxml']=$gwx('./app.wxml');
 
 __wxAppCode__['components/uni-countdown/uni-countdown.json']={"usingComponents":{},"component":true};
