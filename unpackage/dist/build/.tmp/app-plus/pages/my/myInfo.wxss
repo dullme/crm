@@ -18,13 +18,11 @@ page{
 .my-box-card{
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
-	background-image: -o-linear-gradient(301deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
+	background-image: -webkit-linear-gradient(301deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	background-image: linear-gradient(149deg, #00B9EA 30%, #0099F0 61%, #0084F4 100%);
 	border-radius: 10rpx;
 	padding: 50rpx 40rpx;
@@ -59,12 +57,10 @@ page{
 .memu-list > ._div{
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	padding: 35rpx 0;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	border-bottom: 1px solid #323D5E;
 }
@@ -80,15 +76,12 @@ page{
 .memu-pic{
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	padding: 35rpx 0;
 	border-bottom: 1px solid #323D5E;
@@ -96,11 +89,9 @@ page{
 .left-pic{
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	font-size: 30rpx;
 }

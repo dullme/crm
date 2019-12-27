@@ -1,7 +1,7 @@
 <template>
 	<view class="body index-body">
 		<div class="real-body">
-			<div class="title">聚财通汇</div>
+			<div class="title">众盈支付</div>
 
 			<!-- <div v-if="userInfo.message" class="message" style="margin-left: -50upx;margin-right: -50upx;display: flex;align-items: center;padding: 20upx 30upx;">
 				<image style="width: 30upx;height: 30upx;margin-right: 20upx;" src="../../static/notice_icon.png"></image>

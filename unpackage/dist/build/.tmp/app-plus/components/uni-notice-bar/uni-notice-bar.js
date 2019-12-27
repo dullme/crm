@@ -7,4 +7,4 @@
         })
     },
     [['components/uni-notice-bar/uni-notice-bar-create-component']]
-]);                
+]);

@@ -7,4 +7,4 @@
         })
     },
     [['components/uni-countdown/uni-countdown-create-component']]
-]);                
+]);

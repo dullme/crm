@@ -5,7 +5,7 @@
     "iPad"
   ],
   "id": "__UNI__C0C5511",
-  "name": "聚财通汇",
+  "name": "众盈支付",
   "version": {
     "name": "3.0.0",
     "code": 3000
@@ -80,9 +80,9 @@
       },
       "splashscreen": {
         "android": {
-          "xxhdpi": "/Users/jinjialei/Desktop/新建文件夹 (2)/1080 × 1920.png",
-          "xhdpi": "/Users/jinjialei/Desktop/新建文件夹 (2)/720x1280.png",
-          "hdpi": "/Users/jinjialei/Desktop/新建文件夹 (2)/480x853.png"
+          "xxhdpi": "/Users/jinjialei/Desktop/启动页.png",
+          "xhdpi": "/Users/jinjialei/Desktop/720.png",
+          "hdpi": "/Users/jinjialei/Desktop/480.png"
         }
       },
       "google": {
@@ -128,7 +128,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.4.2",
+      "compilerVersion": "2.4.6",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",

@@ -62,7 +62,7 @@
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
-  "appname": "聚财通汇",
-  "compilerVersion": "2.4.2",
+  "appname": "众盈支付",
+  "compilerVersion": "2.4.6",
   "usingComponents": {}
 }

@@ -23,11 +23,9 @@ page{
 .water{
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	padding: 30rpx 0;
 	border-bottom: 1px solid #323D5E;

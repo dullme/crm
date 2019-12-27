@@ -52,7 +52,7 @@
 				if(accessToken != null){
 					//获取用户信息
 					uni.request({
-						url: this.serverUrl('/api/help-list'),
+						url: this.serverUrl + 'help-list',
 						header: {
 							"Authorization": accessToken,
 							"Accept":'application/json'
